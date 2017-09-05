@@ -1,0 +1,100 @@
+$lg-size: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+$med-size: ($col-in-pixels * 8) + ($gutter-in-pixels * 7)
+$sm-size: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
+
+#l-home__search
+  height: $unit-in-pixels * 14
+  padding-bottom: $unit-in-pixels * 4
+  padding-top: $unit-in-pixels
+  width: 100%
+
+#l-home__main
+  @include skew(1.4deg)
+  margin-top: -48px
+  padding-top: $unit-in-pixels
+  padding-bottom: $unit-in-pixels
+  &__content
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: $lg-size
+    @media(max-width: $lg-size + $margin-in-pixels)
+      width: $med-size
+    @media(max-width: $med-size + $margin-in-pixels)
+      display: flex
+      flex-wrap: wrap
+      width: ($col-in-pixels * 5) + ($gutter-in-pixels * 6)
+      .l-home__resources-list
+        width: ($col-in-pixels * 2) + ($gutter-in-pixels * 3)
+    @media(max-width: $sm-size + $margin-in-pixels)
+      margin-left: $margin-in-pixels
+      margin-right: $margin-in-pixels
+      width: 100%
+      .featured-incident-card__thumbnail, .featured-incident-card__started
+        display: none
+
+#l-home__main > *
+  margin-bottom: $unit-in-pixels
+
+#l-home__featured-incidents, #l-home__season-stats
+  display: inline-block
+  display: table-caption
+  overflow: hidden
+  width: ($col-in-pixels * 7) + ($gutter-in-pixels * 6)
+  @media(max-width: $lg-size + $margin-in-pixels)
+    width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+  @media(max-width: $med-size + $margin-in-pixels)
+    width: 100%
+
+
+#l-home__featured-incidents
+  order: -1
+  @media(max-width: $med-size + $margin-in-pixels)
+    margin-bottom: $unit-in-pixels * 2
+
+#l-home__season-stats, .l-home__resources-list
+  clear: both
+  float: right
+  width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
+
+#l-home__season-stats
+  margin-bottom: $unit-in-pixels * 2
+  @media(max-width: $med-size + $margin-in-pixels)
+    margin-right: $gutter-in-pixels
+    // width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
+
+#l-home__faq-list
+  display: block
+  margin-left: auto
+  margin-right: auto
+  padding-top: $unit-in-pixels
+  // padding-bottom: $unit-in-pixels
+  padding-left: $margin-in-pixels
+  padding-right: $margin-in-pixels
+  max-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9) + ($margin-in-pixels * 2)
+  li
+    font-size: x-large
+    margin-bottom: $unit-in-pixels
+
+#l-home__recent-incidents
+  @include skew(-1.4deg)
+  background-color: #222628
+  margin-bottom: -$unit-in-pixels
+  margin-left: auto
+  margin-right: auto
+  min-height: 100px
+  overflow: hidden
+  padding-top: $unit-in-pixels * 2
+  padding-bottom: $unit-in-pixels * 2 
+  width: 100%
+  & > *
+    margin: 0 auto
+    width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+  @media(max-width: $lg-size + $margin-in-pixels)
+    & > *
+      width: ($col-in-pixels * 8) + ($gutter-in-pixels * 6)
+  @media(max-width: $med-size + $margin-in-pixels)
+    & > *
+      width: ($col-in-pixels * 6) + ($gutter-in-pixels * 4)
+
+

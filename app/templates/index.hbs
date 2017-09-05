@@ -1,0 +1,43 @@
+<div id="l-home">
+
+  {{incident-search id="l-home__search"}}
+
+  <main id="l-home__main" class="t-dark">
+    <div id="l-home__main__content">
+      {{season-stats id="l-home__season-stats"}}
+      
+      <aside class="l-home__resources-list list-aside">
+        <h6 class="season-stats__heading b-heading b-text--med b-text--semibold b-text--uppercase b-text--color-gray">California fire resources</h6>
+        <ul class="c-list c-list--vert">
+          <li>Cal Fire</li>
+          <li>California Fire and Resource Assessment Program (FRAP)</li>
+          <li>California Incident Information System</li>
+          <li>Northern California Geographic Area Coordination Center (ONCC)</li>
+          <li>L.A. Fire Department</li>
+        </ul>
+      </aside>
+
+      {{featured-incidents id="l-home__featured-incidents"}}
+    </div>
+
+  </main>
+
+  <aside id="l-home__faq-list">
+    <h6 class="b-heading b-heading--h6 b-heading--medium b-text--uppercase b-text--color-gray">Fire FAQs</h6>
+    <ul class="c-list c-list--vert">
+      <li class="b-text--color-primary b-text--serif b-text--extrabold">What can I do to prepare for wildfire season?</li>
+      <li class="b-text--color-primary b-text--serif b-text--extrabold">How can I protect my pets?</li>
+      <li class="b-text--color-primary b-text--serif b-text--extrabold">How can I check the air qality?</li>
+      <li class="b-text--color-primary b-text--serif b-text--extrabold">What should I do to keep myself safe from wildfire smoke?</li>
+      <li class="b-text--color-primary b-text--serif b-text--extrabold">The air is brown with wildfire smoke – should I wear a mask?</li>
+      <li class="b-text--color-primary b-text--serif b-text--extrabold">What kind of things influence wildfire behavior?</li>
+      <li class="b-text--color-primary b-text--serif b-text--extrabold">I’ve just been asked to evacuate – what should I do?</li>
+    </ul>
+  </aside>
+  
+  <div id="l-home__recent-incidents" class="t-dark">
+    {{incidents-grid}}
+  </div>
+
+</div>
+

@@ -1,5 +1,79 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
+{{masthead-component}}
 {{outlet}}
+<footer class="o-footer">
+  <div class="o-footer__head l-section--margin-sm">
+    <div class="l-center@media-desktop">
+      <a href="/">
+        <svg class="o-footer__logo b-icon--left">
+          <use class="" xlink:href="/images/scpr-sprite.svg#logo_kpcc-white"/>
+        </svg>
+      </a>
+      <span class="o-footer__tagline text text--semibold u-text-color--gray">The Voice of Southern California</span>
+    </div>
+    <a class="o-footer__call-to-action" href="https://scprcontribute.scpr.org/">
+      <svg class="b-icon b-icon--size-med b-icon--left">
+        <use class="b-icon--line b-icon--color-white" xlink:href="/images/scpr-sprite.svg#icon_line-donate"/>
+      </svg>
+      <span class="link link--white-dark-bg text">Support the voices you trust. <b class="text--semibold">Donate&nbsp;now.</b></span>
+    </a>
+  </div>
+  <hr class="b-rule b-rule--primary" />
+  <nav class="o-footer__nav o-footer__nav--expanded u-text-align--center">
+    <ul class="l-section--margin-sm c-list--horiz c-list--divider b-text b-text--bold">
+    </ul>
+    <ul class="l-section--margin-sm c-list--horiz b-text">
+    </ul>
+  </nav>
+  <nav class="o-footer__nav o-footer__nav--compact u-text-align--center">
+    <ul class="l-section--margin-sm c-list--horiz c-list--divider b-text b-text--bold">
+      <li><a class="b-link b-link--white-dark-bg" href="#">News</a></li>
+      <li><a class="b-link b-link--white-dark-bg" href="#">Programs</a></li>
+      <li><a class="b-link b-link--white-dark-bg" href="#">Events</a></li>
+      <li><a class="b-link b-link--white-dark-bg" href="#">Support</a></li>
+      <li><a class="b-link b-link--white-dark-bg" href="#">About</a></li>
+    </ul>
+  </nav>
+  <div class="l-section--margin-sm">
+    <ul class="o-footer__partners c-list--horiz c-list--horiz-compact">
+      <li class="o-footer__partner-label"><span class="u-text-color--gray b-text b-text--uppercase b-text--semibold">Our Partners</span></li>
+      <li>
+        <svg width="106" class="o-footer__partner-logo b-icon b-icon--left">
+          <use class="b-icon--fill b-icon--color-gray" xlink:href="/images/scpr-sprite.svg#logo_partner-apm"/>
+        </svg>
+      </li>
+      <li class="o-footer__partner">
+        <svg width="62" class="o-footer__partner-logo b-icon b-icon--left">
+          <use class="b-icon--fill b-icon--color-gray" xlink:href="/images/scpr-sprite.svg#logo_partner-npr"/>
+        </svg>
+      </li>
+      <li class="o-footer__partner">
+        <svg width="71" class="o-footer__partner-logo b-icon b-icon--left">
+          <use class="b-icon--fill b-icon--color-gray" xlink:href="/images/scpr-sprite.svg#logo_partner-bbc"/>
+        </svg>
+      </li>
+      <li class="o-footer__partner">
+        <svg width="86" class="o-footer__partner-logo b-icon b-icon--left">
+          <use class="b-icon--fill b-icon--color-gray" xlink:href="/images/scpr-sprite.svg#logo_partner-pri"/>
+        </svg>
+      </li>
+      <li class="o-footer__partner">
+        <svg width="28" class="o-footer__partner-logo b-icon b-icon--left">
+          <use class="b-icon--fill b-icon--color-gray" xlink:href="/images/scpr-sprite.svg#logo_partner-nbc4"/>
+        </svg>
+      </li>
+      <li class="o-footer__partner">
+        <svg width="57" class="o-footer__partner-logo b-icon b-icon--left">
+          <use class="b-icon--fill b-icon--color-gray" xlink:href="/images/scpr-sprite.svg#logo_partner-pcc"/>
+        </svg>
+      </li>
+    </ul>
+    <nav>
+      <ul class="o-footer__foot c-list--horiz b-text b-text--small u-text-color--gray">
+        <li><a class="b-link b-link--gray-dark-bg" href="/terms/">Terms &amp; Conditions</a></li>
+        <li><a class="b-link b-link--gray-dark-bg" href="/privacy/">Privacy</a></li>
+        <li><a class="b-link b-link--gray-dark-bg" href="/web_site_feedback/">Feedback</a></li>
+        <li>&copy; 2017 Southern California Public Radio</li>
+      </ul>
+    </nav>
+  </div>
+</footer>

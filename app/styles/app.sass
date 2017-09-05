@@ -1,0 +1,21 @@
+@import "src/styles/index"
+@import "./mixins"
+@import "./themes/dark"
+
+html
+  box-sizing: border-box
+
+*, *:before, *:after
+  box-sizing: inherit
+
+@import "pod-styles"
+@import "./layout/index"
+// @import "./testing-style"
+
+.o-footer
+  position: relative
+  z-index: 2
+
+.list-aside
+  li
+    margin-bottom: $unit-in-pixels

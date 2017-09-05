@@ -1,0 +1,40 @@
+&
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  margin-right: -$gutter-in-pixels
+
+.incidents-grid__heading
+  width: 100%
+
+.incidents-grid__card, .incidents-grid__spacer
+  display: flex
+  flex-basis: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+  flex-direction: column
+  flex-grow: 2
+  justify-content: center
+  margin-bottom: $unit-in-pixels
+  margin-right: $gutter-in-pixels
+  height: $unit-in-pixels * 4
+
+.incidents-grid__spacer
+  margin-bottom: 0px
+
+.incidents-grid__card:after
+  background-color: #7e6028
+  content: ""
+  display: block
+  height: ($unit-in-pixels * 4) - 2px
+  position: absolute
+  // transform: translateY(-100%)
+  margin-left: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+  width: 1px
+
+.incidents-grid__card:nth-child(4n + 1):after
+  display: none
+
+@mixin incidents-grid--lg
+  width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+
+@mixin incidents-grid--med
+  width: ($col-in-pixels * 8) + ($gutter-in-pixels * 6)

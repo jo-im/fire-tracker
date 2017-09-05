@@ -2,10 +2,27 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const nodeSass = require('node-sass'); // loads the version in your package.json
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
+    sassOptions: {
+      includePaths: [
+        'node_modules/kpcc.style/'
+      ],
+      extension: 'sass',
+      nodeSass: nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117
+    },
+    fingerprint: {
+      exclude: [
+        'images/layers-2x.png',
+        'images/layers.png',
+        'images/marker-icon-2x.png',
+        'images/marker-icon.png',
+        'images/marker-shadow.png'
+      ]
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

@@ -1,0 +1,46 @@
+&
+  align-items: center
+  background: #302b18
+  display: block
+  display: flex
+  // justify-content: space-between
+  height: $unit-in-pixels * 2
+
+.masthead-component__logo, .masthead-component__donate
+  display: block
+  height: $unit-in-pixels
+  // margin-top: $unit-in-pixels / 2
+  & svg
+    height: $unit-in-pixels
+
+.masthead-component__spacer
+  flex-grow: 1
+
+.masthead-component__logo
+  height: 36px
+  flex-shrink: 0
+  float: left
+  margin-left: $gutter-in-pixels
+  @media(max-width: $media-tablet)
+    height: 30px
+  img, svg
+    height: 100%
+
+.masthead-component__pipe
+  background: $color-gray
+  height: $gutter-in-pixels
+  margin-left: 25px
+  margin-right: 25px
+  width: 1px
+
+.masthead-component__donate
+  color: #F3AA27
+  flex-shrink: 0
+  float: right
+  font-size: 15px
+  font-weight: medium
+  margin-right: $gutter-in-pixels
+  text-transform: uppercase
+  svg
+    fill: #F3AA27
+

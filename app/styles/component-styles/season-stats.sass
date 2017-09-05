@@ -1,0 +1,46 @@
+&
+
+$color-warning: #f3aa27
+$color-danger: #f74623
+
+.season-stats__heading
+  width: 100%
+
+.season-stats__item
+  display: flex
+  justify-content: space-between
+  margin-bottom: $unit-in-pixels
+  overflow: hidden
+
+.season-stats__item--warning
+  .season-stats__item__icon
+    background-color: $color-warning
+  .season-stats__item__trend
+    color: $color-warning
+
+.season-stats__item--danger
+  .season-stats__item__icon
+    background-color: $color-danger
+  .season-stats__item__trend
+    color: $color-danger
+
+.season-stats__item__icon, .season-stats__item__description
+  float: left
+
+.season-stats__item__description
+  display: flex
+  float: right
+  flex-direction: column
+  width: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+
+.season-stats__item__figure
+  // text-transform: uppercase
+
+.season-stats__item__icon
+  height: $unit-in-pixels * 2
+  width: $unit-in-pixels * 2
+
+.season-stats__note
+  clear: both
+
+
