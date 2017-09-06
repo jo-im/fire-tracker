@@ -1,17 +1,15 @@
-&
+.incidents-grid
   display: flex
   flex-wrap: wrap
-  // justify-content: space-between
   margin-right: -$gutter-in-pixels
 
 .incidents-grid__heading
   width: 100%
 
-.incidents-grid__card, .incidents-grid__spacer
+.incidents-grid__card, .incidents-grid__link-card, .incidents-grid__spacer
   display: flex
   flex-basis: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
   flex-direction: column
-  // flex-grow: 2
   justify-content: center
   margin-bottom: $unit-in-pixels
   margin-right: $gutter-in-pixels
@@ -21,21 +19,69 @@
   height: 0px
   margin-bottom: 0px
 
-// .incidents-grid__card:after
-//   background-color: #7e6028
-//   content: ""
-//   display: block
-//   height: ($unit-in-pixels * 4) - 2px
-//   position: absolute
-//   // transform: translateY(-100%)
-//   margin-left: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
-//   width: 1px
-
-.incidents-grid__card:nth-child(4n + 1):after
+.incidents-grid__card:after
+  background-color: #7e6028
+  content: ""
   display: none
+  height: ($unit-in-pixels * 4) - 2px
+  position: absolute
+  // transform: translateY(-100%)
+  margin-left: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+  width: 1px
+
+@mixin incidents-grid--xl
+  min-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+  width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+  .incidents-grid__card:after
+    display: block
+  .incidents-grid__card:nth-child(4n + 1):after
+    display: none
 
 @mixin incidents-grid--lg
-  width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+  min-width: ($col-in-pixels * 7) + ($gutter-in-pixels * 8)
+  width: ($col-in-pixels * 7) + ($gutter-in-pixels * 8)
+  .incidents-grid__card:after
+    display: block
+  .incidents-grid__card:nth-child(3n + 1):after
+    display: none
+  .incidents-grid__card:nth-child(4n + 1):after
+    display: block
+
 
 @mixin incidents-grid--med
-  width: ($col-in-pixels * 8) + ($gutter-in-pixels * 6)
+  min-width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+  width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+  .incidents-grid__card:after
+    display: block
+  .incidents-grid__card:nth-child(3n + 1):after
+    display: block
+  .incidents-grid__card:nth-child(2n + 1):after
+    display: none
+
+
+@mixin incidents-grid--sm
+  min-width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
+  width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
+  .incidents-grid__card:after
+    display: none
+  .incidents-grid__card:nth-child(2n + 1):after
+    display: none
+  .incidents-grid__card:nth-child(3n + 1):after
+    display: none
+  .incidents-grid__card:nth-child(2n + 1):after
+    display: none
+  .incidents-grid__card:nth-child(4n + 1):after
+    display: none
+  .incidents-grid__card
+    height: initial
+    .incidents-grid__card__list
+      display: flex
+      li:nth-child(1), li:nth-child(3)
+        display: none
+      li:nth-child(2)
+        border-right: 1px solid gray
+        margin-right: 6px
+        padding-right: 6px
+
+
+

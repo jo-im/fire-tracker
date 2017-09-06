@@ -32,15 +32,16 @@ $margin-size: $gutter-in-pixels / 2
   padding-right: $margin-size
   @media (max-width: $lg-size + ($gutter-in-pixels * 3))
     #l-home__featured-incidents
-      width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+      @include featured-incidents--lg
   @media(max-width: $lg-size)
     #l-home__featured-incidents
-      width: ($col-in-pixels * 4) + ($gutter-in-pixels * 4)
+      @include featured-incidents--med
   @media(max-width: 896px)
     #l-home__featured-incidents
+      @include featured-incidents--sm
       margin-bottom: $unit-in-pixels * 2
       margin-right: 0px
-      width: 100%
+      // width: 100%
     #l-home__main__content__right-aside
       display: flex
       justify-content: space-between
@@ -48,8 +49,8 @@ $margin-size: $gutter-in-pixels / 2
     #l-home__season-stats
       margin-right: $gutter-in-pixels
   @media(max-width: 550px)
-    .featured-incident-card__thumbnail
-      display: none 
+    #l-home__featured-incidents
+      @include featured-incidents--xs
     .l-home__resources-list
       display: none
     #l-home__season-stats
@@ -106,6 +107,8 @@ $margin-size: $gutter-in-pixels / 2
 #l-home__recent-incidents
   @include skew(-1.4deg)
   background-color: #222628
+  display: flex
+  justify-content: center
   margin-bottom: -$unit-in-pixels
   margin-left: auto
   margin-right: auto
@@ -117,7 +120,17 @@ $margin-size: $gutter-in-pixels / 2
   & > *
     margin: 0 auto
     max-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 11)
-    padding-left: $margin-size
-    padding-right: $margin-size
+    // padding-left: $margin-size
+    // padding-right: $margin-size
+    margin-right: $margin-size
+    margin-left: $margin-size
+    @include incidents-grid--xl
+    @media (max-width: 1148px)
+      @include incidents-grid--lg
+    @media (max-width: 896px)
+      @include incidents-grid--med
+    @media (max-width: 624px)
+      @include incidents-grid--sm
+
 
 

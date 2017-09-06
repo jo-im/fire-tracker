@@ -1,4 +1,4 @@
-&
+.featured-incidents
   display: flex
   flex-wrap: wrap
   overflow: hidden
@@ -8,4 +8,14 @@
 
 .featured-incident-card
   margin-bottom: $unit-in-pixels
+
+@mixin featured-incidents--lg
+  width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+@mixin featured-incidents--med
+  width: ($col-in-pixels * 4) + ($gutter-in-pixels * 4)
+@mixin featured-incidents--sm
+  width: 100%
+@mixin featured-incidents--xs
+  .featured-incident-card
+    @include featured-incident-card--xs
 
