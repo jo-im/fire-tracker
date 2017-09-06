@@ -4,22 +4,23 @@
 
   <main id="l-home__main" class="t-dark">
     <div id="l-home__main__content">
-      {{season-stats id="l-home__season-stats"}}
-      
-      <aside class="l-home__resources-list list-aside">
-        <h6 class="season-stats__heading b-heading b-text--med b-text--semibold b-text--uppercase b-text--color-gray">California fire resources</h6>
-        <ul class="c-list c-list--vert">
-          <li>Cal Fire</li>
-          <li>California Fire and Resource Assessment Program (FRAP)</li>
-          <li>California Incident Information System</li>
-          <li>Northern California Geographic Area Coordination Center (ONCC)</li>
-          <li>L.A. Fire Department</li>
-        </ul>
-      </aside>
 
       {{featured-incidents id="l-home__featured-incidents"}}
-    </div>
+      <aside id="l-home__main__content__right-aside">
+        {{season-stats id="l-home__season-stats"}}
+        <aside class="l-home__resources-list list-aside">
+          <h6 class="season-stats__heading b-heading b-text--med b-text--semibold b-text--uppercase b-text--color-gray">California fire resources</h6>
+          <ul class="c-list c-list--vert">
+            <li>Cal Fire</li>
+            <li>California Fire and Resource Assessment Program (FRAP)</li>
+            <li>California Incident Information System</li>
+            <li>Northern California Geographic Area Coordination Center (ONCC)</li>
+            <li>L.A. Fire Department</li>
+          </ul>
+        </aside>
+      </aside>
 
+    </div>
   </main>
 
   <aside id="l-home__faq-list">
@@ -32,6 +33,16 @@
       <li class="b-text--color-primary b-text--serif b-text--extrabold">The air is brown with wildfire smoke – should I wear a mask?</li>
       <li class="b-text--color-primary b-text--serif b-text--extrabold">What kind of things influence wildfire behavior?</li>
       <li class="b-text--color-primary b-text--serif b-text--extrabold">I’ve just been asked to evacuate – what should I do?</li>
+    </ul>
+  </aside>
+  <aside class="l-home__resources-list list-aside l-home__resources-list-2">
+    <h6 class="season-stats__heading b-heading b-text--med b-text--semibold b-text--uppercase b-text--color-gray">California fire resources</h6>
+    <ul class="c-list c-list--vert">
+      <li>Cal Fire</li>
+      <li>California Fire and Resource Assessment Program (FRAP)</li>
+      <li>California Incident Information System</li>
+      <li>Northern California Geographic Area Coordination Center (ONCC)</li>
+      <li>L.A. Fire Department</li>
     </ul>
   </aside>
   

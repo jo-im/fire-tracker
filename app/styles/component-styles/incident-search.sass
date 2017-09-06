@@ -6,11 +6,13 @@
   display: flex
   flex-direction: column
   justify-content: center
-  padding: $gutter-in-pixels
+  padding: $gutter-in-pixels / 2
 
 .incident-search__heading
   color: $color-white
   font-weight: 800
+  @media (max-width: 600px)
+    font-size: 32px
 
 .incident-search__input
   background: $color-white

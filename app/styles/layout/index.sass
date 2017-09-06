@@ -1,6 +1,7 @@
 $lg-size: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
 $med-size: ($col-in-pixels * 8) + ($gutter-in-pixels * 7)
 $sm-size: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
+$xs-size: ($col-in-pixels * 4) + ($gutter-in-pixels * 3)
 
 #l-home__search
   height: $unit-in-pixels * 14
@@ -13,68 +14,93 @@ $sm-size: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
   margin-top: -48px
   padding-top: $unit-in-pixels
   padding-bottom: $unit-in-pixels
-  &__content
-    display: block
-    margin-left: auto
-    margin-right: auto
-    width: $lg-size
-    @media(max-width: $lg-size + $margin-in-pixels)
-      width: $med-size
-    @media(max-width: $med-size + $margin-in-pixels)
-      display: flex
-      flex-wrap: wrap
-      width: ($col-in-pixels * 5) + ($gutter-in-pixels * 6)
-      .l-home__resources-list
-        width: ($col-in-pixels * 2) + ($gutter-in-pixels * 3)
-    @media(max-width: $sm-size + $margin-in-pixels)
-      margin-left: $margin-in-pixels
-      margin-right: $margin-in-pixels
-      width: 100%
-      .featured-incident-card__thumbnail, .featured-incident-card__started
-        display: none
 
 #l-home__main > *
   margin-bottom: $unit-in-pixels
 
-#l-home__featured-incidents, #l-home__season-stats
-  display: inline-block
-  display: table-caption
+#l-home__main__content
+  display: block
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  margin-left: auto
+  margin-right: auto
+  max-width: $lg-size + ($gutter-in-pixels * 2)
   overflow: hidden
-  width: ($col-in-pixels * 7) + ($gutter-in-pixels * 6)
-  @media(max-width: $lg-size + $margin-in-pixels)
-    width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
-  @media(max-width: $med-size + $margin-in-pixels)
-    width: 100%
+  padding-left: $gutter-in-pixels / 2
+  padding-right: $gutter-in-pixels / 2
+  @media (max-width: $lg-size + ($gutter-in-pixels * 3))
+    #l-home__featured-incidents
+      width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+  @media(max-width: $lg-size)
+    #l-home__featured-incidents
+      width: ($col-in-pixels * 4) + ($gutter-in-pixels * 4)
+  @media(max-width: 896px)
+    #l-home__featured-incidents
+      margin-bottom: $unit-in-pixels * 2
+      margin-right: 0px
+      width: 100%
+    #l-home__main__content__right-aside
+      display: flex
+      justify-content: space-between
+      width: 100%
+    #l-home__season-stats
+      margin-right: $gutter-in-pixels
+  @media(max-width: 550px)
+    .featured-incident-card__thumbnail
+      display: none 
+    .l-home__resources-list
+      display: none
+    #l-home__season-stats
+      margin-right: 0px
 
+
+
+
+
+
+#l-home__featured-incidents, #l-home__season-stats
+  overflow: hidden
 
 #l-home__featured-incidents
+  float: left
+  margin-right: $gutter-in-pixels
   order: -1
-  @media(max-width: $med-size + $margin-in-pixels)
-    margin-bottom: $unit-in-pixels * 2
+  max-width: ($col-in-pixels * 7) + ($gutter-in-pixels * 6)
+
+#l-home__main__content__right-aside
+  display: block
+  float: right
+  position: relative
 
 #l-home__season-stats, .l-home__resources-list
   clear: both
-  float: right
   width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
 
 #l-home__season-stats
   margin-bottom: $unit-in-pixels * 2
-  @media(max-width: $med-size + $margin-in-pixels)
-    margin-right: $gutter-in-pixels
-    // width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
 
 #l-home__faq-list
   display: block
   margin-left: auto
   margin-right: auto
   padding-top: $unit-in-pixels
-  // padding-bottom: $unit-in-pixels
-  padding-left: $margin-in-pixels
-  padding-right: $margin-in-pixels
-  max-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9) + ($margin-in-pixels * 2)
-  li
-    font-size: x-large
+  padding-left: $gutter-in-pixels / 2
+  padding-right: $gutter-in-pixels / 2
+  max-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9) + ($gutter-in-pixels * 2)
+  .c-list li
+    font-size: 31px
     margin-bottom: $unit-in-pixels
+    @media(max-width: 896px)
+      font-size: 26px
+
+.l-home__resources-list-2
+  display: none
+  @media(max-width: 550px)
+    display: block
+    margin-left: $gutter-in-pixels / 2
+    margin-top: $unit-in-pixels * 2
+    margin-right: $gutter-in-pixels / 2
 
 #l-home__recent-incidents
   @include skew(-1.4deg)
@@ -89,12 +115,8 @@ $sm-size: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
   width: 100%
   & > *
     margin: 0 auto
-    width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
-  @media(max-width: $lg-size + $margin-in-pixels)
-    & > *
-      width: ($col-in-pixels * 8) + ($gutter-in-pixels * 6)
-  @media(max-width: $med-size + $margin-in-pixels)
-    & > *
-      width: ($col-in-pixels * 6) + ($gutter-in-pixels * 4)
+    max-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 11)
+    padding-left: $gutter-in-pixels / 2
+    padding-right: $gutter-in-pixels / 2
 
 

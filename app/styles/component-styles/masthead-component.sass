@@ -23,8 +23,23 @@
   margin-left: $gutter-in-pixels
   @media(max-width: $media-tablet)
     height: 30px
+    margin-left: $gutter-in-pixels / 2
   img, svg
     height: 100%
+
+.masthead-component__parent-logo
+  .masthead-component__parent-logo__img--mobile
+    display: none
+  @media(max-width: 600px)
+    .masthead-component__parent-logo__img--full
+      display: none
+    .masthead-component__parent-logo__img--mobile
+      display: block
+
+
+.masthead-component__pipe, .masthead-component__donate
+  @media(max-width: 600px)
+    display: none
 
 .masthead-component__pipe
   background: $color-gray
