@@ -2,6 +2,7 @@ $lg-size: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
 $med-size: ($col-in-pixels * 8) + ($gutter-in-pixels * 7)
 $sm-size: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
 $xs-size: ($col-in-pixels * 4) + ($gutter-in-pixels * 3)
+$margin-size: $gutter-in-pixels / 2
 
 #l-home__search
   height: $unit-in-pixels * 14
@@ -27,8 +28,8 @@ $xs-size: ($col-in-pixels * 4) + ($gutter-in-pixels * 3)
   margin-right: auto
   max-width: $lg-size + ($gutter-in-pixels * 2)
   overflow: hidden
-  padding-left: $gutter-in-pixels / 2
-  padding-right: $gutter-in-pixels / 2
+  padding-left: $margin-size
+  padding-right: $margin-size
   @media (max-width: $lg-size + ($gutter-in-pixels * 3))
     #l-home__featured-incidents
       width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
@@ -85,8 +86,8 @@ $xs-size: ($col-in-pixels * 4) + ($gutter-in-pixels * 3)
   margin-left: auto
   margin-right: auto
   padding-top: $unit-in-pixels
-  padding-left: $gutter-in-pixels / 2
-  padding-right: $gutter-in-pixels / 2
+  padding-left: $margin-size
+  padding-right: $margin-size
   max-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9) + ($gutter-in-pixels * 2)
   .c-list li
     font-size: 31px
@@ -98,9 +99,9 @@ $xs-size: ($col-in-pixels * 4) + ($gutter-in-pixels * 3)
   display: none
   @media(max-width: 550px)
     display: block
-    margin-left: $gutter-in-pixels / 2
+    margin-left: $margin-size
     margin-top: $unit-in-pixels * 2
-    margin-right: $gutter-in-pixels / 2
+    margin-right: $margin-size
 
 #l-home__recent-incidents
   @include skew(-1.4deg)
@@ -116,7 +117,7 @@ $xs-size: ($col-in-pixels * 4) + ($gutter-in-pixels * 3)
   & > *
     margin: 0 auto
     max-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 11)
-    padding-left: $gutter-in-pixels / 2
-    padding-right: $gutter-in-pixels / 2
+    padding-left: $margin-size
+    padding-right: $margin-size
 
 
