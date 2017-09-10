@@ -1,0 +1,10 @@
+<main id="l-fire">
+  {{fire-header id="l-fire__header"}}
+  <div id="l-fire__primary-content">
+    {{#leaflet-map lat=34.2099583 lng=-118.0914422 zoom=12 id="l-fire__primary-content__map"}}
+      {{tile-layer url="http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.png" detectRetina=true}}      
+    {{/leaflet-map}}
+    {{!-- {{share-icons id="l-fire__primary-content__share-icons"}} --}}
+  </div>
+</main>
+

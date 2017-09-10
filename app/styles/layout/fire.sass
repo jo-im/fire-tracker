@@ -1,0 +1,47 @@
+$l-fire-margin-size: $gutter-in-pixels / 2
+$l-fire-xl-size: ($col-in-pixels * 12) + ($gutter-in-pixels * 11)
+$l-fire-xl-breakpoint: $l-fire-xl-size + ($l-fire-margin-size * 2) + 15px
+$l-fire-lg-size: ($col-in-pixels * 10) + ($gutter-in-pixels * 10)
+$l-fire-lg-breakpoint: $l-fire-lg-size + ($l-fire-margin-size * 2) + 15px
+$l-fire-med-size: ($col-in-pixels * 8) + ($gutter-in-pixels * 8)
+$l-fire-med-breakpoint: $l-fire-med-size + ($l-fire-margin-size * 2) + 15px
+$l-fire-sm-size: ($col-in-pixels * 7) + ($gutter-in-pixels * 6)
+$l-fire-sm-breakpoint: $l-fire-sm-size + ($l-fire-margin-size * 2) + 15px
+$l-fire-xs-size: ($col-in-pixels * 4) + ($gutter-in-pixels * 1)
+$l-fire-xs-breakpoint: $l-fire-xs-size
+
+#l-fire__header
+  display: flex
+  justify-content: center
+  position: relative
+  z-index: -1
+  // > *
+    // max-width: $l-fire-xl-size
+    // min-height: 200px
+
+#l-fire__primary-content
+  margin: 0 auto
+  width: $l-fire-xl-size
+  // max-width: $l-fire-xl-size
+  // padding-left: $l-fire-margin-size
+  // padding-right: $l-fire-margin-size
+  padding-top: $unit-in-pixels * 3
+
+#l-fire__primary-content__map
+  height: $unit-in-pixels * 14
+  width: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
+
+
+@media (max-width: $l-fire-xl-breakpoint)
+  #l-fire__header
+    @include fire-header--lg
+@media (max-width: $l-fire-lg-breakpoint)
+  #l-fire__header
+    @include fire-header--med
+@media (max-width: $l-fire-med-breakpoint)
+  #l-fire__header
+    @include fire-header--sm
+@media (max-width: $l-fire-sm-breakpoint)
+  #l-fire__header
+    @include fire-header--xs
+
