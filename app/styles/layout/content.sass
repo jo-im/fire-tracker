@@ -1,0 +1,90 @@
+#l-content
+  margin: 0 auto
+  margin-top: $unit-in-pixels * 2
+  margin-bottom: $unit-in-pixels * 2
+  overflow: hidden
+  width: $l-xl-size
+
+#l-content__share-icons
+  float: left
+  margin-right: $gutter-in-pixels
+  margin-top: 18px
+  width: $col-in-pixels
+
+#l-content__heading
+  margin-bottom: $unit-in-pixels
+  width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+
+#l-content__article
+  float: left
+  width: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
+
+#l-content__rule
+  display: none
+  width: 100%
+
+#l-content__asides
+  float: right
+  margin-right: $col-in-pixels
+  width: ($col-in-pixels * 3) + ($gutter-in-pixels * 3)
+  > *
+    margin-bottom: $unit-in-pixels * 2
+
+#l-content__faq-list, #l-content__resources-list, #l-content__recent-fires-list
+  font-size: 18px
+  margin-bottom: $unit-in-pixels * 2
+
+@media (max-width: $l-xl-breakpoint)
+  #l-content
+    width: $l-lg-size
+  #l-content__asides
+    margin-right: 0px
+    width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
+
+@media (max-width: $l-lg-breakpoint)
+  #l-content
+    width: $l-med-size
+  #l-content__share-icons
+    display: none
+  #l-content__heading
+    margin-bottom: $unit-in-pixels
+    width: ($col-in-pixels * 8) + ($gutter-in-pixels * 8)
+  #l-content__article
+    width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+  #l-content__asides
+    width: ($col-in-pixels * 2) + ($gutter-in-pixels * 3)
+
+@media (max-width: $l-med-breakpoint)
+  #l-content
+    align-items: center
+    display: flex
+    flex-direction: column
+    justify-content: center
+    margin-top: 0px
+    width: 100%
+    > * 
+      padding-left: $l-margin-size
+      padding-right: $l-margin-size
+  #l-content__heading, #l-content__article, #l-content__asides
+    clear: both
+    max-width: $l-sm-size
+    width: 100%
+  #l-content__heading
+    display: none
+    @include content-heading--sm
+  #l-content__article
+
+    margin-bottom: $unit-in-pixels * 4
+  #l-content__rule
+    display: block
+    width: 100%
+  #l-content__asides
+    @include list-aside--sm
+    > * 
+      margin-bottom: $unit-in-pixels * 3
+
+
+// @media (max-width: $l-sm-breakpoint)
+
+
+
