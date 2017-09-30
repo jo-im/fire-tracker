@@ -1,0 +1,21 @@
+$pointy-hat-degrees: 1.4deg
+
+.pointy-hat, .pointy-pants
+  height: $unit-in-pixels * 4
+  position: relative
+  transform: translateY($unit-in-pixels)
+  width: 100%
+  z-index: -1
+
+.pointy-hat--left
+  transform: translateY($unit-in-pixels) skew(0deg, $pointy-hat-degrees)
+
+.pointy-hat--right
+  transform: translateY($unit-in-pixels) skew(0deg, -$pointy-hat-degrees)
+
+.pointy-pants--left
+  transform: translateY($unit-in-pixels) skew(0deg, -$pointy-hat-degrees)
+
+.pointy-pants--right
+  transform: translateY($unit-in-pixels) skew(0deg, $pointy-hat-degrees)
+

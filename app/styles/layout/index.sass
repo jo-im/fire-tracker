@@ -1,13 +1,3 @@
-$l-home-margin-size: $gutter-in-pixels / 2
-$l-home-lg-size: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
-$l-home-lg-breakpoint: $l-home-lg-size + ($l-home-margin-size * 2) + 15px
-$l-home-med-size: ($col-in-pixels * 8) + ($gutter-in-pixels * 8)
-$l-home-med-breakpoint: $l-home-med-size + ($l-home-margin-size * 2) + 15px
-$l-home-sm-size: ($col-in-pixels * 7) + ($gutter-in-pixels * 6)
-$l-home-sm-breakpoint: $l-home-sm-size + ($l-home-margin-size * 2) + 15px
-$l-home-xs-size: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
-$l-home-xs-breakpoint: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
-
 #l-home__search
   height: $unit-in-pixels * 14
   padding-bottom: $unit-in-pixels * 4
@@ -32,15 +22,15 @@ $l-home-xs-breakpoint: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
   overflow: hidden
   margin-left: auto
   margin-right: auto
-  padding-left: $l-home-margin-size
-  padding-right: $l-home-margin-size
-  width: $l-home-lg-size + ($l-home-margin-size * 2)
-  @media (max-width: $l-home-lg-breakpoint)
-    width: $l-home-med-size + ($l-home-margin-size * 2)
+  padding-left: $l-margin-size
+  padding-right: $l-margin-size
+  width: $l-lg-size + ($l-margin-size * 2)
+  @media (max-width: $l-lg-breakpoint)
+    width: $l-med-size + ($l-margin-size * 2)
     #l-home__featured-incidents
       @include featured-incidents--lg
-  @media (max-width: $l-home-med-breakpoint)
-    width: $l-home-sm-size
+  @media (max-width: $l-med-breakpoint)
+    width: $l-sm-size
     #l-home__featured-incidents
       @include featured-incidents--sm
       margin-bottom: $unit-in-pixels * 2
@@ -49,13 +39,13 @@ $l-home-xs-breakpoint: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
       justify-content: space-between
     #l-home__season-stats
       margin-right: $gutter-in-pixels
-  @media (max-width: $l-home-sm-breakpoint)
-    max-width: $l-home-xs-size
+  @media (max-width: $l-sm-breakpoint)
+    max-width: $l-xs-size
     width: 100%
     #l-home__season-stats, .l-home__resources-list
       width: initial
 
-  @media (max-width: $l-home-xs-breakpoint)
+  @media (max-width: $l-xs-breakpoint)
     #l-home__featured-incidents
       @include featured-incidents--xs
     .l-home__resources-list
@@ -89,21 +79,21 @@ $l-home-xs-breakpoint: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
   overflow: hidden
   margin-left: auto
   margin-right: auto
-  padding-left: $l-home-margin-size
-  padding-right: $l-home-margin-size
+  padding-left: $l-margin-size
+  padding-right: $l-margin-size
   padding-top: $unit-in-pixels
-  width: $l-home-lg-size + ($l-home-margin-size * 2)
+  width: $l-lg-size + ($l-margin-size * 2)
   .c-list li
     font-size: 31px
     margin-bottom: $unit-in-pixels
-  @media (max-width: $l-home-lg-breakpoint)
-    width: $l-home-med-size + ($l-home-margin-size * 2)
-  @media (max-width: $l-home-med-breakpoint)
-    width: $l-home-sm-size
+  @media (max-width: $l-lg-breakpoint)
+    width: $l-med-size + ($l-margin-size * 2)
+  @media (max-width: $l-med-breakpoint)
+    width: $l-sm-size
     .c-list li
       font-size: 26px
-  @media (max-width: $l-home-sm-breakpoint)
-    max-width: $l-home-xs-size
+  @media (max-width: $l-sm-breakpoint)
+    max-width: $l-xs-size
     width: 100%
 
 .l-home__resources-list-2
@@ -112,11 +102,11 @@ $l-home-xs-breakpoint: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
   margin-left: auto
   margin-right: auto
   margin-top: $unit-in-pixels * 2
-  padding-left: $l-home-margin-size
-  padding-right: $l-home-margin-size
-  @media (max-width: $l-home-sm-breakpoint)
+  padding-left: $l-margin-size
+  padding-right: $l-margin-size
+  @media (max-width: $l-sm-breakpoint)
     display: block
-    max-width: $l-home-xs-size
+    max-width: $l-xs-size
     width: 100%
 
 #l-home__recent-incidents
@@ -137,21 +127,21 @@ $l-home-xs-breakpoint: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
     overflow: hidden
     margin-left: auto
     margin-right: auto
-    padding-left: $l-home-margin-size
-    padding-right: $l-home-margin-size
-    width: $l-home-lg-size + ($l-home-margin-size * 2)
+    padding-left: $l-margin-size
+    padding-right: $l-margin-size
+    width: $l-lg-size + ($l-margin-size * 2)
     .incidents-grid
       @include incidents-grid--xl
-    @media (max-width: $l-home-lg-breakpoint)
-      width: $l-home-med-size + ($l-home-margin-size * 2)
+    @media (max-width: $l-lg-breakpoint)
+      width: $l-med-size + ($l-margin-size * 2)
       .incidents-grid
         @include incidents-grid--lg
-    @media (max-width: $l-home-med-breakpoint)
-      width: $l-home-sm-size
+    @media (max-width: $l-med-breakpoint)
+      width: $l-sm-size
       .incidents-grid
         @include incidents-grid--med
-    @media (max-width: $l-home-sm-breakpoint)
-      max-width: $l-home-xs-size
+    @media (max-width: $l-sm-breakpoint)
+      max-width: $l-xs-size
       .incidents-grid
         @include incidents-grid--sm
 

@@ -1,9 +1,12 @@
 .masthead-component
   align-items: center
-  background: #302b18
+  background: #222628
+  border-bottom: 1px solid #898989
   display: block
   display: flex
   height: $unit-in-pixels * 2
+  position: relative
+  z-index: 9999
 
 .masthead-component__logo, .masthead-component__donate
   display: block
@@ -15,29 +18,15 @@
   flex-grow: 1
 
 .masthead-component__logo
-  height: 36px
   flex-shrink: 0
   float: left
   margin-left: $gutter-in-pixels
-  @media(max-width: $media-tablet)
-    height: 30px
-    margin-left: $gutter-in-pixels / 2
-  img, svg
-    height: 100%
+
+.masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
+  height: 36px
 
 .masthead-component__parent-logo
   .masthead-component__parent-logo__img--mobile
-    display: none
-  @media(max-width: 600px)
-    .masthead-component__parent-logo__img--full
-      display: none
-    .masthead-component__parent-logo__img--mobile
-      display: block
-      margin-right: 15px
-
-
-.masthead-component__pipe, .masthead-component__donate
-  @media(max-width: 600px)
     display: none
 
 .masthead-component__pipe
@@ -57,4 +46,25 @@
   text-transform: uppercase
   svg
     fill: #F3AA27
+
+
+@mixin masthead-component--sm
+  .masthead-component__parent-logo
+    align-self: flex-end
+    transform: translateY(-100%)
+  .masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
+    height: 30px
+  .masthead-component__logo
+    margin-left: $gutter-in-pixels / 2
+  .masthead-component__pipe, .masthead-component__donate
+    display: none
+  .masthead-component__parent-logo__img--full
+    display: none
+  .masthead-component__parent-logo__img--mobile
+    display: block
+    margin-right: 15px
+
+
+
+
 

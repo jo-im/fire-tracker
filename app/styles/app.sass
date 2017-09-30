@@ -1,4 +1,5 @@
 @import "src/styles/index"
+@import "./vars"
 @import "./mixins"
 @import "./themes/dark"
 
@@ -18,7 +19,12 @@ html
 
 @import "./component-styles/fire-header"
 @import "./component-styles/share-icons"
-
+@import "./component-styles/fire-description"
+@import "./component-styles/important-facts"
+@import "./component-styles/tweets-slider"
+@import "./component-styles/pointy-hat"
+@import "./component-styles/i-have-questions"
+@import "./component-styles/additional-details"
 
 @import "./layout/index"
 @import "./layout/fire"
@@ -31,3 +37,7 @@ html
 .list-aside
   li
     margin-bottom: $unit-in-pixels
+
+@media (max-width: $l-sm-breakpoint)
+  #l-masthead
+    @include masthead-component--sm

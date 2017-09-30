@@ -1,0 +1,121 @@
+$tweet-card-base-size: 390px
+$tweet-card-small-size: 270px
+
+.tweets-slider
+  padding-bottom: $unit-in-pixels * 3
+
+.tweets-slider__header
+  margin: 0 auto
+  width: $l-xl-size
+
+.tweets-slider__header__heading
+  line-height: 0
+
+.tweets-slider__header__description
+  display: flex
+  font-size: 22px
+  margin-bottom: $unit-in-pixels * 2
+
+.tweets-slider__header__description__text
+  margin-right: $gutter-in-pixels
+
+.tweets-slider__header__description__button
+  align-items: center
+  display: flex
+  flex-shrink: 0
+  height: $unit-in-pixels * 2
+  text-transform: initial
+
+.tweets-slider__cards
+  display: flex
+  justify-content: center
+  overflow: hidden
+  width: 100%
+
+.tweets-slider__cards__card
+  background: $color-white
+  color: $color-black
+  display: flex
+  flex-shrink: 0
+  height: $tweet-card-base-size
+  margin-left: 25px
+  margin-right: 25px
+  width: $tweet-card-base-size * 2
+
+.tweets-slider__cards__card__figure
+  background: $color-gray
+  flex-shrink: 0
+  height: $tweet-card-base-size
+  width: $tweet-card-base-size
+
+.tweets-slider__cards__card__tweet
+  display: flex
+  flex-direction: column
+  justify-content: center
+  overflow: hidden
+  padding: $unit-in-pixels
+  width: $tweet-card-base-size
+
+.tweets-slider__cards__card__text
+  font-size: 26px
+  line-height: 1.38461538
+  text-overflow: ellipsis
+
+.tweets-slider__cards__card__attribution
+  text-align: right
+
+.tweets-slider__cards__card__emdash
+  display: none
+
+@mixin tweets-slider--lg
+  .tweets-slider__header
+    width: $l-lg-size
+
+@mixin tweets-slider--med
+  .tweets-slider__header
+    width: $l-med-size
+
+@mixin tweets-slider--sm
+  .tweets-slider__header
+    width: $l-sm-size
+  .tweets-slider__header__heading
+    font-size: 29px
+  .tweets-slider__header__description
+    display: flex
+    font-size: 20px
+    margin-bottom: $unit-in-pixels
+  .tweets-slider__header__description__text
+    flex-shrink: 0
+    width: 100%
+  .tweets-slider__header__description__button
+    font-size: 15px
+    height: 31px
+    margin-top: -45px
+    padding-left: 10px
+    padding-right: 10px
+    position: absolute
+    right: 20px
+  .tweets-slider__cards__card
+    flex-direction: column
+    height: $tweet-card-small-size
+    margin-left: 8px
+    margin-right: 8px
+    width: $tweet-card-small-size
+  .tweets-slider__cards__card__figure, .tweets-slider__cards__card__tweet
+    height: $tweet-card-small-size / 2
+    width: $tweet-card-small-size
+  .tweets-slider__cards__card__text, .tweets-slider__cards__card__attribution
+    display: inline
+    font-size: 15px
+  .tweets-slider__cards__card__emdash
+    display: inline
+  .tweets-slider__cards__card__tweet
+    display: block
+    padding: 10px
+
+@mixin tweets-slider--xs
+  .tweets-slider__header
+    padding-left: $l-margin-size
+    padding-right: $l-margin-size
+    width: 100%
+

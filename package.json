@@ -16,17 +16,20 @@
   },
   "dependencies": {
     "brfs": "^1.4.3",
+    "ember-component-css": "^0.3.4",
+    "ember-json-schema": "0.0.5",
     "gulp": "^3.9.1",
     "gulp-yaml": "^1.0.1",
     "js-yaml": "^3.9.0",
+    "kpcc.style": "file:../scpr-style-guide",
+    "leaflet-timedimension": "^1.0.7",
     "nodewatch": "^0.3.1",
-    "ember-component-css": "^0.3.4",
-    "ember-json-schema": "0.0.5",
-    "kpcc.style": "file:../scpr-style-guide"
+    "iso8601-js-period": "ravenstine/iso8601-js-period"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
+    "ember-browserify": "^1.2.0",
     "ember-cli": "~2.14.2",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.3.0",
@@ -35,6 +38,7 @@
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^0.4.3",
     "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-node-modules-to-vendor": "^0.3.0",
     "ember-cli-qunit": "^4.0.0",
     "ember-cli-sass": "^5.3.1",
     "ember-cli-shims": "^1.1.0",

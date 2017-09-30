@@ -22,7 +22,11 @@ module.exports = function(defaults) {
         'images/marker-icon.png',
         'images/marker-shadow.png'
       ]
-    }
+    },
+    nodeModulesToVendor: [
+      'node_modules/leaflet-timedimension/dist',
+      'node_modules/iso8601-js-period/'
+    ]
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -37,6 +41,9 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
+  app.import('vendor/iso8601.js');
+  app.import('vendor/leaflet.timedimension.src.js');
+  app.import('vendor/leaflet.timedimension.control.css');
 
   return app.toTree();
 };

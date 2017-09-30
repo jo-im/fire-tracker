@@ -116,3 +116,23 @@ $small-breakpoint: 320px
 
 Themes are merely design overrides for components or layout containers.  They should only contain information on stuff like colors, icons, & fonts; themes should not have any influence on layout, or contain any stylistic choices that would break layout.
 
+
+## Edge Cases
+
+### Component Naming
+
+**What if I've got a component or element that's more of a container without much of a specific purpose?**
+
+Say you've got a part of your page that needs to contain a map and a description under that map.  You could call such a component `map-with-description`.
+
+### What if I don't need to make a full "component"?
+
+If an element on a page isn't going to live anywhere else besides that page, and has little to no logic of its own, it probably doesn't make sense to run `ember g component` for that specific element.
+
+However, you should still generally treat this element as a component by giving it its own style sheet to keep its design separate from the page layout stylesheet.
+
+
+
+
+
+

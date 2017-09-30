@@ -1,5 +1,21 @@
 .share-icons__icon
   display: block
+  display: flex
+  justify-content: center
   margin-bottom: $unit-in-pixels
-  width: $unit-in-pixels
+  width: $col-in-pixels
+
+.share-icons--horiz
+  .share-icons__icon
+    float: left
+
+.share-icons--sm
+  .share-icons__icon
+    height: 15px
+    margin-bottom: 0px
+    margin-right: 20px
+    width: 22px
+
+.share-icons--darker
+  filter: brightness(60%)
 

@@ -1,0 +1,15 @@
+.additional-details__body__heading
+  line-height: 1
+  margin-bottom: 5px
+
+.additional-details__body__paragraph
+  font-size: 18px
+  margin-bottom: $unit-in-pixels
+
+@mixin additional-details--xl
+  .additional-details__body
+    max-width: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
+
+@mixin additional-details--sm
+  .additional-details__heading
+    font-size: 18px

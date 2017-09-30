@@ -5,9 +5,9 @@
   margin-top: -$gutter-in-pixels
   overflow: hidden
   padding-bottom: $unit-in-pixels
-  padding-left: $gutter-in-pixels / 2
+  // padding-left: $gutter-in-pixels / 2
   padding-top: $unit-in-pixels * 3
-  padding-right: $gutter-in-pixels / 2
+  // padding-right: $gutter-in-pixels / 2
   position: relative
 
 .fire-header__heading
@@ -16,13 +16,15 @@
 
 .fire-header__basic-info
   float: left
-  margin-right: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+  margin-right: auto
+  // margin-right: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
 
 .fire-header__basic-info__pipe
   display: none
 
 .fire-header__content
   display: flex
+  justify-content: space-between
   margin: 0 auto
   // width: 100%
 
@@ -57,6 +59,9 @@
   float: left
   line-height: 1
 
+.fire-header__share-icons
+  display: none
+
 @mixin fire-header--lg
   .fire-header__basic-info
     margin-right: $col-in-pixels
@@ -81,6 +86,7 @@
   .fire-header__content
     flex-direction: column
   .fire-header__basic-info
+    margin-bottom: $unit-in-pixels
     margin-right: 0px
   .fire-header__heading
     font-size: 32px
@@ -96,8 +102,14 @@
     display: block
   .fire-header__stats__item
     width: 100%
+  .fire-header__stats__stat
+    font-size: 29px
   .fire-header__stats__item__pipe
     display: none
+
+@mixin fire-header--smaller
+  .fire-header__share-icons
+    display: block
 
 @mixin fire-header--xs
   .fire-header__stats
