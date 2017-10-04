@@ -20,13 +20,40 @@
   margin-bottom: 0px
 
 .incidents-grid__card:after
-  background-color: #7e6028
+  background-color: #F3AA27
   content: ""
   display: none
   height: ($unit-in-pixels * 4) - 2px
   position: absolute
   margin-left: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
   width: 1px
+
+.incidents-grid__card__heading-text:hover
+  @include link-underline($color-primary, $t-dark-color-background);
+
+.incidents-grid__card__item
+  display: flex
+  align-items: center
+  margin-bottom: 5px
+
+.incidents-grid__card .incidents-grid__card__item:before
+  display: inline-block
+  content: ""
+  height: 15px
+  margin-right: 10px
+  width: 15px
+
+.incidents-grid__card .incidents-grid__card__item:nth-child(1):before
+  background: url('/images/icons/calendar-sm.svg')
+
+.incidents-grid__card .incidents-grid__card__item:nth-child(2):before
+  background: url('/images/icons/pin-sm.svg')
+
+.incidents-grid__card .incidents-grid__card__item:nth-child(3):before
+  background: url('/images/icons/map-sm.svg')
+
+.incidents-grid__card .incidents-grid__card__item:nth-child(4):before
+  background: url('/images/icons/firetruck-sm.svg')
 
 @mixin incidents-grid--xl
   min-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
@@ -81,6 +108,8 @@
         border-right: 1px solid gray
         margin-right: 6px
         padding-right: 6px
+  .incidents-grid__card .incidents-grid__card__item:before
+    display: none
 
 
 

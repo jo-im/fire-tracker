@@ -35,7 +35,19 @@ export default GeoJSONLayer.extend({
 
     if(map){
       map.fitBounds(layer.getBounds());
-      map.timeDimension.on('timeload', this._onTimeload);
+      // map.timeDimension.on('timeload', this._onTimeload);
+      map.timeDimension.on('timeload', (data) => {
+        let mapBound   = map.getBounds();
+        let layerBound = layer.getBounds();
+        let shouldExpand = !mapBound.contains(layerBound);
+        var date = new Date(map.timeDimension.getCurrentTime());
+        if (shouldExpand && data.time == map.timeDimension.getCurrentTime()) {
+          var totalTimes = map.timeDimension.getAvailableTimes().length;
+          var position = map.timeDimension.getAvailableTimes().indexOf(data.time);
+          // update map bounding box
+          map.fitBounds(layer.getBounds());
+        }
+      });
     }
   },
   _onTimeload(data){

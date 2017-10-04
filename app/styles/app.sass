@@ -29,11 +29,18 @@ html
 @import "./component-styles/content-heading"
 @import "./component-styles/content-article"
 @import "./component-styles/list-aside"
+@import "./component-styles/c-figure"
+@import "./component-styles/recent-fires"
+@import "./component-styles/notification-component"
 
 @import "./layout/index"
 @import "./layout/fire"
 @import "./layout/content"
+@import "./layout/archive"
 // @import "./testing-style"
+
+.leaflet-bar-timecontrol
+  display: none
 
 .o-footer
   position: relative
@@ -46,3 +53,7 @@ html
 @media (max-width: $l-sm-breakpoint)
   #l-masthead
     @include masthead-component--sm
+
+  #l-footer
+    @include footer-component--sm
+

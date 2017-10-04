@@ -1,0 +1,42 @@
+#l-archive__search
+  height: $unit-in-pixels * 14
+  padding-bottom: $unit-in-pixels * 4
+  padding-top: $unit-in-pixels
+  width: 100%
+
+#l-archive__grid
+  @include skew(1.4deg)
+  background-color: #222628
+  display: flex
+  justify-content: center
+  margin-bottom: -$unit-in-pixels
+  margin-left: auto
+  margin-top: -48px
+  margin-right: auto
+  min-height: 100px
+  overflow: hidden
+  padding-top: $unit-in-pixels * 2
+  padding-bottom: $unit-in-pixels * 2 
+  width: 100%
+  #l-archive__grid__container
+    display: block
+    overflow: hidden
+    margin-left: auto
+    margin-right: auto
+    padding-left: $l-margin-size
+    padding-right: $l-margin-size
+    width: $l-lg-size + ($l-margin-size * 2)
+    .incidents-grid
+      @include incidents-grid--xl
+    @media (max-width: $l-lg-breakpoint)
+      width: $l-med-size + ($l-margin-size * 2)
+      .incidents-grid
+        @include incidents-grid--lg
+    @media (max-width: $l-med-breakpoint)
+      width: $l-sm-size
+      .incidents-grid
+        @include incidents-grid--med
+    @media (max-width: $l-sm-breakpoint)
+      max-width: $l-xs-size
+      .incidents-grid
+        @include incidents-grid--sm

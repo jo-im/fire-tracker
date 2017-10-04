@@ -1,2 +1,45 @@
 .footer-component
   clear: both
+
+.footer-component__logos
+  align-items: flex-end
+  display: flex
+
+.footer-component__logos > *
+  flex-shrink: 0
+
+.footer-component__logos__firetracker
+  display: block
+  float: left
+  height: 32px
+  width: 220px
+
+.footer-component__logos__kpcc, .footer-component__logos__kpcc > *
+  display: block
+  float: left
+  height: 23px
+  width: 155px
+
+.footer-component__logos__pipe
+  background: $color-gray
+  float: left
+  height: 30px
+  margin-left: 20px
+  margin-right: 20px
+  width: 1px
+
+.footer-component__foot
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  text-align: center
+
+@mixin footer-component--sm
+  .footer-component__logos__firetracker
+    height: 27px
+    width: 185px
+
+  .footer-component__logos__kpcc, .footer-component__logos__kpcc > *
+    height: 19px
+    width: 130px
+

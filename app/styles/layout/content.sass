@@ -1,4 +1,5 @@
 #l-content
+  display: block
   margin: 0 auto
   margin-top: $unit-in-pixels * 2
   margin-bottom: $unit-in-pixels * 2
@@ -9,21 +10,30 @@
   float: left
   margin-right: $gutter-in-pixels
   margin-top: 18px
+  position: absolute
   width: $col-in-pixels
 
 #l-content__heading
+  margin-left: $col-in-pixels + $gutter-in-pixels
   margin-bottom: $unit-in-pixels
   width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
 
-#l-content__article
-  float: left
+#l-content__article, #l-content__figure
+  display: inline-block
+  margin-left: $col-in-pixels + $gutter-in-pixels
   width: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
+
+#l-content__figure
+  margin-bottom: $unit-in-pixels
 
 #l-content__rule
   display: none
+  margin-top: $unit-in-pixels * 2
+  margin-bottom: $unit-in-pixels * 2
   width: 100%
 
 #l-content__asides
+  clear: both
   float: right
   margin-right: $col-in-pixels
   width: ($col-in-pixels * 3) + ($gutter-in-pixels * 3)
@@ -46,40 +56,52 @@
     width: $l-med-size
   #l-content__share-icons
     display: none
+  #l-content__heading, #l-content__figure, #l-content__article
+    margin-left: 0px
   #l-content__heading
     margin-bottom: $unit-in-pixels
     width: ($col-in-pixels * 8) + ($gutter-in-pixels * 8)
-  #l-content__article
+  #l-content__article, #l-content__figure
     width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
   #l-content__asides
     width: ($col-in-pixels * 2) + ($gutter-in-pixels * 3)
 
 @media (max-width: $l-med-breakpoint)
   #l-content
-    align-items: center
+    // align-items: center
     display: flex
     flex-direction: column
     justify-content: center
+    margin-bottom: 0px
     margin-top: 0px
     width: 100%
     > * 
       padding-left: $l-margin-size
       padding-right: $l-margin-size
-  #l-content__heading, #l-content__article, #l-content__asides
+  #l-content__figure
+    @include c-figure--margined-caption
+    order: 0
+    padding-left: 0px
+    padding-right: 0px
+    width: 100%
+  #l-content__article, #l-content__asides
     clear: both
     max-width: $l-sm-size
     width: 100%
   #l-content__heading
-    display: none
+    // display: none
     @include content-heading--sm
-  #l-content__article
-
-    margin-bottom: $unit-in-pixels * 4
-  #l-content__rule
-    display: block
+    order: 1
     width: 100%
+  #l-content__article
+    @include content-article--sm
+    order: 2
+  #l-content__rule
+    order: 3
+    display: block
   #l-content__asides
     @include list-aside--sm
+    order: 4
     > * 
       margin-bottom: $unit-in-pixels * 3
 

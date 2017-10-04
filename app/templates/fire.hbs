@@ -1,12 +1,27 @@
+{{masthead-component id="l-masthead" hasBorder=true}}
+{{notification-component active=model.isOutdated}}
 <main id="l-fire">
-  {{fire-header id="l-fire__header"}}
+  {{fire-header id="l-fire__header" fire=model}}
   <div id="l-fire__primary-content">
     {{share-icons id="l-fire__primary-content__share-icons"}}
     <div id="l-fire__map-with-description" class="map-with-description">
-      {{#fire-map lat=40.99231 lng=-121.8087 zoom=14 id="l-fire__primary-content__map" timeDimensionControl=true timeDimension=true loop=true autoplay=false}}
+
+      {{#fire-map lat=model.lat lng=model.long zoom=14 id="l-fire__primary-content__map" timeDimensionControl=true timeDimension=true loop=true autoplay=true}}
         {{tile-layer url="https://api.mapbox.com/styles/v1/ravenstine/cj85bkeio1jyx2sodfj3zek1l/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmF2ZW5zdGluZSIsImEiOiJjajg1YmQzcjEwamxiMnFzNXBhc3k3MmUwIn0.Nb-_KomoLwvsBW3A2aN4Mw" reuseTiles=true detectRetina=true attribution="Map tiles by <a href='http://stamen.com'>Stamen Design</a>, under <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a>. Data by <a href='http://openstreetmap.org'>OpenStreetMap</a>, under <a href='http://www.openstreetmap.org/copyright'>ODbL</a>."}}
-        {{timedimension-geojson-layer geoJSON=model timeDimenson=true fill=true color='#F87E21' fillColor='#da3e1a' weight=5 fillOpacity=0.5}}
+        {{#if model.perimeter}}
+          {{#timedimension-geojson-layer geoJSON=model.perimeter timeDimenson=true fill=true color='#F87E21' fillColor='#da3e1a' weight=5 fillOpacity=0.5}}
+            {{#popup-layer}}
+              <h3>{{model.name}}</h3>
+            {{/popup-layer}}
+          {{/timedimension-geojson-layer}}
+        {{/if}}
+        {{#marker-layer location=model.latLong icon=model.markerIcon}}
+          {{#popup-layer}}
+            <h3>{{model.name}}</h3>
+          {{/popup-layer}}
+        {{/marker-layer}}
       {{/fire-map}}
+      
       <div id="l-fire__description" class="fire-description b-text b-text--bold b-text--large">
         Character limit: 300 – Damage assessment teams have updated the number of structures damaged or destroyed. These structures were damaged or destroyed during the early hours of the fire. Damage assessment teams, using new software technology, completed the assessment. Damage assessment teams have ok.
       </div>

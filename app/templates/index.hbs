@@ -1,6 +1,7 @@
+{{masthead-component id="l-masthead"}}
 <div id="l-home">
 
-  {{incident-search id="l-home__search"}}
+  {{incident-search id="l-home__search" heading="Am I near a wildfire?" background="/images/backgrounds/home.png"}}
 
   <main id="l-home__main" class="t-dark">
     <div id="l-home__main__content">
@@ -48,7 +49,7 @@
   
   <div id="l-home__recent-incidents" class="t-dark">
     <div id="l-home__recent-incidents__container">
-      {{incidents-grid}}
+      {{incidents-grid heading="Recent Fires" linkToArchive=true fires=model}}
     </div>
   </div>
 

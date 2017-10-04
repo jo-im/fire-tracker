@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ["featured-incident-card"]
+  tagName: 'a',
+  classNames: ["featured-incident-card"],
+  href: '#',
+  attributeBindings: ['href']
 });

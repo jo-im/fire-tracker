@@ -7,8 +7,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('fire');
+  this.route('fire', {path: '/:slug'});
   this.route('content');
+  this.route('archive');
 });
 
 export default Router;
