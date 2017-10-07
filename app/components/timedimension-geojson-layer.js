@@ -24,7 +24,7 @@ export default GeoJSONLayer.extend({
 
     return new PerimeterLayer(jsonLayer, {
       updateTimeDimension: true,
-      updateTimeDimensionMode: 'replace',
+      updateTimeDimensionMode: 'union',
       addlastPoint: false,
       duration: 'PT20M'
     });

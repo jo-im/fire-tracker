@@ -43,7 +43,9 @@ export default LeafletMap.extend({
             loop: options.loop || false,
         }
     };
-    return this.L.map(this.element, options);
-  },
+    let map = this.L.map(this.element, options);
+    this.trigger('didInitializeMap', map);
+    return map;
+  }
 
 });

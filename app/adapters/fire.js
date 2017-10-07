@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import fetch from 'fetch';
 
 const {
   run: {
@@ -16,17 +17,13 @@ export default DS.Adapter.extend({
   _startChangesToStoreListener: function () {
     var callback = bind(this, 'onChange');
     let longpoll = () => {
-      Ember.$.ajax({
-        type: "GET",
-        url: 'https://jollypod.com/incidents/_changes?since=now&feed=longpoll',
-        dataType: 'json',
-        success: (res) => {
-          (res.results || []).forEach(callback);
-          Ember.run.later(longpoll, 10000);
-        },
-        error: function() {
-          Ember.run.later(longpoll, 10000);
-        }
+
+    fetch('https://jollypod.com/incidents/_changes?since=now&feed=longpoll')
+      .then(function(response) {
+        ((response.json() || {}).results || []).forEach(callback);
+      })
+      .catch(function(err) {
+        Ember.run.later(longpoll, 10000);
       });
     }
     longpoll();
@@ -61,27 +58,22 @@ export default DS.Adapter.extend({
   },
 
   findAll: function(store, type){
-    return new Ember.RSVP.Promise(resolve => Ember.$.get("https://jollypod.com/incidents/_all_docs?include_docs=true", resolve));
+    return fetch("https://jollypod.com/incidents/_all_docs?include_docs=true").then((resp) => resp.json());
   },
 
   findRecord: function(store, type, id){
-    return new Promise((resolve) => {
-      Ember.$.get(`https://jollypod.com/incidents/${id}`, (doc) => {
-        resolve(doc);
-      });
-    });
+    return fetch(`https://jollypod.com/incidents/${id}`).then((resp) => resp.json());
   },
 
   queryRecord: function(store, type, query){
-    return new Ember.RSVP.Promise((resolve) => {
-      Ember.$.ajax({
-        type: "POST",
-        url: "https://jollypod.com/incidents/_find",
-        data: JSON.stringify(query),
-        success: resolve,
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8'
-      });
+    return fetch("https://jollypod.com/incidents/_find", {
+      method: "POST",
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    }).then((resp) => { 
+      return resp.json(); 
     });
   }
 

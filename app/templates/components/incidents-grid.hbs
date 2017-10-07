@@ -7,7 +7,9 @@
       <span class="incidents-grid__card__heading-text">{{fire.name}}</span>
     {{/link-to}}
     <ul class="incidents-grid__card__list c-list b-text b-text--small">
-      <li class="incidents-grid__card__item">{{fire.startedAt}}</li>
+      <li class="incidents-grid__card__item">
+        {{moment-format fire.startedAt 'MMM DD, YYYY'}}
+      </li>
       {{#if fire.county}}
         <li class="incidents-grid__card__item">{{fire.county}}</li>
       {{/if}}

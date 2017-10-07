@@ -9,13 +9,13 @@
         |
       </li>
       <li class="fire-header__basic-info__data-item">
-        <span class="b-text--bold">Started:</span> Jul 10, 2017
+        <span class="b-text--bold">Started:</span> {{moment-format fire.startedAt 'MMM DD, YYYY'}}
       </li>
       <li class="fire-header__basic-info__pipe">
         |
       </li>
       <li class="fire-header__basic-info__data-item">
-        <span class="b-text--bold">Last Updated:</span> TUESDAY, AUGUST 1, 2017 7:11 A.M. PDT
+        <span class="b-text--bold">Last Updated:</span> {{moment-format fire.updatedAt 'dddd, MMMM DD, YYYY h:mm A'}}
       </li>
     </ul>
   </div>
@@ -23,7 +23,7 @@
     <div class="fire-header__stats__item">
       <h6 class="fire-header__stats__item-heading b-heading b-heading--h6 b-heading--medium b-text--uppercase b-text--color-gray">Burning For</h6>
       <div class="fire-header__stats__item-icon"></div>
-      <h3 class="fire-header__stats__stat b-heading b-heading--h3 b-heading--serif">12 days</h3>
+      <h3 class="fire-header__stats__stat b-heading b-heading--h3 b-heading--serif">{{fire.duration}}</h3>
     </div>
     <div class="fire-header__stats__pipe"></div>
     <div class="fire-header__stats__item">

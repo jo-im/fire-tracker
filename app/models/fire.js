@@ -11,7 +11,45 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   slug: DS.attr('string'),
   description: DS.attr('string'),
-  reportedAt: DS.attr('date'),
+  computedDescription: Ember.computed(function() {
+    let description = this.get('description');
+    if(description){
+      return description;
+    }
+    let output         = ['No new updates for this fire.'];
+    let acres          = this.get('stats.damage.acres');
+    let containment    = this.get('stats.damage.contained');
+    let cause          = this.get('whatCause');
+    let roadClosures   = this.get('roadClosures');
+    let schoolClosures = this.get('schoolClosures');
+
+    if(acres && containment){
+      output.push(`${acres} acres have burned, and the fire has been ${containment} contained.`);
+    } else if (acres) {
+      output.push(`${acres} acres have burned so far.`)
+    } else if (containment) {
+      output.push(`The fire has been ${containment} contained.`);
+    }
+
+    if(cause){
+      if(cause === 'Under Investigation'){
+        output.push('The cause is currently under investigation');
+      } else {
+        output.push(`The cause was ${cause.toLowerCase()}`);
+      }
+    }
+
+    if(roadClosures && schoolClosures){
+      output.push("Road and school closures are in effect.  See details below.");
+    } else if (roadClosures) {
+      output.push("Road closures are in effect.  See details below.");
+    } else if (schoolClosures) {
+      output.push("School closures are in effect.  See details below.");
+    }
+
+    return output.join('  ');
+  }),
+  startedAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   cause: DS.attr('string'),
   href: DS.attr('string'),
@@ -19,16 +57,16 @@ export default DS.Model.extend({
   administrativeUnit: DS.attr('string'),
   conditions: DS.attr('string'),
   cooperatingAgencies: DS.attr('string'),
-  currentCondition: DS.attr('string'),
+  currentSituation: DS.attr('string'),
   evacuations: DS.attr('string'),
   fuelsInvolved: DS.attr('string'),
   roadClosures: DS.attr('string'),
   schoolClosures: DS.attr('string'),
   weatherConcerns: DS.attr('string'),
-  images: DS.attr(),
-  audio: DS.attr(),
-  video: DS.attr(),
-  tweets: DS.attr(),
+  images: DS.attr('array'),
+  audio: DS.attr('array'),
+  video: DS.attr('array'),
+  tweets: DS.attr('array'),
   stats: DS.attr(),
   location: DS.attr(),
   perimeter: DS.attr(),
@@ -43,13 +81,22 @@ export default DS.Model.extend({
   containment: Ember.computed('stats.damage.contained', function(){
     return this.get('stats.damage.contained') || '0%';
   }),
-  startedAt: Ember.computed('reportedAt', function(){
-    let time = this.get('reportedAt') || this.get('updatedAt');
-    if(time){
-      let date = new Date(time);
-      return `${shortMonthNames[date.getMonth()]} ${date.getDate()} ${date.getFullYear()}`;
+  duration: Ember.computed('startedAt', function(){
+    let startedAt = this.get('startedAt');
+    if(startedAt){
+      let a = moment(startedAt);
+      let b = moment(new Date());
+      let days = Math.abs(b.diff(a, 'days'));
+      return `${days} days`;
     }
   }),
+  // startedAt: Ember.computed('reportedAt', function(){
+  //   let time = this.get('reportedAt') || this.get('updatedAt');
+  //   if(time){
+  //     let date = new Date(time);
+  //     return `${shortMonthNames[date.getMonth()]} ${date.getDate()} ${date.getFullYear()}`;
+  //   }
+  // }),
   lat: Ember.computed('location.coordinates.lat', function(){
     return this.get('location.coordinates.lat');
   }),
