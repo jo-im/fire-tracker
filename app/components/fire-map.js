@@ -1,6 +1,4 @@
-import Ember from 'ember';
 import LeafletMap from 'ember-leaflet/components/leaflet-map';
-
 
 export default LeafletMap.extend({
   leafletOptions: [
@@ -44,8 +42,10 @@ export default LeafletMap.extend({
         }
     };
     let map = this.L.map(this.element, options);
+    map.scrollWheelZoom.disable()
     this.trigger('didInitializeMap', map);
     return map;
   }
 
 });
+

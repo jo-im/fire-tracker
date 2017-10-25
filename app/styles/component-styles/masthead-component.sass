@@ -13,9 +13,7 @@
 .masthead-component__logo, .masthead-component__donate
   display: block
   height: $unit-in-pixels
-  & svg
-    height: $unit-in-pixels
-
+    
 .masthead-component__spacer
   flex-grow: 1
 
@@ -24,7 +22,7 @@
   float: left
   margin-left: $gutter-in-pixels
 
-.masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
+.masthead-component__logo, .masthead-component__logo img, .masthead-component__donate__icon
   height: 36px
 
 .masthead-component__parent-logo
@@ -46,9 +44,22 @@
   font-weight: medium
   margin-right: $gutter-in-pixels
   text-transform: uppercase
-  svg
-    fill: #F3AA27
 
+.masthead-component__donate__icon
+  fill: #F3AA27
+  height: $unit-in-pixels
+  margin-right: 4px
+  vertical-align: middle
+  width: 22px
+
+.masthead-component__donate__icon__image
+  height: 22px
+  width: 22px
+
+.masthead-component__timestamp
+  color: $color-white
+  font-family: $font-sans-base
+  font-size: 12px
 
 @mixin masthead-component--sm
   .masthead-component__parent-logo
@@ -66,7 +77,15 @@
     display: block
     margin-right: 15px
 
-
-
+@mixin masthead-component--xs
+  height: $unit-in-pixels
+  .masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
+    height: 18px
+  .masthead-component__logo
+    margin-left: $gutter-in-pixels / 4
+  .masthead-component__parent-logo
+    display: none
+  .masthead-component__timestamp
+    margin-right: $gutter-in-pixels / 4
 
 

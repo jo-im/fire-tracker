@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "brfs": "^1.4.3",
-    "kpcc.style": "file:../scpr-style-guide",
     "lodash.sortby": "^4.7.0",
     "moment": "^2.18.1",
     "nodewatch": "^0.3.1",

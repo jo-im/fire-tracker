@@ -1,0 +1,35 @@
+<div class="tweets-slider__header">
+<h2 class="tweets-slider__header__heading">On the scene</h2>
+  <div class="tweets-slider__header__description">
+    <div class="tweets-slider__header__description__text">
+      Are you near the Whittier Fire?  Get updates from fire and rescue agencies, post photos, and videos and see up-to-the-minute coverage on Twitter with #WhittierFire
+    </div>
+    <div class="tweets-slider__header__description__button">
+      <span>See more on Twitter</span>
+    </div>
+  </div>
+</div>
+<div class="tweets-slider__cards">
+  {{#each tweets as |tweet index|}}
+    <div class="tweets-slider__cards__card" {{action 'selectTweet' index}}>
+      <figure class="tweets-slider__cards__card__figure">
+        <img class="c-figure__img" src="{{tweet.photos.[0].media_url_https}}" style="background-image: url('{{tweet.photos.[0].media_url_https}}')">
+      </figure>
+      <div class="tweets-slider__cards__card__tweet">
+        <p class="tweets-slider__cards__card__text">
+          {{tweet.text}}
+        </p>
+        <div class="tweets-slider__cards__card__emdash">&nbsp;–</div>
+        <div class="tweets-slider__cards__card__attribution">
+          @{{tweet.userName}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+<div class="tweets-slider__selector">
+  {{#each tweets as |tweet index|}}
+    <div class="tweets-slider__selector__dot" {{action 'selectTweet' index}}></div>
+  {{/each}}
+</div>
+

@@ -1,102 +1,214 @@
 import Ember from 'ember';
-import BaseLayer from 'ember-leaflet/components/base-layer';
 import GeoJSONLayer from 'ember-leaflet/components/geojson-layer';
-import DumbControl from '../layers/dumb-control';
+
+// HOW THE HELL DOES THIS THING WORK???
+//
+// I'll tell you.
+//
+// The incoming GeoJSON features have timestamps which we group
+// in the `series` object.  As soon as the layer is created,
+// we start a `runLoop` that performs for the lifespan of the
+// time series later.  When the layer is set to play, each time
+// the loop performs, it adds a layer to the map pane... then it
+// advances the frame number so that the next loop performance will
+// add the succeeding layer.  The loop always runs but only renders
+// new layers if `playing` is set to true.  This is easier than
+// starting and stopping the run loop, and is less likely to lead
+// to weird timing conditions.  
+
+
+if (typeof Object.assign != 'function') {
+  // Must be writable: true, enumerable: false, configurable: true
+  Object.defineProperty(Object, "assign", {
+    value: function assign(target) { // .length of function is 2
+      'use strict';
+      if (target == null) { // TypeError if undefined or null
+        throw new TypeError('Cannot convert undefined or null to object');
+      }
+
+      var to = Object(target);
+
+      for (var index = 1; index < arguments.length; index++) {
+        var nextSource = arguments[index];
+
+        if (nextSource != null) { // Skip over if undefined or null
+          for (var nextKey in nextSource) {
+            // Avoid bugs when hasOwnProperty is shadowed
+            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+              to[nextKey] = nextSource[nextKey];
+            }
+          }
+        }
+      }
+      return to;
+    },
+    writable: true,
+    configurable: true
+  });
+}
+
 
 export default GeoJSONLayer.extend({
 
-  i: 0,
-
-  boundaries: [],
-
-  playing: false,
-
-  shouldStop: false,
-
-  didUpdateAttrs() {
-    // if (!this._layer) {
-    //   return;
-    // }
-    // // recall that GeoJSON layers are actually layer groups -- we have to clear
-    // // their contents first...
-    // this._layer.clearLayers();
-
-    // if (data) {
-    //   // ...then add new data to recreate the child layers in an updated form
-    //   this._layer.addData(data);
-    // }
+  init(){
+    this._super(...arguments);
+    this.set('i', 0);
+    this.set('playing', false);
+    this.set('series', {});
+    this.set('timeInstants', []);
+    this.set('currentTime', null);
   },
 
   createLayer() {
-    let layer = L.geoJson(...this.get('requiredOptions'), this.get('options'));
-    let boundaries = this.get('boundaries');
-    this.set('boundaries', boundaries.concat(layer.getLayers()));
-    this.set('i', this.get('boundaries').length - 1);
-    layer.clearLayers();
+    // add a separate pane to the map that we can render to
+    let map        = this.get('parentComponent')._layer;
+    map.createPane('time-series');
+    let options = Object.assign({
+      pane: 'time-series',
+      className: 'time-series__feature'
+    }, this.get('options'));
+    var layer    = L.geoJson(...this.get('requiredOptions'), options);
+    let features = [].concat(layer.getLayers());
+    let series   = this.get('series');
+
+    features.forEach((f) => {
+      // load each feature into our series object
+      // into groups of time instants, so that all
+      // features with the same time instant are
+      // loaded at once
+
+      // compensate for old-style timestamps
+      let timestamp = (f.feature.properties.time < 9999999999) ? (f.feature.properties.time * 1000) : f.feature.properties.time;
+
+      series[timestamp] = series[timestamp] || [];
+      series[timestamp].push(f);
+      // Every feature exhibits behavior on add and remove.
+      f.on('add', (e) => {
+        var el = e.target._path;
+        Ember.run.later(() => {
+          if (el.classList){
+            el.classList.add('time-series__feature--rendered');
+          } else {
+            el.className += ' ' + 'time-series__feature--rendered';
+          }
+        }, 20);
+      });
+      f.on('remove', (e) => {
+        var el = e.target._path;
+        Ember.run.later(() => {
+          if (el.classList){
+            el.classList.remove('time-series__feature--rendered');
+          } else {
+            el.className.replace('time-series__feature--rendered');
+          }
+        }, 20);
+      });
+      layer.addLayer(f);
+    });
+    this.set('timeInstants', Object.keys(series).sort());
+    this.set('i', this.get('timeInstants.length'));
+    // debugger
     return layer;
   },
+
+  // addToContainer() {
+
+  // },
+
+  didCreateLayer() {
+    var layer = this.get('_layer');
+    this.adjustMap();
+    this.runLoop();
+  },
+
+  adjustMap(){
+    let layer = this.get('_layer');
+    let map   = layer._map;
+    if(map){
+      map.fitBounds(layer.getBounds());
+    }
+  },
+
+  runLoop(){
+    this.onTick();
+    if(this.get('shouldDestroyLoop')){return;}
+    Ember.run.later(Ember.run.bind(this, 'runLoop'), this.get('transitionDuration'));
+  },
+
   onTick(){
-    var layer      = this.get('_layer');
-    var map        = layer._map;
-    var i          = this.get('i') || 0;
-    var boundaries = this.get('boundaries') || [];
-    var boundary   = boundaries[i];
+    if(this.get('playing')){
+      this.renderAnimationFrame();
+      this.advanceFrame();
+    }
+  },
+
+  renderAnimationFrame(){
+    var layer        = this.get('_layer');
+    var map          = layer._map;
+    var i            = this.get('i') || 0;
+    var series       = this.get('series');
+    var timeInstants = this.get('timeInstants');
+    var currentTime  = timeInstants[i];
+    var features     = series[currentTime];
+    let timestamp    = new Date(parseInt(timeInstants[i]));
+    if(!isNaN(timestamp.getTime())) {
+      this.set('currentTime', timestamp);
+    }
+    if(features){
+      if(i === 0){
+        this.resetLayers();
+      }
+      features.forEach((f) => {
+        layer.addLayer(f);
+      });
+    }
+  },
+
+  resetLayers(){
+    var layer        = this.get('_layer');
+    var series       = this.get('series');
     layer.clearLayers();
-    layer.addLayer(boundary);
-    i = i + 1;
-    if(i >= boundaries.length){
+    Object.keys(this.get('timeInstants')).forEach((instant) => {
+      (series[instant] || []).forEach((f) => {
+        let el = f._path;
+        if (el.classList){
+          el.classList.remove('time-series__feature--rendered');
+        } else {
+          el.className.replace('time-series__feature--rendered', '');
+        }
+      });
+    });
+  },
+
+  advanceFrame(){
+    var i            = this.get('i') || 0;
+    var timeInstants = this.get('timeInstants');
+    i++;
+    if(i >= timeInstants.length){
+      this.stop();
       i = 0;
     }
     this.set('i', i);
-    if(!this.get('shouldStop')){
-      this.set('playing', true);
-      Ember.run.later(Ember.run.bind(this, 'onTick'), 1000);
-    } else {
-      this.set('shouldStop', false);
-      this.set('playing', false);
-    }
   },
-  didCreateLayer() {
-    let layer = this.get('_layer');
-    let map   = layer._map;
-
-    if(map){
-      // map.fitBounds(layer.getBounds());
-      // // map.timeDimension.on('timeload', this._onTimeload);
-      // map.timeDimension.on('timeload', (data) => {
-      //   let mapBound   = map.getBounds();
-      //   let layerBound = layer.getBounds();
-      //   let shouldExpand = !mapBound.contains(layerBound);
-      //   var date = new Date(map.timeDimension.getCurrentTime());
-      //   if (shouldExpand && data.time == map.timeDimension.getCurrentTime()) {
-      //     var totalTimes = map.timeDimension.getAvailableTimes().length;
-      //     var position = map.timeDimension.getAvailableTimes().indexOf(data.time);
-      //     // update map bounding box
-      //     map.fitBounds(layer.getBounds());
-      //   }
-      // });
-    }
-  },
+  
   play(){
-    Ember.run.later(Ember.run.bind(this, 'onTick'), 1000);
+    // reset playhead if we are already at the end.
+    var i = this.get('i') || 0;
+    var n = this.get('timeInstants.length');
+    if(i >= n){
+      this.set('i', 0);
+      this.set('currentTime', null);
+    }
+    this.set('playing', true);
   },
+  
   stop(){
-    this.set('shouldStop', true);
+    this.set('playing', false);
   },
-  _onTimeload(data){
-    // var date = new Date(map.timeDimension.getCurrentTime());
-    // if (data.time == map.timeDimension.getCurrentTime()) {
-    //   var totalTimes = map.timeDimension.getAvailableTimes().length;
-    //   var position = map.timeDimension.getAvailableTimes().indexOf(data.time);
-    //   // update map bounding box
-    //   map.fitBounds(layer.getBounds());
-    // }
-  },
+
   willDestroyLayer() {
-    let layer = this.get('_layer');
-    let map   = layer._map;
-    map.fitBounds(layer.getBounds());
-    // map.timeDimension.off('timeload', this._onTimeload);
+    this.set('playing', false);
+    this.set('shouldDestroyLoop', true);
   }
 });
 

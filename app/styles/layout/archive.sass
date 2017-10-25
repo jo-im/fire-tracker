@@ -23,16 +23,20 @@
     overflow: hidden
     margin-left: auto
     margin-right: auto
-    padding-left: $l-margin-size
+    min-height: 50vh
+    padding-left: $l-margin-size + $gutter-in-pixels
     padding-right: $l-margin-size
     width: $l-lg-size + ($l-margin-size * 2)
     .incidents-grid
       @include incidents-grid--xl
+      @include incidents-grid--justify-center
     @media (max-width: $l-lg-breakpoint)
+      padding-left: $l-margin-size + ($gutter-in-pixels * 2)
       width: $l-med-size + ($l-margin-size * 2)
       .incidents-grid
         @include incidents-grid--lg
     @media (max-width: $l-med-breakpoint)
+      padding-left: $l-margin-size + ($gutter-in-pixels * 3)
       width: $l-sm-size
       .incidents-grid
         @include incidents-grid--med
@@ -40,3 +44,7 @@
       max-width: $l-xs-size
       .incidents-grid
         @include incidents-grid--sm
+    @media (max-width: $l-xs-breakpoint)
+      padding-left: $l-margin-size
+
+

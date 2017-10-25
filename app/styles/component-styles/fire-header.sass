@@ -11,6 +11,10 @@
   position: relative
 
 .fire-header__heading
+  color: $color-primary
+  font-family: $font-serif-titling
+  font-size: 37px
+  font-weight: 800
   line-height: 1
   margin-bottom: 15px
 
@@ -18,6 +22,9 @@
   float: left
   margin-right: auto
   // margin-right: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+
+.fire-header__basic-info__data-name
+  font-weight: 700
 
 .fire-header__basic-info__pipe
   display: none
@@ -35,6 +42,9 @@
 .fire-header__stats__item
   // margin-right: ($col-in-pixels / 2) + $gutter-in-pixels
 
+.fire-header__stats__item-heading, .fire-header__basic-info__data
+  text-transform: uppercase
+
 .fire-header__stats__pipe
   background: #F3AA27
   display: block
@@ -45,18 +55,23 @@
   width: 1px
 
 .fire-header__stats__item-heading
+  color: $color-gray
+  font-family: $font-sans-base
+  font-size: 18px
+  font-weight: 500
   margin-bottom: 10px
 
 .fire-header__stats__item-icon
-  background: $color-gray
   float: left
   height: $unit-in-pixels
   margin-right: 10px
-  width: $unit-in-pixels
 
 .fire-header__stats__stat
   display: block
   float: left
+  font-family: $font-serif-text
+  font-size: 31px
+  font-weight: 300
   line-height: 1
 
 .fire-header__share-icons

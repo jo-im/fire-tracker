@@ -1,0 +1,50 @@
+{{embed-masthead id="l-embed__masthead"}}
+
+<div id="l-embed">
+  <div class="fire-embed">
+    <div class="fire-embed__header t-dark">
+      <div class="fire-embed__header__basic-info">
+        <h2 class="fire-embed__header__heading">{{model.name}}</h2>
+        <ul class="fire-embed__header__basic-info__data b-text--uppercase">
+          <li class="fire-embed__header__basic-info__data-item">
+            <span class="b-text--bold">{{model.county}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="fire-embed__header__stats">
+        <div class="fire-embed__header__stats__item">
+          <h6 class="fire-embed__header__stats__item-heading">Burning For</h6>
+          <img class="fire-embed__header__stats__item-icon" src="/images/icons/calendar.svg">
+          <h3 class="fire-embed__header__stats__stat">{{model.duration}}</h3>
+        </div>
+        <div class="fire-embed__header__stats__pipe"></div>
+        <div class="fire-embed__header__stats__item">
+          <h6 class="fire-embed__header__stats__item-heading">Containment</h6>
+          <img class="fire-embed__header__stats__item-icon" src="/images/icons/containment.svg">
+          <h3 class="fire-embed__header__stats__stat">{{model.containment}}</h3>
+        </div>
+        <div class="fire-embed__header__stats__pipe"></div>
+        <div class="fire-embed__header__stats__item">
+          <h6 class="fire-embed__header__stats__item-heading">Acres Burned</h6>
+          <img class="fire-embed__header__stats__item-icon" src="/images/icons/map.svg">
+          <h3 class="fire-embed__header__stats__stat">{{model.acres}}</h3>
+        </div>
+      </div>
+      <a href="#" class="fire-embed__header__foot">
+        <img class="fire-embed__header__foot__img" src="/images/kpcc-logo-embed.svg">
+      </a>
+    </div>
+
+    {{c-figure class="fire-embed__map" four-by-three=true}}
+
+    <div class="fire-embed__content">
+      <p class="fire-embed__content__body">
+        {{model.computedDescription}}
+      </p>
+      <p class="fire-embed__content__link">
+        <a href="#">See the full fire incident page &gt;</a>
+      </p>
+    </div>
+  </div>
+</div>
+

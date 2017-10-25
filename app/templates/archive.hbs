@@ -1,13 +1,21 @@
 {{masthead-component id="l-masthead"}}
 <div id="l-archive">
 
-  {{incident-search id="l-archive__search" heading="Search the archives" background="/images/backgrounds/archive.png"}}
+  {{archive-search query=query id="l-archive__search" heading="Search the archives" background="/images/backgrounds/archive.png" filterResults='filterResults' placeholder="Enter a search term here."}}
 
   <div id="l-archive__grid" class="t-dark">
     <div id="l-archive__grid__container">
-      {{incidents-grid fires=model}}
+      {{#if filteredResults.length}}
+        {{incidents-grid fires=filteredResults}}
+      {{else}}
+        <div id="l-archive__no-results" class="fire-search__no-results">
+          No results found.
+        </div>
+      {{/if}}
     </div>
   </div>
 
 </div>
+
+{{footer-component id="l-footer"}}
 

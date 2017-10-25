@@ -8,6 +8,8 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('fire', {path: '/:slug'});
+  this.route('map', {path: '/:slug/map'});
+  this.route('embed', {path: '/:slug/embed'});
   this.route('content');
   this.route('archive');
 });

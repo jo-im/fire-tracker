@@ -1,5 +1,15 @@
 .footer-component
+  background: $color-base
   clear: both
+  color: $color-white
+  padding: 30px 42px
+  position: relative
+  z-index: 2
+
+.footer-component__head
+  display: flex
+  justify-content: space-between
+  margin-bottom: 15px
 
 .footer-component__logos
   align-items: flex-end
@@ -20,6 +30,13 @@
   height: 23px
   width: 155px
 
+.footer-component__logos__kpcc-image
+  display: block
+  float: left
+  height: 23px
+  margin-right: 4px
+  width: 155px
+
 .footer-component__logos__pipe
   background: $color-gray
   float: left
@@ -29,10 +46,35 @@
   width: 1px
 
 .footer-component__foot
+  color: $color-gray
   display: flex
   flex-wrap: wrap
+  font-size: 13px
   justify-content: space-between
+  line-height: 1.466666667em
   text-align: center
+
+.footer-component__foot__link
+  color: $color-gray
+
+.footer-component__foot__link:hover
+  @include link-underline($color-gray, $color-gray-dark)
+
+.footer-component__foot__link--primary
+  color: $color-primary
+
+.footer-component__foot__link--primary:hover
+  @include link-underline($color-primary, $color-gray-dark)
+
+.footer-component__call-to-action
+  align-self: center
+
+.footer-component__call-to-action__icon
+  float: left
+  height: 22px
+  margin-right: 4px
+  vertical-align: middle
+  width: 22px
 
 @mixin footer-component--sm
   .footer-component__logos__firetracker

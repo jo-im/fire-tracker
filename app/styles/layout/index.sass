@@ -1,24 +1,24 @@
 #l-home__search
-  height: $unit-in-pixels * 14
-  padding-bottom: $unit-in-pixels * 4
-  padding-top: $unit-in-pixels
+  height: $row * 14
+  padding-bottom: $row * 4
+  padding-top: $row
   width: 100%
 
 #l-home__main
   @include skew(1.4deg)
   margin-top: -48px
-  padding-top: $unit-in-pixels
-  padding-bottom: $unit-in-pixels
+  padding-top: $row
+  padding-bottom: $row
 
 #l-home__main > *
-  margin-bottom: $unit-in-pixels
+  margin-bottom: $row
 
 #l-home__main__content
   display: block
   display: flex
   flex-wrap: wrap
   flex-shrink: 0
-  justify-content: center
+  // justify-content: center
   overflow: hidden
   margin-left: auto
   margin-right: auto
@@ -33,12 +33,12 @@
     width: $l-sm-size
     #l-home__featured-incidents
       @include featured-incidents--sm
-      margin-bottom: $unit-in-pixels * 2
+      margin-bottom: $row * 2
     #l-home__main__content__right-aside
       display: flex
       justify-content: space-between
     #l-home__season-stats
-      margin-right: $gutter-in-pixels
+      margin-right: $gutter
   @media (max-width: $l-sm-breakpoint)
     max-width: $l-xs-size
     width: 100%
@@ -58,9 +58,9 @@
 
 #l-home__featured-incidents
   float: left
-  margin-right: $gutter-in-pixels
+  margin-right: $gutter
   order: -1
-  max-width: ($col-in-pixels * 7) + ($gutter-in-pixels * 6)
+  max-width: ($col * 7) + ($gutter * 6)
 
 #l-home__main__content__right-aside
   display: block
@@ -69,10 +69,10 @@
 
 #l-home__season-stats, .l-home__resources-list
   clear: both
-  width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
+  width: ($col * 3) + ($gutter * 2)
 
 #l-home__season-stats
-  margin-bottom: $unit-in-pixels * 2
+  margin-bottom: $row * 2
 
 #l-home__faq-list
   display: block
@@ -81,17 +81,13 @@
   margin-right: auto
   padding-left: $l-margin-size
   padding-right: $l-margin-size
-  padding-top: $unit-in-pixels
+  padding-top: $row
   width: $l-lg-size + ($l-margin-size * 2)
-  .c-list li
-    font-size: 31px
-    margin-bottom: $unit-in-pixels
   @media (max-width: $l-lg-breakpoint)
     width: $l-med-size + ($l-margin-size * 2)
   @media (max-width: $l-med-breakpoint)
+    @include faq-list--sm
     width: $l-sm-size
-    .c-list li
-      font-size: 26px
   @media (max-width: $l-sm-breakpoint)
     max-width: $l-xs-size
     width: 100%
@@ -101,7 +97,7 @@
   overflow: hidden
   margin-left: auto
   margin-right: auto
-  margin-top: $unit-in-pixels * 2
+  margin-top: $row * 2
   padding-left: $l-margin-size
   padding-right: $l-margin-size
   @media (max-width: $l-sm-breakpoint)
@@ -114,13 +110,13 @@
   background-color: #222628
   display: flex
   justify-content: center
-  margin-bottom: -$unit-in-pixels
+  margin-bottom: -$row
   margin-left: auto
   margin-right: auto
   min-height: 100px
   overflow: hidden
-  padding-top: $unit-in-pixels * 2
-  padding-bottom: $unit-in-pixels * 2 
+  padding-top: $row * 2
+  padding-bottom: $row * 2 
   width: 100%
   #l-home__recent-incidents__container
     display: block

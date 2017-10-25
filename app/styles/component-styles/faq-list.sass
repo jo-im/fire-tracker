@@ -1,0 +1,25 @@
+.faq-list__heading
+  color: $color-gray
+  font-family: $font-sans-base
+  font-size: 26px
+  font-weight: 500
+  margin: 0 0 1em
+  text-transform: uppercase
+
+.faq-list__item
+  color: $color-primary
+  font-family: $font-serif-text
+  font-size: 31px
+  font-weight: 800
+  margin-bottom: 30px
+
+@mixin faq-list--lg
+  .faq-list__item
+    font-size: 31px
+
+@mixin faq-list--sm
+  .faq-list__heading
+    font-size: 18px
+  .faq-list__item
+    font-size: 26px
+

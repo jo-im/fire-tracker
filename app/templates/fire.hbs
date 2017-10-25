@@ -4,23 +4,17 @@
   {{fire-header id="l-fire__header" fire=model}}
   <div id="l-fire__primary-content">
     {{share-icons id="l-fire__primary-content__share-icons"}}
+
     <div id="l-fire__map-with-description" class="map-with-description">
 
       {{#fire-map lat=model.lat lng=model.long zoom=14 id="l-fire__primary-content__map" timeDimensionControl=true timeDimension=true loop=true autoplay=true}}
-        {{tile-layer url="https://api.mapbox.com/styles/v1/ravenstine/cj85bkeio1jyx2sodfj3zek1l/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmF2ZW5zdGluZSIsImEiOiJjajg1YmQzcjEwamxiMnFzNXBhc3k3MmUwIn0.Nb-_KomoLwvsBW3A2aN4Mw" reuseTiles=true detectRetina=true attribution="Map tiles by <a href='http://stamen.com'>Stamen Design</a>, under <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a>. Data by <a href='http://openstreetmap.org'>OpenStreetMap</a>, under <a href='http://www.openstreetmap.org/copyright'>ODbL</a>."}}
+        {{tile-layer url="https://api.mapbox.com/styles/v1/kbriggs/cj8m2vtqn1j4w2rpmy9bi0ga2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ" reuseTiles=true detectRetina=true attribution="© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"}}
         {{#if model.perimeter}}
-{{!--           {{#timedimension-geojson-layer geoJSON=model.perimeter timeDimenson=true fill=true color='#F87E21' fillColor='#da3e1a' weight=5 fillOpacity=0.5}}
-            {{#popup-layer}}
-              <h3>{{model.name}}</h3>
-            {{/popup-layer}}
-          {{/timedimension-geojson-layer}} --}}
-        {{#time-series geoJSON=model.perimeter}}
-          {{#time-series-control}}
-
-          {{/time-series-control}}
-        {{/time-series}}
-
-
+          {{#time-series geoJSON=model.perimeter fill=true color='#F87E21' fillColor='#FF6B00' weight=0 fillOpacity=1 transitionDuration=2000}}
+            {{#if model.shouldPlaybackPerimeter}}
+              {{time-series-control}}
+            {{/if}}
+          {{/time-series}}
         {{/if}}
         {{#marker-layer location=model.latLong icon=model.markerIcon}}
           {{#popup-layer}}
@@ -29,27 +23,27 @@
         {{/marker-layer}}
       {{/fire-map}}
       
-      <div id="l-fire__description" class="fire-description b-text b-text--bold b-text--large">
+      <div id="l-fire__description" class="fire-description">
         {{model.computedDescription}}
       </div>
     </div>
 
-    <hr class="l-fire__hr b-rule" />
+    <hr class="l-fire__hr h-rule" />
 
     <div id="l-fire__primary-content__important-facts" class="important-facts">
-      <h4 class="important-facts__heading b-heading b-heading--h4 b-heading--medium b-heading--uppercase b-text--color-gray">I WANT TO KNOW</h4>
+      <h4 class="important-facts__heading">I WANT TO KNOW</h4>
       <div class="important-facts__item">
-        <h4 class="important-facts__item__heading b-heading b-heading--h4 b-heading--bold b-heading--serif">
+        <h4 class="important-facts__item__heading">
           Do people near this fire need to evacuate?
         </h4>
         <div class="important-facts__item__status">
           {{#if model.evacuations}}
-            <div class="important-facts__item__status__yes important-facts__item__status__boolean b-text--sans"><span>YES</span></div>
+            <div class="important-facts__item__status__yes important-facts__item__status__boolean"><span>YES</span></div>
             <div class="important-facts__item__status__description">
-              Evacuation orders have been issued. <a class="b-text--color-primary b-link" href="#">Learn more</a>
+              Evacuation orders have been issued. <a class="important-facts__item__link" href="#">Learn more</a>
             </div>
           {{else}}
-            <div class="important-facts__item__status__no important-facts__item__status__boolean b-text--sans"><span>NO</span></div>
+            <div class="important-facts__item__status__no important-facts__item__status__boolean"><span>NO</span></div>
             <div class="important-facts__item__status__description">
               Evacuation orders have not been issued.
             </div>
@@ -58,17 +52,17 @@
       </div>
 
       <div class="important-facts__item">
-        <h4 class="important-facts__item__heading b-heading b-heading--h4 b-heading--bold b-heading--serif">
+        <h4 class="important-facts__item__heading">
           Have any road closures been announced?
         </h4>
         <div class="important-facts__item__status">
           {{#if model.roadClosures}}
-            <div class="important-facts__item__status__yes important-facts__item__status__boolean b-text--sans"><span>YES</span></div>
+            <div class="important-facts__item__status__yes important-facts__item__status__boolean"><span>YES</span></div>
             <div class="important-facts__item__status__description">
-              Nearby roads have been closed. <a class="b-text--color-primary b-link" href="#">Learn more</a>
+              Nearby roads have been closed. <a class="important-facts__item__link" href="#">Learn more</a>
             </div>
           {{else}}
-            <div class="important-facts__item__status__no important-facts__item__status__boolean b-text--sans"><span>NO</span></div>
+            <div class="important-facts__item__status__no important-facts__item__status__boolean"><span>NO</span></div>
             <div class="important-facts__item__status__description">
               No nearby roads are closed at this time.
             </div>
@@ -76,160 +70,96 @@
         </div>
       </div>
 
-      <div class="important-facts__item">
-        <h4 class="important-facts__item__heading b-heading b-heading--h4 b-heading--bold b-heading--serif">
-          What is the air quality like near the fire?
-        </h4>
-        <h6 class="important-facts__item__subheading b-heading b-heading--h6 b-heading--bold b-text--color-primary">
-          UNHEALTHY FOR SENSITIVE GROUPS
-        </h6>
-        <div class="important-facts__item__status">
-          <div class="important-facts__item__status__description">
-            No nearby roads are closed at this time. <a class="b-text--color-primary b-link" href="#">Learn more</a>
-          </div>
-        </div>
-        <div class="important-facts__item__note b-text b-text--italic">
-          Note: Air quality varies by location. To check the air quality in your neighborhood, click here. 
-        </div>
-      </div>
+      {{air-quality-aside airQuality=model.weather.airQuality}}
 
     </div>
   </div>
 
-  <hr class="l-fire__hr b-rule" />
+  <hr class="l-fire__hr h-rule" />
 
   <div id="l-fire__i-have-questions" class="i-have-questions">
-    <h4 class="i-have-questions__heading b-heading b-heading--h4 b-heading--medium b-heading--uppercase b-text--color-gray">I HAVE QUESTIONS</h4>
-    <ul class="i-have-questions__links c-list c-list--vert b-text--columns-2">
-      <li class="i-have-questions__links__link b-text--color-primary b-text--serif">What can I do to prepare for wildfire season?</li>
-      <li class="i-have-questions__links__link b-text--color-primary b-text--serif">The air is brown with wildfire smoke – should I wear a mask?</li>
-      <li class="i-have-questions__links__link b-text--color-primary b-text--serif">How can I protect my pets?</li>
-      <li class="i-have-questions__links__link b-text--color-primary b-text--serif">How can I check the air quality?</li>
-      <li class="i-have-questions__links__link b-text--color-primary b-text--serif">What should I do to keep myself safe from wildfire smoke?</li>
-      <li class="i-have-questions__links__link b-text--color-primary b-text--serif">What kind of things influence wildfire behavior?</li>
-      <li class="i-have-questions__links__link b-text--color-primary b-text--serif">I’ve just been asked to evacuate – what should I do?</li>
+    <h4 class="i-have-questions__heading">I HAVE QUESTIONS</h4>
+    <ul class="i-have-questions__links">
+      <li class="i-have-questions__links__link">What can I do to prepare for wildfire season?</li>
+      <li class="i-have-questions__links__link">The air is brown with wildfire smoke – should I wear a mask?</li>
+      <li class="i-have-questions__links__link">How can I protect my pets?</li>
+      <li class="i-have-questions__links__link">How can I check the air quality?</li>
+      <li class="i-have-questions__links__link">What should I do to keep myself safe from wildfire smoke?</li>
+      <li class="i-have-questions__links__link">What kind of things influence wildfire behavior?</li>
+      <li class="i-have-questions__links__link">I’ve just been asked to evacuate – what should I do?</li>
     </ul>
   </div>
 
-  <div class="pointy-hat pointy-hat--right t-dark"></div>
-  <div id="l-fire__tweets" class="tweets-slider t-dark">
-    <div class="tweets-slider__header">
-    <h2 class="tweets-slider__header__heading b-heading b-heading--h2 b-heading--serif b-heading--bold">On the scene</h2>
-      <div class="tweets-slider__header__description">
-        <div class="tweets-slider__header__description__text b-text b-text--large">
-          Are you near the Whittier Fire?  Get updates from fire and rescue agencies, post photos, and videos and see up-to-the-minute coverage on Twitter with #WhittierFire
-        </div>
-        <div class="tweets-slider__header__description__button c-btn c-btn--outline-primary">
-          <span>See more on Twitter</span>
-        </div>
-      </div>
-    </div>
-    <div class="tweets-slider__cards">
-      <div class="tweets-slider__cards__card">
-        <figure class="tweets-slider__cards__card__figure">
-        </figure>
-        <div class="tweets-slider__cards__card__tweet">
-          <p class="tweets-slider__cards__card__text b-text b-text--semibold">
-            Thank you #WhittierFire Firefighters! http://bit.ly/2wo5JoR @KEYTNC3 @inciweb @LosPadresNF @NoozhawkNews @SBCFireInfo @sbsheriff
-          </p>
-          <div class="tweets-slider__cards__card__emdash">&nbsp;–</div>
-          <div class="tweets-slider__cards__card__attribution b-text b-text--large">
-            @JulieLubin
-          </div>
-        </div>
-      </div>
-      <div class="tweets-slider__cards__card">
-        <figure class="tweets-slider__cards__card__figure">
-        </figure>
-        <div class="tweets-slider__cards__card__tweet">
-          <p class="tweets-slider__cards__card__text b-text b-text--semibold">
-            New growth is already visible in the #WhittierFIRE burn scar atop the Santa Ynez Mtns with Cachuma Lake in the background.
-          </p>
-          <div class="tweets-slider__cards__card__emdash">&nbsp;–</div>
-          <div class="tweets-slider__cards__card__attribution b-text b-text--large">
-            @LosPadresNF
-          </div>
-        </div>
-      </div>
-      <div class="tweets-slider__cards__card">
-        <figure class="tweets-slider__cards__card__figure">
-        </figure>
-        <div class="tweets-slider__cards__card__tweet">
-          <p class="tweets-slider__cards__card__text b-text b-text--semibold">
-            Thank you #WhittierFire Firefighters! http://bit.ly/2wo5JoR @KEYTNC3 @inciweb @LosPadresNF @NoozhawkNews @SBCFireInfo @sbsheriff
-          </p>
-          <div class="tweets-slider__cards__card__emdash">&nbsp;–</div>
-          <div class="tweets-slider__cards__card__attribution b-text b-text--large">
-            @JulieLubin
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {{#if model.tweets}}
+
+    <div class="pointy-hat pointy-hat--right t-dark"></div>
+    {{tweets-slider id='l-fire__tweets' tweets=model.latestTweets}}
+
+  {{/if}}
 
 
   <div id="l-fire__additional-details" class="additional-details">
     <div class="additional-details__body">
-      <h4 class="additional-details__heading b-heading b-heading--h4 b-heading--medium b-heading--uppercase b-text--color-gray">Additional Details</h4>
+      <h4 class="additional-details__heading">Additional Details</h4>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">DATA SOURCE</h6>
-      <p class="additional-details__body__paragraph b-text">CalFire</p>
+      <h6 class="additional-details__body__heading">DATA SOURCE</h6>
+      <p class="additional-details__body__paragraph">CalFire</p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">ADMINISTRATIVE UNIT</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">ADMINISTRATIVE UNIT</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.administrativeUnit}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">CAUSE</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">CAUSE</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.cause 'Unknown'}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">DAMAGE ASSESSMENT</h6>
-      <p class="additional-details__body__paragraph b-text">Damage assessment teams have updated the number of structures damaged or destroyed. These structures were damaged or destroyed during the early hours of the fire. Damage assessment teams, using new software technology, completed the assessment. The incident would like to commend the damage assessment efforts of the Santa Barbara County Office of Emergency Management with regard to their efficient and ongoing operations. 16 residences destroyed, 1 residence damaged. 30 outbuildings destroyed, 6 outbuildings damaged.</p>
+      <h6 class="additional-details__body__heading">DAMAGE ASSESSMENT</h6>
+      <p class="additional-details__body__paragraph">Damage assessment teams have updated the number of structures damaged or destroyed. These structures were damaged or destroyed during the early hours of the fire. Damage assessment teams, using new software technology, completed the assessment. The incident would like to commend the damage assessment efforts of the Santa Barbara County Office of Emergency Management with regard to their efficient and ongoing operations. 16 residences destroyed, 1 residence damaged. 30 outbuildings destroyed, 6 outbuildings damaged.</p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">STRUCTURES THREATENED</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">STRUCTURES THREATENED</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.stats.damage.structuresThreatened}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">STRUCTURES DESTROYED</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">STRUCTURES DESTROYED</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.stats.damage.structuresDestroyed}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">INJURIES</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">INJURIES</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.stats.damage.injuries}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">ROAD CLOSURES</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">ROAD CLOSURES</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.roadClosures}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">CURRENT SITUATION</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">CURRENT SITUATION</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.currentSitutation}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">SCHOOL CLOSURES</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">SCHOOL CLOSURES</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.schoolClosures}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">COOPERATING AGENCIES</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">COOPERATING AGENCIES</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.cooperatingAgencies}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">CONDITIONS</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">CONDITIONS</h6>
+      <p class="additional-details__body__paragraph">
         {{or-not-any model.conditions}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">PHONE NUMBERS</h6>
-      <p class="additional-details__body__paragraph b-text">
+      <h6 class="additional-details__body__heading">PHONE NUMBERS</h6>
+      <p class="additional-details__body__paragraph">
         {{#each model.contact.phoneNumbers as |contact|}}
           <p>{{contact.title}}</p>
           <p>{{contact.number}}</p>
@@ -239,13 +169,13 @@
         {{/each}}
       </p>
 
-      <h6 class="additional-details__body__heading b-heading b-heading--h6 b-heading--extrabold">TRAINING</h6>
-      <p class="additional-details__body__paragraph b-text">n/a</p>
+      <h6 class="additional-details__body__heading">TRAINING</h6>
+      <p class="additional-details__body__paragraph">n/a</p>
 
     </div>
   </div>
 
 </main>
 
-
+{{footer-component id="l-footer"}}
 

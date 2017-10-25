@@ -1,8 +1,21 @@
+.important-facts__heading
+  color: $color-gray
+  font-size: 26px
+  font-weight: 500
+  margin: 0 0 1em
+  text-transform: uppercase
+
 .important-facts__item
   margin-bottom: $unit-in-pixels * 2
 
 .important-facts__item:last-child
   margin-bottom: 0px
+
+.important-facts__item__heading
+  font-family: $font-serif-titling
+  font-size: 26px
+  font-weight: 700
+  margin: 0 0 1em
 
 .important-facts__item__status
   align-items: center
@@ -25,9 +38,19 @@
 .important-facts__item__status__description
   line-height: 1
 
+.important-facts__item__link
+  color: $color-primary
+  
+.important-facts__item__link:hover
+  @include link-underline($color-primary, $color-white)
+
 .important-facts__item__note
   clear: both
+  font-size: 15px
+  font-style: italic
+  line-height: 1.466666667em
   margin-top: 25px
+
 
 @mixin important-facts--sm
   .important-facts__item

@@ -1,6 +1,22 @@
-{{#if this.parentView.playing}}
-  Pause
-{{else}}
-  Play
-{{/if}}
+<div class="time-series-control__toggle">
+  {{#if this.hasInteracted}}
+    {{#if this.parentView.playing}}
+      <img class="ime-series-control__toggle__icon" src="/images/icons/pause.svg">
+    {{/if}}
+  {{else}}
+    <span class="time-series-control__toggle__text">
+      Watch this fire’s progress
+    </span>
+  {{/if}}
+</div>
+
+<div class="time-series-control__text">
+  <span>
+    {{#if this.parentView.currentTime}}
+      {{moment-format this.parentView.currentTime 'MMMM DD, YYYY'}}
+    {{else}}
+      Loading...
+    {{/if}}
+  </span>
+</div>
 

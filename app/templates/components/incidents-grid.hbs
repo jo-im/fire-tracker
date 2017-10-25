@@ -1,12 +1,12 @@
-<h6 class="incidents-grid__heading b-heading b-heading--h6 b-heading--medium b-text--uppercase b-text--color-gray">{{heading}}</h6>
+<h6 class="incidents-grid__heading">{{heading}}</h6>
 
 {{#each fires as |fire|}}
 
   <div class="incidents-grid__card">
-    {{#link-to 'fire' fire.slug class="incidents-grid__card__heading b-heading b-heading--h6 b-heading--serif b-text--color-primary"}}
+    {{#link-to 'fire' fire.slug class="incidents-grid__card__heading"}}
       <span class="incidents-grid__card__heading-text">{{fire.name}}</span>
     {{/link-to}}
-    <ul class="incidents-grid__card__list c-list b-text b-text--small">
+    <ul class="incidents-grid__card__list">
       <li class="incidents-grid__card__item">
         {{moment-format fire.startedAt 'MMM DD, YYYY'}}
       </li>
@@ -26,8 +26,8 @@
 
 {{#if linkToArchive}}
   <div class="incidents-grid__link-card">
-    {{#link-to 'archive' class="incidents-grid__card__heading b-heading b-heading--h6 b-heading--serif b-text--color-primary"}}
-      View the archive >
+    {{#link-to 'archive' class="incidents-grid__card__heading"}}
+      <span class="incidents-grid__card__heading-text">View the archive ></span>
     {{/link-to}}
   </div>
 {{/if}}

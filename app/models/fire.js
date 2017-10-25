@@ -72,6 +72,7 @@ export default DS.Model.extend({
   perimeter: DS.attr(),
   contact: DS.attr(),
   isOutdated: DS.attr('boolean', {default: false}),
+  weather: DS.attr(),
   county: Ember.computed('location.county', function(){
     let countyName = this.get('location.county');
     if(countyName){
@@ -88,6 +89,14 @@ export default DS.Model.extend({
       let b = moment(new Date());
       let days = Math.abs(b.diff(a, 'days'));
       return `${days} days`;
+    }
+  }),
+  shouldPlaybackPerimeter: Ember.computed('perimeter.properties.num_time_instants', function(){
+    let numTimeInstants = this.get('perimeter.properties.num_time_instants') || 0;
+    if(numTimeInstants > 2){
+      return true;
+    } else {
+      return false;
     }
   }),
   // startedAt: Ember.computed('reportedAt', function(){
@@ -145,5 +154,14 @@ export default DS.Model.extend({
     if(acres){
       return acres.replace(/,\s*$/, '');
     }
+  }),
+  proxy: Ember.computed(function(){
+    return Ember.ObjectProxy.create({
+      content: object
+    });
+  }),
+  latestTweets: Ember.computed('tweets', function(){
+    let tweets = this.get('tweets') || [];
+    return tweets.splice(0,5);
   })
 });

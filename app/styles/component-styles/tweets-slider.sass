@@ -2,33 +2,50 @@ $tweet-card-base-size: 390px
 $tweet-card-small-size: 270px
 
 .tweets-slider
-  padding-bottom: $unit-in-pixels * 3
+  padding-bottom: $row * 3
 
 .tweets-slider__header
   margin: 0 auto
   width: $l-xl-size
 
 .tweets-slider__header__heading
+  font-family: $font-serif-titling
+  font-size: 37px
+  font-weight: 700
   line-height: 0
+  margin: 0 0 1em
 
 .tweets-slider__header__description
   display: flex
   font-size: 22px
-  margin-bottom: $unit-in-pixels * 2
+  margin-bottom: $row * 2
 
 .tweets-slider__header__description__text
-  margin-right: $gutter-in-pixels
+  line-height: 24px
+  margin-right: $gutter
 
 .tweets-slider__header__description__button
   align-items: center
+  background: transparent
+  border: 1px solid $color-primary
+  color: $color-primary
+  cursor: pointer
   display: flex
   flex-shrink: 0
-  height: $unit-in-pixels * 2
+  font-size: 15px
+  font-weight: 500
+  height: $row * 2
+  padding: 0.875rem 1.125rem
+  text-decoration: none
   text-transform: initial
+
+.tweets-slider__header__description__button:hover
+  background: #F87E21
+  color: $color-white
 
 .tweets-slider__cards
   display: flex
-  justify-content: center
+  // justify-content: center
   overflow: hidden
   width: 100%
 
@@ -40,12 +57,16 @@ $tweet-card-small-size: 270px
   height: $tweet-card-base-size
   margin-left: 25px
   margin-right: 25px
+  transition: transform 0.5s
   width: $tweet-card-base-size * 2
 
 .tweets-slider__cards__card__figure
-  background: $color-gray
+  @extend .c-figure
+  @extend .c-figure--square
+  background-color: $color-gray
   flex-shrink: 0
   height: $tweet-card-base-size
+  overflow: hidden
   width: $tweet-card-base-size
 
 .tweets-slider__cards__card__tweet
@@ -53,19 +74,44 @@ $tweet-card-small-size: 270px
   flex-direction: column
   justify-content: center
   overflow: hidden
-  padding: $unit-in-pixels
+  padding: $row
   width: $tweet-card-base-size
 
 .tweets-slider__cards__card__text
   font-size: 26px
+  font-weight: 500
   line-height: 1.38461538
   text-overflow: ellipsis
 
 .tweets-slider__cards__card__attribution
+  font-size: 22px
+  line-height: 1.466666667em
   text-align: right
 
 .tweets-slider__cards__card__emdash
   display: none
+
+.tweets-slider__selector
+  display: flex
+  justify-content: center
+  margin-top: $row
+
+.tweets-slider__selector__dot
+  background-color: #898989
+  border-radius: 50%
+  float: left
+  height: 10px
+  width: 10px
+
+.tweets-slider__selector__dot:not(:first-child)
+  margin-left: 15px
+
+.tweets-slider__selector__dot:not(:last-child)
+  margin-right: 15px
+
+.tweets-slider__selector__dot--selected
+  background-color: #E8E8E8
+
 
 @mixin tweets-slider--lg
   .tweets-slider__header
@@ -83,7 +129,7 @@ $tweet-card-small-size: 270px
   .tweets-slider__header__description
     display: flex
     font-size: 20px
-    margin-bottom: $unit-in-pixels
+    margin-bottom: $row
   .tweets-slider__header__description__text
     flex-shrink: 0
     width: 100%

@@ -1,13 +1,80 @@
 .featured-incidents
   display: flex
+  flex-direction: column
   flex-wrap: wrap
   overflow: hidden
 
 .featured-incidents__heading
+  color: $color-gray
+  font-size: 26px
+  font-weight: 500
+  margin: 0 0 1em
+  text-transform: uppercase
   width: 100%
 
 .featured-incident-card
+  display: block
   margin-bottom: $unit-in-pixels
+
+.featured-incident-card__description
+  display: block
+  display: flex
+  flex-wrap: wrap
+  // float: left
+  // height: $unit-in-pixels * 6
+  min-height: $unit-in-pixels * 6
+  // width: $col-in-pixels + $gutter-in-pixels + $col-in-pixels + $col-in-pixels + $gutter-in-pixels + $col-in-pixels + $gutter-in-pixels
+
+.featured-incident-card__heading
+  color: $color-primary
+  font-family: $font-serif-titling
+  font-size: 26px
+  font-weight: 500
+  margin-bottom: 0px
+  
+.featured-incident-card__heading:hover
+  @include link-underline($color-primary, $t-dark-color-background)
+
+.featured-incident-card__thumbnail
+  float: left
+  height: $unit-in-pixels * 6
+  background-image: url('/images/fallback.png')
+  background-color: $color-gray-light
+  background-size: cover
+  background-position: center
+  margin-right: $gutter-in-pixels
+  position: relative
+  width: $col-in-pixels + $gutter-in-pixels + $col-in-pixels
+
+.featured-incident-card__stat
+  margin-bottom: 3px
+
+.featured-incident-card__stat-title
+  font-weight: 700
+  text-transform: uppercase
+
+.featured-incident-card__county
+  color: $color-gray
+  font-size: 18px
+  font-weight: 400
+  margin: 0 0 1em
+  margin-bottom: 20px
+  text-transform: uppercase
+
+.featured-incident-card__started, .featured-incident-card__acres, .featured-incident-card__containment,.featured-incident-card__county
+  text-transform: uppercase
+
+.featured-incident-card__started, .featured-incident-card__acres, .featured-incident-card__containment, .featured-incident-card__location, .featured-incident-card__county
+  display: block
+  width: 100%
+
+.featured-incident-card__started, .featured-incident-card__acres, .featured-incident-card__containment,
+  font-size: 16px
+
+.featured-incident-card__location
+  align-self: flex-end
+  margin-top: 10px
+  font-size: 12px
 
 @mixin featured-incidents--lg
   width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
@@ -15,7 +82,9 @@
   width: ($col-in-pixels * 4) + ($gutter-in-pixels * 4)
 @mixin featured-incidents--sm
   width: 100%
+  .featured-incidents__heading
+    font-size: 18px
 @mixin featured-incidents--xs
   .featured-incident-card
-    @include featured-incident-card--xs
-
+    .featured-incident-card__thumbnail
+      display: none

@@ -1,0 +1,75 @@
+.time-series-control
+  background: $color-white
+  bottom: 30px
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5)
+  display: flex
+  font-size: 15px
+  height: 49px
+  // line-height: 30px
+  position: absolute
+  min-width: 193px
+  right: 0
+  z-index: 1000
+
+.time-series-control__toggle
+  align-items: center
+  background: #F3AA27
+  color: $color-white
+  cursor: pointer
+  display: flex
+  float: left
+  font-family: $font-sans-base
+  font-size: 15px
+  font-weight: 500
+  justify-content: center
+  transition: filter 0.2s
+  height: 100%
+  width: 100%
+  &:hover
+    filter: brightness(1.075)
+
+.time-series-control__text
+  align-items: center
+  color: #898989
+  display: flex
+  flex-shrink: 0
+  float: left
+  font-family: $font-sans-base
+  font-size: 15px
+  font-style: italic
+  height: 100%
+  padding: 0
+  width: 0px
+
+.time-series-control--playing
+  // .time-series-control__toggle
+  //   min-width: 45px
+  //   width: 0%
+  // .time-series-control__text
+  //   padding: 10px
+  //   padding-bottom: 13px
+  //   width: initial
+
+.time-series-control--interacted
+  .time-series-control__toggle
+    min-width: 45px
+    width: 0%
+  .time-series-control__text
+    padding: 10px
+    padding-bottom: 13px
+    width: initial
+
+.time-series__feature
+  opacity: 0
+  transition: opacity 4s
+
+.time-series__feature--rendered
+  opacity: 1
+
+.leaflet-time-series-pane svg g
+  // filter: url(#goo)
+.leaflet-time-series-pane
+  opacity: 0.95
+  mix-blend-mode: multiply
+
+

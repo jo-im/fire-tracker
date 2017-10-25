@@ -9,7 +9,7 @@ module.exports = function(defaults) {
     // Add options here
     sassOptions: {
       includePaths: [
-        'node_modules/kpcc.style/'
+        // 'node_modules/kpcc.style/'
       ],
       extension: 'sass',
       nodeSass: nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117
@@ -24,8 +24,10 @@ module.exports = function(defaults) {
       ]
     },
     nodeModulesToVendor: [
-      'node_modules/leaflet-timedimension/dist',
-      'node_modules/iso8601-js-period/'
+      // 'node_modules/leaflet-timedimension/dist',
+      // 'node_modules/iso8601-js-period/',
+      // 'node_modules/leaflet-canvas-geojson/dist'
+      'node_modules/phantomjs-polyfills/polyfills'
     ]
   });
 
@@ -41,9 +43,13 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-  app.import('vendor/iso8601.js');
-  app.import('vendor/leaflet.timedimension.src.js');
-  app.import('vendor/leaflet.timedimension.control.css');
+  // app.import('vendor/iso8601.js');
+  // app.import('vendor/leaflet.timedimension.src.js');
+  // app.import('vendor/leaflet.timedimension.control.css');
+  // app.import('vendor/leaflet-canvas-geojson.js');
+  app.import('vendor/element-remove-polyfill.js');
+  app.import('vendor/function-bind-polyfill.js');
+
 
   return app.toTree();
 };

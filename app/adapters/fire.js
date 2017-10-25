@@ -22,7 +22,7 @@ export default DS.Adapter.extend({
       .then(function(response) {
         ((response.json() || {}).results || []).forEach(callback);
       })
-      .catch(function(err) {
+      .catch(function() {
         Ember.run.later(longpoll, 10000);
       });
     }
@@ -57,8 +57,27 @@ export default DS.Adapter.extend({
     recordInStore.set('isOutdated', true);
   },
 
-  findAll: function(store, type){
-    return fetch("https://jollypod.com/incidents/_all_docs?include_docs=true").then((resp) => resp.json());
+  findAll: function(store){
+    return fetch("https://jollypod.com/incidents/_design/fire-tracker/_view/archive?reduce=false&descending=true").then((resp) => {
+      return resp.json()
+        .then((json) => {
+          json.rows.forEach(r => r.doc = r.value);
+          return Ember.RSVP.Promise.resolve(json);
+        });
+    });
+  },
+
+  query: function(store, type, query){
+    query = query || {};
+    query.descending = query.descending || false;
+    query.limit      = query.limit      || 100;
+    return fetch(`https://jollypod.com/incidents/_design/fire-tracker/_view/archive?reduce=false&descending=${query.descending}&limit=${query.limit}`).then((resp) => {
+      return resp.json()
+        .then((json) => {
+          json.rows.forEach(r => r.doc = r.value);
+          return Ember.RSVP.Promise.resolve(json);
+        });
+    });
   },
 
   findRecord: function(store, type, id){

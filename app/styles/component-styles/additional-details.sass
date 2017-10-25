@@ -1,14 +1,27 @@
+.additional-details__heading
+  color: $color-gray
+  font-size: 26px
+  font-weight: 500
+  margin: 0 0 1em
+  text-transform: uppercase
+
 .additional-details__body__heading
+  color: $color-black
+  font-size: 18px
+  font-weight: 800
   line-height: 1
   margin-bottom: 5px
 
 .additional-details__body__paragraph
+  color: $color-black
+  font-family: $font-sans-base
   font-size: 18px
-  margin-bottom: $unit-in-pixels
+  line-height: 26px
+  margin-bottom: $row
 
 @mixin additional-details--xl
   .additional-details__body
-    max-width: ($col-in-pixels * 6) + ($gutter-in-pixels * 5)
+    max-width: ($col * 6) + ($gutter * 5)
 
 @mixin additional-details--sm
   .additional-details__heading

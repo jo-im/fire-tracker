@@ -1,0 +1,90 @@
+.embed-masthead
+  position: absolute
+  width: 100%
+
+.fire-embed__header
+  height: 100%
+  order: 2
+  padding-top: $unit-in-pixels + 30px
+  padding-left: 15px
+  padding-right: $gutter-in-pixels
+  position: absolute
+  width: 46%
+
+.fire-embed__header__heading
+  color: $color-primary
+  font-family: $font-serif-titling
+  font-size: 31px
+  font-weight: 800
+
+.fire-embed__header__stats
+  margin-top: $unit-in-pixels
+  max-width: 230px
+
+.fire-embed__header__stats__item
+  display: flex
+  flex-wrap: wrap
+  border-bottom: 1px solid #F3AA27
+  margin-bottom: $unit-in-pixels
+  padding-bottom: 12px
+
+.fire-embed__header__stats__item-heading
+  color: $color-gray
+  flex-basis: 100%
+  font-family: $font-sans-base
+  font-size: 15px
+  font-weight: 500
+  margin-bottom: 10px
+  text-transform: uppercase
+
+.fire-embed__header__stats__stat
+  color: $color-white
+  flex-shrink: 0
+  font-family: $font-serif-titling
+  font-size: 28px
+  font-weight: 300
+
+.fire-embed__header__foot
+  
+
+.fire-embed__header__stats__item-icon
+  flex-shrink: 0
+  float: left
+  margin-right: 10px
+
+.fire-embed__content
+  float: right
+  font-family: $font-sans-base
+  font-size: 15px
+  order: 3
+  padding-left: 30px
+  padding-right: 30px
+  padding-top: 30px
+  width: 54%
+
+.fire-embed__content__link
+  color: #F3AA27
+  float: right
+  font-size: 13px
+  font-weight: 500
+
+.fire-embed__map
+  float: right
+  order: 1
+  width: 54%
+
+@mixin fire-embed--sm
+  .fire-embed
+    display: flex
+    flex-wrap: wrap
+    flex-direction: column
+  .fire-embed__header, .fire-embed__content, .fire-embed__map
+    position: relative
+    width: 100%
+  .fire-embed__header
+    padding-top: $unit-in-pixels
+
+
+
+
+

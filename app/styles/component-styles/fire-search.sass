@@ -1,0 +1,77 @@
+.fire-search
+  align-items: center
+  // background-image: url(/images/search-background.jpg)
+  background-size: cover
+  box-shadow: inset 0px 0px 224px 61px rgba(0,0,0,0.75)
+  display: flex
+  flex-direction: column
+  justify-content: center
+  padding: $gutter-in-pixels / 2
+
+.fire-search__heading
+  color: $color-white
+  font-family: $font-serif-titling
+  font-size: 37px
+  font-weight: 800
+  margin: 0 0 1em
+  @media (max-width: 600px)
+    font-size: 32px
+
+.fire-search__search-area
+  max-width: $col-in-pixels * 9
+  width: 100%
+
+.fire-search__input
+  color: $color-base
+  background: $color-white
+  border: 0
+  border-bottom: 1px solid $color-gray
+  border-radius: 0
+  font-size: 18px
+  height: $unit-in-pixels * 2
+  padding: 4px
+  padding-left: $unit-in-pixels
+  width: 100%
+
+.fire-search__input::placeholder
+    color: $color-gray
+    font-style: italic
+
+.fire-search__input:focus
+    border-bottom-color: $color-primary
+    outline: 0
+    &::placeholder
+      opacity: 0 // hide placeholder when input is in focus
+
+.fire-search__results
+  font-family: $font-sans-base
+  font-size: 15px
+  max-width: ($col-in-pixels * 9) + $gutter-in-pixels
+  padding-left: $gutter-in-pixels / 2
+  padding-right: $gutter-in-pixels / 2
+  left: 50%
+  transform: translateX(-50%)
+  // margin-right: $unit-in-pixels
+  position: absolute
+  width: 100%
+  z-index: 999999
+
+.fire-search__result
+  background-color: $color-gray-lightest
+  border-bottom: 1px solid rgba(137,137,137,0.5)
+  color: $color-black
+  display: block
+  height: 53.33px
+  line-height: 53.33px
+  padding-left: $gutter
+  padding-right: $gutter
+
+.fire-search__no-results
+  min-height: 500px
+
+.fire-search__result:hover .fire-search__result__text
+  @include link-underline($color-black, $color-gray-lightest)
+
+.fire-search__result__name
+  font-weight: 700
+

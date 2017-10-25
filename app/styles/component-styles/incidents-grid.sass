@@ -1,19 +1,38 @@
 .incidents-grid
   display: flex
   flex-wrap: wrap
-  margin-right: -$gutter-in-pixels
+  // justify-content: center
+  // margin-right: -$gutter-in-pixels
 
 .incidents-grid__heading
+  color: $color-gray
+  font-family: $font-sans-base
+  font-size: 18px
+  font-weight: 500
+  margin: 0 0 1em
+  text-transform: uppercase
   width: 100%
 
 .incidents-grid__card, .incidents-grid__link-card, .incidents-grid__spacer
   display: flex
   flex-basis: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
   flex-direction: column
-  justify-content: center
+  // justify-content: center
   margin-bottom: $unit-in-pixels
   margin-right: $gutter-in-pixels
   height: $unit-in-pixels * 4
+
+.incidents-grid__card__heading
+  color: $color-primary
+  font-family: $font-serif-titling
+  font-size: 18px
+  font-weight: 400
+  margin: 0 0 1em
+
+.incidents-grid__link-card
+  justify-content: center
+  > a
+    margin-bottom: 0
 
 .incidents-grid__spacer
   height: 0px
@@ -26,6 +45,7 @@
   height: ($unit-in-pixels * 4) - 2px
   position: absolute
   margin-left: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+  margin-top: 15px
   width: 1px
 
 .incidents-grid__card__heading-text:hover
@@ -43,6 +63,10 @@
   margin-right: 10px
   width: 15px
 
+.incidents-grid__card__list
+  font-size: 13px
+  line-height: 1.466666667em
+
 .incidents-grid__card .incidents-grid__card__item:nth-child(1):before
   background: url('/images/icons/calendar-sm.svg')
 
@@ -55,9 +79,12 @@
 .incidents-grid__card .incidents-grid__card__item:nth-child(4):before
   background: url('/images/icons/firetruck-sm.svg')
 
+@mixin incidents-grid--justify-center
+  justify-content: center
+
 @mixin incidents-grid--xl
-  min-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
-  width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+  // min-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
+  width: ($col-in-pixels * 10) + ($gutter-in-pixels * 10)
   .incidents-grid__card:after
     display: block
   .incidents-grid__card:nth-child(4n + 1):after
@@ -72,6 +99,8 @@
     display: none
   .incidents-grid__card:nth-child(4n + 1):after
     display: block
+  .incidents-grid__card:nth-child(6n + 1):after
+    display: none
 
 
 @mixin incidents-grid--med

@@ -1,5 +1,30 @@
-<h6 class="featured-incidents__heading b-heading b-heading--h6 b-heading--medium b-text--uppercase b-text--color-gray">Fires we're following</h6>
+<h6 class="featured-incidents__heading">Fires we're following</h6>
 
-{{featured-incident-card}}
-{{featured-incident-card}}
-{{featured-incident-card}}
+{{#each fires as |fire|}}
+  <div class="featured-incident-card">
+    <div class="featured-incident-card__thumbnail">
+    </div>
+    <div class="featured-incident-card__description">
+      <a href="/{{fire.slug}}" class="featured-incident-card__heading">{{fire.name}}</a>
+      <h6 class="featured-incident-card__county">{{fire.county}}</h6>
+      <span class="featured-incident-card__started featured-incident-card__stat">
+        <span class="featured-incident-card__stat-title">Started:</span> {{moment-format fire.startedAt 'MMM DD, YYYY'}}
+      </span>
+      {{#if fire.acres}}
+        <span class="featured-incident-card__acres featured-incident-card__stat">
+          <span class="featured-incident-card__stat-title">Acres Burned:</span> {{fire.acres}}
+        </span>
+      {{/if}}
+      {{#if fire.containment}}
+        <span class="featured-incident-card__containment featured-incident-card__stat">
+          <span class="featured-incident-card__stat-title">Containment:</span> {{fire.containment}}
+        </span>
+      {{/if}}
+      <span class="featured-incident-card__location featured-incident-card__stat">
+        Hwy 80 And State Boundary, 12 Miles Northeast of Truckee
+      </span>
+    </div>
+  </div>
+
+{{/each}}
+
