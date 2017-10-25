@@ -16,16 +16,12 @@
   },
   "dependencies": {
     "brfs": "^1.4.3",
-    "ember-component-css": "^0.3.4",
-    "ember-json-schema": "0.0.5",
-    "gulp": "^3.9.1",
-    "gulp-yaml": "^1.0.1",
-    "iso8601-js-period": "ravenstine/iso8601-js-period",
-    "js-yaml": "^3.9.0",
     "kpcc.style": "file:../scpr-style-guide",
-    "leaflet-timedimension": "^1.0.7",
+    "lodash.sortby": "^4.7.0",
     "moment": "^2.18.1",
-    "nodewatch": "^0.3.1"
+    "nodewatch": "^0.3.1",
+    "phantomjs-polyfills": "^1.0.1",
+    "searchico": "^1.2.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
