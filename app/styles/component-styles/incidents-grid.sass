@@ -7,7 +7,7 @@
 .incidents-grid__heading
   color: $color-gray
   font-family: $font-sans-base
-  font-size: 18px
+  font-size: 26px
   font-weight: 500
   margin: 0 0 1em
   text-transform: uppercase
@@ -117,6 +117,8 @@
 @mixin incidents-grid--sm
   min-width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
   width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
+  .incidents-grid__heading
+    font-size: 23px
   .incidents-grid__card:after
     display: none
   .incidents-grid__card:nth-child(2n + 1):after

@@ -13,7 +13,8 @@ class SearchIndex {
     });
   }
   search(query){
-    let matcher = new RegExp(query, 'i');
+    let stripped = '(' + query.replace(/\W+/g, '').split(' ').join('|') + ')';
+    let matcher  = new RegExp(stripped, 'gi');
     return this.items.filter(item => (item[0] || '').match(matcher)).map(item => item[1]);
   }
 }

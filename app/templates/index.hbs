@@ -1,4 +1,4 @@
-{{masthead-component id="l-masthead"}}
+{{masthead-component id="l-home__masthead"}}
 <div id="l-home">
 
   {{home-search id="l-home__search" heading="Am I near a wildfire?" background="/images/backgrounds/home.png" placeholder="Enter a zipcode, city or fire name here"}}
@@ -13,11 +13,9 @@
         <aside class="l-home__resources-list list-aside">
           <h6 class="season-stats__heading">California fire resources</h6>
           <ul>
-            <li>Cal Fire</li>
-            <li>California Fire and Resource Assessment Program (FRAP)</li>
-            <li>California Incident Information System</li>
-            <li>Northern California Geographic Area Coordination Center (ONCC)</li>
-            <li>L.A. Fire Department</li>
+            {{#each model.settings.californiaFireResources as |link|}}
+              <li><a href="{{link.href}}">{{link.title}}</a></li>
+            {{/each}}
           </ul>
         </aside>
       </aside>
@@ -28,13 +26,9 @@
   <aside id="l-home__faq-list" class="faq-list">
     <h6 class="faq-list__heading">Fire FAQs</h6>
     <ul>
-      <li class="faq-list__item">What can I do to prepare for wildfire season?</li>
-      <li class="faq-list__item">How can I protect my pets?</li>
-      <li class="faq-list__item">How can I check the air qality?</li>
-      <li class="faq-list__item">What should I do to keep myself safe from wildfire smoke?</li>
-      <li class="faq-list__item">The air is brown with wildfire smoke – should I wear a mask?</li>
-      <li class="faq-list__item">What kind of things influence wildfire behavior?</li>
-      <li class="faq-list__item">I’ve just been asked to evacuate – what should I do?</li>
+      {{#each model.settings.faqs as |link|}}
+        <li class="faq-list__item"><a href="{{link.href}}">{{link.title}}</a></li>
+      {{/each}}
     </ul>
   </aside>
   <aside class="l-home__resources-list list-aside l-home__resources-list-2">

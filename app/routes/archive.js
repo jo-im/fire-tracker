@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(){
-    return this.store.findAll('fire');
+    return this.store.findAll('sparse-fire');
   },
   activate() {
     this._super();

@@ -3,7 +3,7 @@
   background: #222628
   display: block
   display: flex
-  height: $unit-in-pixels * 2
+  height: $row * 2
   position: relative
   z-index: 9999
 
@@ -12,7 +12,7 @@
 
 .masthead-component__logo, .masthead-component__donate
   display: block
-  height: $unit-in-pixels
+  height: $row
     
 .masthead-component__spacer
   flex-grow: 1
@@ -20,7 +20,7 @@
 .masthead-component__logo
   flex-shrink: 0
   float: left
-  margin-left: $gutter-in-pixels
+  margin-left: $gutter
 
 .masthead-component__logo, .masthead-component__logo img, .masthead-component__donate__icon
   height: 36px
@@ -31,7 +31,7 @@
 
 .masthead-component__pipe
   background: $color-gray
-  height: $gutter-in-pixels
+  height: $gutter
   margin-left: 25px
   margin-right: 25px
   width: 1px
@@ -42,12 +42,12 @@
   float: right
   font-size: 15px
   font-weight: medium
-  margin-right: $gutter-in-pixels
+  margin-right: $gutter
   text-transform: uppercase
 
 .masthead-component__donate__icon
   fill: #F3AA27
-  height: $unit-in-pixels
+  height: $row
   margin-right: 4px
   vertical-align: middle
   width: 22px
@@ -61,6 +61,11 @@
   font-family: $font-sans-base
   font-size: 12px
 
+@mixin masthead-component--alt
+  background: rgba(34, 38, 40, 0.8)
+  position: absolute
+  width: 100%
+
 @mixin masthead-component--sm
   .masthead-component__parent-logo
     align-self: flex-end
@@ -68,7 +73,7 @@
   .masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
     height: 30px
   .masthead-component__logo
-    margin-left: $gutter-in-pixels / 2
+    margin-left: $gutter / 2
   .masthead-component__pipe, .masthead-component__donate
     display: none
   .masthead-component__parent-logo__img--full
@@ -78,14 +83,14 @@
     margin-right: 15px
 
 @mixin masthead-component--xs
-  height: $unit-in-pixels
+  height: $row
   .masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
     height: 18px
   .masthead-component__logo
-    margin-left: $gutter-in-pixels / 4
+    margin-left: $gutter / 4
   .masthead-component__parent-logo
     display: none
   .masthead-component__timestamp
-    margin-right: $gutter-in-pixels / 4
+    margin-right: $gutter / 4
 
 

@@ -1,7 +1,10 @@
+#l-home__masthead
+  @include masthead-component--alt
+
 #l-home__search
-  height: $row * 14
+  height: $row * 16
   padding-bottom: $row * 4
-  padding-top: $row
+  padding-top: $row * 3
   width: 100%
 
 #l-home__main
@@ -79,9 +82,10 @@
   overflow: hidden
   margin-left: auto
   margin-right: auto
+  margin-bottom: $row
   padding-left: $l-margin-size
   padding-right: $l-margin-size
-  padding-top: $row
+  padding-top: $row * 1.5
   width: $l-lg-size + ($l-margin-size * 2)
   @media (max-width: $l-lg-breakpoint)
     width: $l-med-size + ($l-margin-size * 2)

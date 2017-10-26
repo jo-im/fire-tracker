@@ -58,7 +58,7 @@ export default DS.Adapter.extend({
   },
 
   findAll: function(store){
-    return fetch("https://jollypod.com/incidents/_design/fire-tracker/_view/archive?reduce=false&descending=true").then((resp) => {
+    return fetch("https://jollypod.com/incidents/_design/display/_view/full?reduce=false&descending=true").then((resp) => {
       return resp.json()
         .then((json) => {
           json.rows.forEach(r => r.doc = r.value);
@@ -71,29 +71,28 @@ export default DS.Adapter.extend({
     query = query || {};
     query.descending = query.descending || false;
     query.limit      = query.limit      || 100;
-    return fetch(`https://jollypod.com/incidents/_design/fire-tracker/_view/archive?reduce=false&descending=${query.descending}&limit=${query.limit}`).then((resp) => {
-      return resp.json()
-        .then((json) => {
-          json.rows.forEach(r => r.doc = r.value);
-          return Ember.RSVP.Promise.resolve(json);
-        });
-    });
-  },
-
-  findRecord: function(store, type, id){
-    return fetch(`https://jollypod.com/incidents/${id}`).then((resp) => resp.json());
-  },
-
-  queryRecord: function(store, type, query){
-    return fetch("https://jollypod.com/incidents/_find", {
+    query.reduce     = query.reduce     || false;
+    return fetch(`https://jollypod.com/incidents/_design/display/_view/full?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
         'Content-Type': 'application/json; charset=utf-8'
       }
-    }).then((resp) => { 
-      return resp.json(); 
-    });
+    }).then(resp => resp.json());
+  },
+
+  findRecord: function(store, type, id){
+    return fetch(`https://jollypod.com/incidents/${id}`).then(resp => resp.json());
+  },
+
+  queryRecord: function(store, type, query){
+    return fetch(`https://jollypod.com/incidents/_design/display/_view/full?reduce=false`, {
+      method: "POST",
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    }).then(resp => resp.json());
   }
 
 });

@@ -2,12 +2,6 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import fetch from 'fetch';
 
-const {
-  run: {
-    bind
-  }
-} = Ember;
-
 export default DS.Adapter.extend({
 
   findAll: function(store){

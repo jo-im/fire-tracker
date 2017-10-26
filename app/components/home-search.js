@@ -19,19 +19,17 @@ function getDistance(lat1, lon1, lat2, lon2) {
 }
 
 export default FireSearch.extend({
+  store: Ember.inject.service(),
   classNames: ['home-search'],
   layout: Ember.computed(function() {
     return template;
   }),
   getSearchData: Ember.on('didInsertElement', function() {
-    return fetch("https://jollypod.com/incidents/_design/spatial/_view/search?limit=20&reduce=false&descending=true")
-      .then((resp) => {
-        return resp.json()
-          .then((json) => {
-            let results = json.rows.map(r => r.value);
-            this.set('searchData', results.map(r => new Ember.Object(r)));
-            this.set('searchIndex', searchico(results, {deep: false, hyper_indexing: false}));
-          });
+    this.get('store').query('sparse-fire', {queries: [{limit: 20, descending: true}]})
+      .then(results => {
+        let fires = results.toArray();
+        this.set('searchData', fires);
+        this.set('searchIndex', searchico([], {deep: false, hyper_indexing: false}));
       });
   }),
   onQuery: Ember.observer('query', function() {
@@ -77,9 +75,8 @@ export default FireSearch.extend({
           })
           .then((feature) => {
             // sort results by distance
-            let sorted = sortBy((this.get('searchData') || []), function(result){
-              let coords   = result.get('location.coordinates') || {};
-              let distance = getDistance(coords.lat, coords.long, feature.center[1], feature.center[0]);
+            let sorted = sortBy(this.get('searchData'), function(result){
+              let distance = getDistance(result.get('lat'), result.get('long'), feature.center[1], feature.center[0]);
               // append distance value to individual results
               result.set('distance', Math.round(distance));
               result.set('relativeTo', feature.text);

@@ -20,5 +20,9 @@ export default Ember.Controller.extend({
     } else {
       this.set('filteredResults', this.get('model') || []);
     }
-  }
+  },
+  _onInit: Ember.observer('model', function(){
+    // just to kick off initial results on page load
+    this.getResults();
+  })
 });
