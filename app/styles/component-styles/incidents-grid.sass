@@ -2,7 +2,7 @@
   display: flex
   flex-wrap: wrap
   // justify-content: center
-  // margin-right: -$gutter-in-pixels
+  // margin-right: -$gutter
 
 .incidents-grid__heading
   color: $color-gray
@@ -15,12 +15,12 @@
 
 .incidents-grid__card, .incidents-grid__link-card, .incidents-grid__spacer
   display: flex
-  flex-basis: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+  flex-basis: ($col * 2) + ($gutter * 2)
   flex-direction: column
   // justify-content: center
-  margin-bottom: $unit-in-pixels
-  margin-right: $gutter-in-pixels
-  height: $unit-in-pixels * 4
+  margin-bottom: $row
+  margin-right: $gutter
+  height: $row * 4
 
 .incidents-grid__card__heading
   color: $color-primary
@@ -42,9 +42,9 @@
   background-color: #F3AA27
   content: ""
   display: none
-  height: ($unit-in-pixels * 4) - 2px
+  height: ($row * 4) - 2px
   position: absolute
-  margin-left: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+  margin-left: ($col * 2) + ($gutter * 2)
   margin-top: 15px
   width: 1px
 
@@ -83,16 +83,16 @@
   justify-content: center
 
 @mixin incidents-grid--xl
-  // min-width: ($col-in-pixels * 10) + ($gutter-in-pixels * 9)
-  width: ($col-in-pixels * 10) + ($gutter-in-pixels * 10)
+  // min-width: ($col * 10) + ($gutter * 9)
+  width: ($col * 10) + ($gutter * 10)
   .incidents-grid__card:after
     display: block
   .incidents-grid__card:nth-child(4n + 1):after
     display: none
 
 @mixin incidents-grid--lg
-  min-width: ($col-in-pixels * 7) + ($gutter-in-pixels * 8)
-  width: ($col-in-pixels * 7) + ($gutter-in-pixels * 8)
+  min-width: ($col * 7) + ($gutter * 8)
+  width: ($col * 7) + ($gutter * 8)
   .incidents-grid__card:after
     display: block
   .incidents-grid__card:nth-child(3n + 1):after
@@ -104,8 +104,8 @@
 
 
 @mixin incidents-grid--med
-  min-width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
-  width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+  min-width: ($col * 5) + ($gutter * 5)
+  width: ($col * 5) + ($gutter * 5)
   .incidents-grid__card:after
     display: block
   .incidents-grid__card:nth-child(3n + 1):after
@@ -115,8 +115,8 @@
 
 
 @mixin incidents-grid--sm
-  min-width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
-  width: ($col-in-pixels * 3) + ($gutter-in-pixels * 2)
+  min-width: ($col * 3) + ($gutter * 2)
+  width: ($col * 3) + ($gutter * 2)
   .incidents-grid__heading
     font-size: 23px
   .incidents-grid__card:after
@@ -142,5 +142,7 @@
   .incidents-grid__card .incidents-grid__card__item:before
     display: none
 
-
+@mixin incidents-grid--alt
+  .incidents-grid__heading
+    display: none
 

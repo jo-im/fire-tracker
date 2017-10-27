@@ -1,22 +1,26 @@
+#l-archive__masthead
+  @include masthead-component--alt
+
 #l-archive__search
-  height: $unit-in-pixels * 14
-  padding-bottom: $unit-in-pixels * 4
-  padding-top: $unit-in-pixels
+  height: $row * 16
+  padding-bottom: $row * 2
+  padding-top: $row
   width: 100%
 
 #l-archive__grid
   @include skew(1.4deg)
+  @include incidents-grid--alt
   background-color: #222628
   display: flex
   justify-content: center
-  margin-bottom: -$unit-in-pixels
+  margin-bottom: -$row
   margin-left: auto
   margin-top: -48px
   margin-right: auto
   min-height: 100px
   overflow: hidden
-  padding-top: $unit-in-pixels * 2
-  padding-bottom: $unit-in-pixels * 2 
+  padding-top: $row * 2
+  padding-bottom: $row * 2 
   width: 100%
   #l-archive__grid__container
     display: block
@@ -24,19 +28,19 @@
     margin-left: auto
     margin-right: auto
     min-height: 50vh
-    padding-left: $l-margin-size + $gutter-in-pixels
+    padding-left: $l-margin-size + $gutter
     padding-right: $l-margin-size
     width: $l-lg-size + ($l-margin-size * 2)
     .incidents-grid
       @include incidents-grid--xl
       @include incidents-grid--justify-center
     @media (max-width: $l-lg-breakpoint)
-      padding-left: $l-margin-size + ($gutter-in-pixels * 2)
+      padding-left: $l-margin-size + ($gutter * 2)
       width: $l-med-size + ($l-margin-size * 2)
       .incidents-grid
         @include incidents-grid--lg
     @media (max-width: $l-med-breakpoint)
-      padding-left: $l-margin-size + ($gutter-in-pixels * 3)
+      padding-left: $l-margin-size + ($gutter * 3)
       width: $l-sm-size
       .incidents-grid
         @include incidents-grid--med

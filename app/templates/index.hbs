@@ -1,54 +1,54 @@
 {{masthead-component id="l-home__masthead"}}
-<div id="l-home">
 
-  {{home-search id="l-home__search" heading="Am I near a wildfire?" background="/images/backgrounds/home.png" placeholder="Enter a zipcode, city or fire name here"}}
 
-  <main id="l-home__main" class="t-dark">
-    <div id="l-home__main__content">
+{{home-search id="l-home__search" heading="Am I near a wildfire?" background="/images/backgrounds/home.png" placeholder="Enter a zipcode, city or fire name here"}}
 
-      {{featured-incidents id="l-home__featured-incidents" fires=model.settings.featuredFires}}
+<main id="l-home__main" class="t-dark">
+  <div id="l-home__main__content">
 
-      <aside id="l-home__main__content__right-aside">
-        {{season-stats id="l-home__season-stats"}}
-        <aside class="l-home__resources-list list-aside">
-          <h6 class="season-stats__heading">California fire resources</h6>
-          <ul>
-            {{#each model.settings.californiaFireResources as |link|}}
-              <li><a href="{{link.href}}">{{link.title}}</a></li>
-            {{/each}}
-          </ul>
-        </aside>
+    {{featured-incidents id="l-home__featured-incidents" fires=model.settings.featuredFires}}
+
+    <aside id="l-home__main__content__right-aside">
+      {{season-stats id="l-home__season-stats"}}
+      <aside class="l-home__resources-list list-aside">
+        <h6 class="season-stats__heading">California fire resources</h6>
+        <ul>
+          {{#each model.settings.californiaFireResources as |link|}}
+            <li><a href="{{link.href}}">{{link.title}}</a></li>
+          {{/each}}
+        </ul>
       </aside>
+    </aside>
 
-    </div>
-  </main>
-
-  <aside id="l-home__faq-list" class="faq-list">
-    <h6 class="faq-list__heading">Fire FAQs</h6>
-    <ul>
-      {{#each model.settings.faqs as |link|}}
-        <li class="faq-list__item"><a href="{{link.href}}">{{link.title}}</a></li>
-      {{/each}}
-    </ul>
-  </aside>
-  <aside class="l-home__resources-list list-aside l-home__resources-list-2">
-    <h6 class="season-stats__heading">California fire resources</h6>
-    <ul>
-      <li>Cal Fire</li>
-      <li>California Fire and Resource Assessment Program (FRAP)</li>
-      <li>California Incident Information System</li>
-      <li>Northern California Geographic Area Coordination Center (ONCC)</li>
-      <li>L.A. Fire Department</li>
-    </ul>
-  </aside>
-  
-  <div id="l-home__recent-incidents" class="t-dark">
-    <div id="l-home__recent-incidents__container">
-      {{incidents-grid heading="Recent Fires" linkToArchive=true fires=model.archiveFires}}
-    </div>
   </div>
+</main>
 
+<aside id="l-home__faq-list" class="faq-list">
+  <h6 class="faq-list__heading">Fire FAQs</h6>
+  <ul>
+    {{#each model.settings.faqs as |link|}}
+      <li class="faq-list__item"><a href="{{link.href}}">{{link.title}}</a></li>
+    {{/each}}
+  </ul>
+</aside>
+<aside class="l-home__resources-list list-aside l-home__resources-list-2">
+  <h6 class="season-stats__heading">California fire resources</h6>
+  <ul>
+    <li>Cal Fire</li>
+    <li>California Fire and Resource Assessment Program (FRAP)</li>
+    <li>California Incident Information System</li>
+    <li>Northern California Geographic Area Coordination Center (ONCC)</li>
+    <li>L.A. Fire Department</li>
+  </ul>
+</aside>
+
+<div id="l-home__recent-incidents" class="t-dark">
+  <div id="l-home__recent-incidents__container">
+    {{incidents-grid heading="Recent Fires" linkToArchive=true fires=model.archiveFires}}
+  </div>
 </div>
+
+
 
 {{footer-component id="l-footer"}}
 
