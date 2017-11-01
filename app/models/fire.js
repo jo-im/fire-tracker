@@ -155,13 +155,9 @@ export default DS.Model.extend({
       return acres.replace(/,\s*$/, '');
     }
   }),
-  proxy: Ember.computed(function(){
-    return Ember.ObjectProxy.create({
-      content: object
-    });
-  }),
   latestTweets: Ember.computed('tweets', function(){
     let tweets = this.get('tweets') || [];
     return tweets.splice(0,5);
   })
 });
+

@@ -18,7 +18,7 @@ export default DS.Adapter.extend({
     var callback = bind(this, 'onChange');
     let longpoll = () => {
 
-    fetch('https://jollypod.com/incidents/_changes?since=now&feed=longpoll')
+    fetch('https://jollypod.com/fires/_changes?since=now&feed=longpoll')
       .then(function(response) {
         ((response.json() || {}).results || []).forEach(callback);
       })
@@ -58,7 +58,7 @@ export default DS.Adapter.extend({
   },
 
   findAll: function(store){
-    return fetch("https://jollypod.com/incidents/_design/display/_view/full?reduce=false&descending=true").then((resp) => {
+    return fetch("https://jollypod.com/fires/_design/display/_view/full?reduce=false&descending=true").then((resp) => {
       return resp.json()
         .then((json) => {
           json.rows.forEach(r => r.doc = r.value);
@@ -72,7 +72,7 @@ export default DS.Adapter.extend({
     query.descending = query.descending || false;
     query.limit      = query.limit      || 100;
     query.reduce     = query.reduce     || false;
-    return fetch(`https://jollypod.com/incidents/_design/display/_view/full?reduce=false`, {
+    return fetch(`https://jollypod.com/fires/_design/display/_view/full?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
@@ -82,11 +82,11 @@ export default DS.Adapter.extend({
   },
 
   findRecord: function(store, type, id){
-    return fetch(`https://jollypod.com/incidents/${id}`).then(resp => resp.json());
+    return fetch(`https://jollypod.com/fires/${id}`).then(resp => resp.json());
   },
 
   queryRecord: function(store, type, query){
-    return fetch(`https://jollypod.com/incidents/_design/display/_view/full?reduce=false`, {
+    return fetch(`https://jollypod.com/fires/_design/display/_view/full?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {

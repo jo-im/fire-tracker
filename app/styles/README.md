@@ -6,7 +6,7 @@ The style sheets in this application follow a specific convention to reduce coup
 Here's an outline of the basic principles of the style workflow:
 
 - Layout styles for each route(i.e. every page) belong under `app/styles/layouts`.
-- Design, scaling, and internal layout styles for every component go under `app/styles/component-styles`.
+- Design, scaling, and internal layout styles for every component go under `app/styles/components`.
 - Shared "themes" for components belong in `app/styles/themes`, and get included inside layouts.
 - Component styles have their own mixins, following a naming convention, that are included in layouts in order to account for responsiveness & scaling under media queries.
 
@@ -64,7 +64,7 @@ So if we had a component called `.info-cards`, you will likely want to create th
 Defining `info-cards--med` might look like this:
 
 ```sass
-# app/styles/component-styles/info-cards.sass
+# app/styles/components/info-cards.sass
 
 @mixin info-cards--med
   font-size: 16px

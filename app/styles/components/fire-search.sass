@@ -1,12 +1,12 @@
 .fire-search
   align-items: center
-  // background-image: url(/images/search-background.jpg)
+  background-color: $color-base
   background-size: cover
-  box-shadow: inset 0px 0px 224px 61px rgba(0,0,0,0.75)
+  // box-shadow: inset 0px 0px 224px 61px rgba(0,0,0,0.75)
   display: flex
   flex-direction: column
   justify-content: center
-  padding: $gutter-in-pixels / 2
+  padding: $gutter / 2
 
 .fire-search__heading
   color: $color-white
@@ -14,11 +14,12 @@
   font-size: 37px
   font-weight: 800
   margin: 0 0 1em
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5)
   @media (max-width: 600px)
     font-size: 32px
 
 .fire-search__search-area
-  max-width: $col-in-pixels * 9
+  max-width: $col * 9
   width: 100%
 
 .fire-search__input
@@ -46,9 +47,9 @@
 .fire-search__results
   font-family: $font-sans-base
   font-size: 15px
-  max-width: ($col-in-pixels * 9) + $gutter-in-pixels
-  padding-left: $gutter-in-pixels / 2
-  padding-right: $gutter-in-pixels / 2
+  max-width: ($col * 9) + $gutter
+  padding-left: $gutter / 2
+  padding-right: $gutter / 2
   left: 50%
   transform: translateX(-50%)
   // margin-right: $unit-in-pixels

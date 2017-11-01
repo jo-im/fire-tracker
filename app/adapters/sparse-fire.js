@@ -8,7 +8,7 @@ import fetch from 'fetch';
 export default DS.Adapter.extend({
 
   findAll: function(store){
-    return fetch("https://jollypod.com/incidents/_design/display/_view/sparse?reduce=false&descending=true")
+    return fetch("https://jollypod.com/fires/_design/display/_view/sparse?reduce=false&descending=true")
       .then(resp => resp.json());
   },
 
@@ -17,7 +17,7 @@ export default DS.Adapter.extend({
     query.descending = query.descending || false;
     query.limit      = query.limit      || 100;
     query.reduce     = query.reduce     || false;
-    return fetch(`https://jollypod.com/incidents/_design/display/_view/sparse?reduce=false`, {
+    return fetch(`https://jollypod.com/fires/_design/display/_view/sparse?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
@@ -31,7 +31,7 @@ export default DS.Adapter.extend({
   },
 
   queryRecord: function(store, type, query){
-    return fetch(`https://jollypod.com/incidents/_design/display/_view/sparse?reduce=false`, {
+    return fetch(`https://jollypod.com/fires/_design/display/_view/sparse?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {

@@ -1,4 +1,3 @@
-// @import "src/styles/index"
 @import "./vars"
 @import "./global"
 @import "./mixins"
@@ -10,33 +9,33 @@ html
 *, *:before, *:after
   box-sizing: inherit
 
-// @import "pod-styles"
-@import "./component-styles/masthead-component"
-@import "./component-styles/footer-component"
-@import "./component-styles/h-rule"
-@import "./component-styles/fire-search"
-@import "./component-styles/featured-incidents"
-@import "./component-styles/season-stats"
-@import "./component-styles/incidents-grid"
+@import "./components/masthead-component"
+@import "./components/footer-component"
+@import "./components/h-rule"
+@import "./components/fire-search"
+@import "./components/featured-incidents"
+@import "./components/season-stats"
+@import "./components/incidents-grid"
 
-@import "./component-styles/fire-header"
-@import "./component-styles/share-icons"
-@import "./component-styles/fire-description"
-@import "./component-styles/important-facts"
-@import "./component-styles/tweets-slider"
-@import "./component-styles/pointy-hat"
-@import "./component-styles/i-have-questions"
-@import "./component-styles/additional-details"
-@import "./component-styles/content-heading"
-@import "./component-styles/content-article"
-@import "./component-styles/list-aside"
-@import "./component-styles/c-figure"
-@import "./component-styles/recent-fires"
-@import "./component-styles/notification-component"
-@import "./component-styles/time-series"
-@import "./component-styles/air-quality-aside"
-@import "./component-styles/faq-list"
-@import "./component-styles/fire-embed"
+@import "./components/fire-header"
+@import "./components/share-icons"
+@import "./components/fire-description"
+@import "./components/important-facts"
+@import "./components/tweets-slider"
+@import "./components/pointy-hat"
+@import "./components/i-have-questions"
+@import "./components/additional-details"
+@import "./components/content-heading"
+@import "./components/content-article"
+@import "./components/list-aside"
+@import "./components/c-figure"
+@import "./components/recent-fires"
+@import "./components/notification-component"
+@import "./components/time-series"
+@import "./components/air-quality-aside"
+@import "./components/faq-list"
+@import "./components/fire-embed"
+@import "./components/containment-graph"
 
 @import "./layout/index"
 @import "./layout/fire"
@@ -56,6 +55,10 @@ html
 .list-aside
   li
     margin-bottom: $unit-in-pixels
+
+@media (max-width: $l-med-breakpoint)
+  .footer-component
+    @include footer-component--med
 
 @media (max-width: $l-sm-breakpoint)
   .masthead-component

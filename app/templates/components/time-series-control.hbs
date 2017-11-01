@@ -1,7 +1,13 @@
 <div class="time-series-control__toggle">
   {{#if this.hasInteracted}}
     {{#if this.parentView.playing}}
-      <img class="ime-series-control__toggle__icon" src="/images/icons/pause.svg">
+      <img class="time-series-control__toggle__icon" src="/images/icons/pause.svg">
+    {{else}}
+      {{#if this.parentView.shouldReplay}}
+        <img class="time-series-control__toggle__icon" src="/images/icons/replay.svg">
+      {{else}}
+        <img class="time-series-control__toggle__icon" src="/images/icons/play.svg">
+      {{/if}}
     {{/if}}
   {{else}}
     <span class="time-series-control__toggle__text">

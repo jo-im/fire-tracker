@@ -43,6 +43,35 @@ $tweet-card-small-size: 270px
   background: #F87E21
   color: $color-white
 
+.tweets-slider__control
+  align-items: center
+  background: rgba(243, 170, 39, 0.9)
+  display: flex
+  filter: brightness(100%)
+  justify-content: center
+  height: 45px
+  opacity: 1
+  position: absolute
+  transform: translateY($tweet-card-base-size / 2)
+  transition: opacity 0.5s, filter 0.5s
+  width: 45px
+  z-index: 1
+
+.tweets-slider__control:hover
+  filter: brightness(115%)
+
+.tweets-slider__control-left
+  left: 45px
+
+.tweets-slider__control-right
+  right: 45px
+
+.tweets-slider--at-beginning .tweets-slider__control-left
+  opacity: 0
+
+.tweets-slider--at-end .tweets-slider__control-right
+  opacity: 0
+
 .tweets-slider__cards
   display: flex
   // justify-content: center
@@ -67,6 +96,7 @@ $tweet-card-small-size: 270px
   flex-shrink: 0
   height: $tweet-card-base-size
   overflow: hidden
+  user-select: none
   width: $tweet-card-base-size
 
 .tweets-slider__cards__card__tweet
@@ -109,7 +139,7 @@ $tweet-card-small-size: 270px
 .tweets-slider__selector__dot:not(:last-child)
   margin-right: 15px
 
-.tweets-slider__selector__dot--selected
+.tweets-slider__selector__dot--selected, .tweets-slider__selector__dot[selected]
   background-color: #E8E8E8
 
 
@@ -141,6 +171,8 @@ $tweet-card-small-size: 270px
     padding-right: 10px
     position: absolute
     right: 20px
+  .tweets-slider__control
+    display: none
   .tweets-slider__cards__card
     flex-direction: column
     height: $tweet-card-small-size

@@ -185,6 +185,7 @@ export default GeoJSONLayer.extend({
     var timeInstants = this.get('timeInstants');
     i++;
     if(i >= timeInstants.length){
+      // stop when we reach the end.
       this.stop();
       i = 0;
     }
@@ -195,6 +196,12 @@ export default GeoJSONLayer.extend({
     // reset playhead if we are already at the end.
     var i = this.get('i') || 0;
     var n = this.get('timeInstants.length');
+    if(i === 0){
+      // When the user decides to replay, the interface
+      // should get rid of the current time and display
+      // "loading..." or some signal of replaying
+      this.set('currentTime', null);
+    }
     if(i >= n){
       this.set('i', 0);
       this.set('currentTime', null);
@@ -205,6 +212,14 @@ export default GeoJSONLayer.extend({
   stop(){
     this.set('playing', false);
   },
+
+  stopped: Ember.computed('playing', function(){
+    return !this.get('playing');
+  }),
+
+  shouldReplay: Ember.computed('i', 'stopped', function(){
+    return (this.get('i') === 0) & this.get('stopped');
+  }),
 
   willDestroyLayer() {
     this.set('playing', false);

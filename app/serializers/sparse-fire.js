@@ -20,7 +20,7 @@ export default DS.Serializer.extend({
           lat: row[5],
           long: row[6],
           acres: row[7],
-          containment: row[8],
+          contained: row[8],
           countyName: row[9]
         }};
       })

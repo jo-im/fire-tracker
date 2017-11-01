@@ -1,0 +1,195 @@
+.footer-component
+  background: $color-base
+  clear: both
+  color: $color-white
+  padding: 30px 42px
+  position: relative
+  z-index: 2
+
+.footer-component:after
+  background: $color-base
+  bottom: -500px
+  content: ''
+  display: block
+  height: 500px
+  left: 0
+  position: fixed
+  width: 100%
+
+.footer-component__head
+  align-items: center
+  display: flex
+  justify-content: space-between
+  margin-bottom: $row
+
+.footer-component__logos
+  align-items: flex-end
+  display: flex
+
+.footer-component__logos > *
+  flex-shrink: 0
+
+.footer-component__logos__firetracker
+  display: block
+  float: left
+  height: 32px
+  width: 220px
+
+.footer-component__logos__kpcc, .footer-component__logos__kpcc > *
+  display: block
+  float: left
+  height: 23px
+  width: 155px
+
+.footer-component__logos__kpcc-image
+  display: block
+  float: left
+  height: 23px
+  margin-right: 4px
+  width: 155px
+
+.footer-component__logos__pipe
+  background: $color-gray
+  float: left
+  height: 30px
+  margin-left: 20px
+  margin-right: 20px
+  width: 1px
+
+.footer-component__foot
+  color: $color-gray
+  display: flex
+  flex-wrap: wrap
+  font-size: 13px
+  justify-content: center
+  line-height: 1.466666667em
+  margin-bottom: $row * 2
+  text-align: center
+
+.footer-component__foot__primary-support, .footer-component__foot__secondary-support, .footer-component__foot__tertiary-support
+  text-align: center
+
+.footer-component__foot__primary-support
+  margin-bottom: 25px
+
+.footer-component__foot__secondary-support, .footer-component__foot__tertiary-support
+  margin-top: 25px
+  margin-bottom: $row
+
+.footer-component__foot__primary-support__heading, .footer-component__foot__secondary-support__heading
+  color: $color-gray
+  display: block
+  font-family: $font-sans-base
+  font-size: 17px
+  margin-bottom: $row
+  text-transform: uppercase
+
+
+.footer-component__foot__primary-support__org, .footer-component__foot__primary-support__separator
+  color: $color-white
+  font-family: $font-serif-titling
+  font-size: 33px
+  font-style: italic
+  line-height: 24px
+
+.footer-component__foot__secondary-support__org, .footer-component__foot__secondary-support__separator
+  color: $color-white
+  font-family: $font-serif-titling
+  font-size: 22px
+  font-style: italic
+  line-height: 14px
+
+
+
+
+.footer-component__foot__tertiary-support__org, .footer-component__foot__tertiary-support__separator
+  color: $color-white
+  font-family: $font-serif-titling
+  font-size: 22px
+  line-height: 1.2
+
+
+
+.footer-component__foot__primary-support__org
+  font-weight: 800
+
+.footer-component__foot__primary-support__separator
+  font-family: $font-serif-titling-italic
+  letter-spacing: -0.07px
+  padding-left: 10px
+  padding-right: 10px
+
+.footer-component__foot__tertiary-support__separator
+  padding-left: 5px
+  padding-right: 5px
+
+.footer-component__rule
+  background: $color-gray
+  border: 0
+  height: 1px
+
+.footer-component__foot-item
+  margin-left: 15px
+  margin-right: 15px
+
+.footer-component__foot__link
+  color: $color-gray
+
+.footer-component__foot__link:hover
+  @include link-underline($color-gray, $color-gray-dark)
+
+.footer-component__foot__link--primary
+  color: $color-primary
+
+.footer-component__foot__link--primary:hover
+  @include link-underline($color-primary, $color-gray-dark)
+
+.footer-component__call-to-action
+  align-items: center
+  align-self: center
+  border: 1px solid #F3AA27
+  display: flex
+  font-size: 15px
+  padding: 10px
+
+.footer-component__call-to-action:hover
+  background: #F3AA27
+
+.footer-component__call-to-action__icon
+  float: left
+  height: 19px
+  margin-right: 6px
+  vertical-align: middle
+  width: 17px
+
+@mixin footer-component--med
+
+  .footer-component__call-to-action
+    display: none
+
+  .footer-component__foot__primary-support__org, .footer-component__foot__primary-support__separator
+    font-size: 22px
+    font-size: 3vw
+
+  .footer-component__foot__secondary-support__org, .footer-component__foot__secondary-support__separator, .footer-component__foot__tertiary-support__org, .footer-component__foot__tertiary-support__separator
+    font-size: 18px
+    font-size: 3vw
+
+
+@mixin footer-component--sm
+  padding: 15px
+
+  .footer-component__logos__firetracker
+    height: 27px
+    width: 185px
+
+  .footer-component__logos__kpcc, .footer-component__logos__kpcc > *
+    height: 19px
+    width: 130px
+
+  .footer-component__foot
+    margin-bottom: $row
+
+  .footer-component__foot__primary-support__heading, .footer-component__foot__secondary-support__heading
+    margin-bottom: $row / 2
+
