@@ -7,7 +7,7 @@
     {{#each results as |result|}}
       <a class="fire-search__result" href="/{{result.slug}}">
         <span class="fire-search__result__text">
-          <span class="fire-search__result__name">{{result.name}}</span>,{{#if result.county}} {{result.county}} {{/if}}{{#if result.distance}} | {{result.distance}} miles away{{#if result.relativeTo}} from {{result.relativeTo}}{{/if}} {{/if}}
+          <span class="fire-search__result__name">{{result.name}}</span>,{{#if result.countyName}} {{result.countyName}} {{/if}}{{#if result.distance}} | {{result.distance}} miles away{{#if result.relativeTo}} from {{result.relativeTo}}{{/if}} {{/if}}
         </span>
       </a>
     {{else}}

@@ -16,7 +16,7 @@ export default DS.Serializer.extend({
           attributes: r.doc,
           relationships: {
             featuredFires: {
-              data: r.doc.featuredFires.map(id => { return {id: id, type: 'sparse-fire'}; })
+              data: r.doc.featuredFires.map(id => { return {id: id, type: 'fire'}; })
             }
           }
         };

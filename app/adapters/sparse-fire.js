@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import fetch from 'fetch';
+import ENV from '../config/environment';
 
 // Remember: If a request is fine but the model isn't loading properly
 // chances are you need to fix the serializer.
@@ -8,7 +9,7 @@ import fetch from 'fetch';
 export default DS.Adapter.extend({
 
   findAll: function(store){
-    return fetch("https://jollypod.com/fires/_design/display/_view/sparse?reduce=false&descending=true")
+    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/sparse?reduce=false&descending=true`)
       .then(resp => resp.json());
   },
 
@@ -17,7 +18,7 @@ export default DS.Adapter.extend({
     query.descending = query.descending || false;
     query.limit      = query.limit      || 100;
     query.reduce     = query.reduce     || false;
-    return fetch(`https://jollypod.com/fires/_design/display/_view/sparse?reduce=false`, {
+    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/sparse?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
@@ -31,7 +32,7 @@ export default DS.Adapter.extend({
   },
 
   queryRecord: function(store, type, query){
-    return fetch(`https://jollypod.com/fires/_design/display/_view/sparse?reduce=false`, {
+    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/sparse?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {

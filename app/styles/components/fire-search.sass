@@ -70,8 +70,11 @@
 .fire-search__no-results
   min-height: 500px
 
-.fire-search__result:hover .fire-search__result__text
-  @include link-underline($color-black, $color-gray-lightest)
+// .fire-search__result:hover .fire-search__result__text
+//   @include link-underline($color-black, $color-gray-lightest)
+
+.fire-search__result__text
+  @include link-effect($color-black, $color-gray-lightest)
 
 .fire-search__result__name
   font-weight: 700

@@ -27,7 +27,7 @@
   <h6 class="faq-list__heading">Fire FAQs</h6>
   <ul>
     {{#each model.settings.faqs as |link|}}
-      <li class="faq-list__item"><a href="{{link.href}}">{{link.title}}</a></li>
+      <li class="faq-list__item"><a class="faq-list__item-link" href="{{link.href}}">{{link.title}}</a></li>
     {{/each}}
   </ul>
 </aside>

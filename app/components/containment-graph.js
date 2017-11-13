@@ -19,7 +19,7 @@ export default Ember.Component.extend({
     let i = 0;
     let cells = el.querySelectorAll('.containment-graph__cell');
     while(i<cells.length){
-      let cell = cells[i];
+      let cell = cells[(i + 20) % 100];
       if(i >= containment){
         cell.classList.add('containment-graph__cell--muted');
       }

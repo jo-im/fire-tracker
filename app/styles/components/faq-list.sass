@@ -13,6 +13,12 @@
   font-weight: 800
   margin-bottom: 30px
 
+.faq-list__item-link
+  @include link-effect($color-primary)
+
+.faq-list__item-link:hover
+  display: inline
+
 @mixin faq-list--lg
   .faq-list__item
     font-size: 31px

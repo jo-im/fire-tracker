@@ -10,11 +10,11 @@
       <li class="incidents-grid__card__item">
         {{moment-format fire.startedAt 'MMM DD, YYYY'}}
       </li>
-      {{#if fire.county}}
-        <li class="incidents-grid__card__item">{{fire.county}}</li>
+      {{#if fire.countyName}}
+        <li class="incidents-grid__card__item">{{fire.countyName}}</li>
       {{/if}}
-      {{#if fire.acres}}
-        <li class="incidents-grid__card__item">{{fire.acres}} Acres</li>
+      {{#if fire.acreage}}
+        <li class="incidents-grid__card__item">{{fire.acreage}} Acres</li>
       {{/if}}
       {{#if fire.containment}}
         <li class="incidents-grid__card__item">{{fire.containment}} contained</li>

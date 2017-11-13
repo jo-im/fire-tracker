@@ -2,11 +2,10 @@
 
 {{#each fires as |fire|}}
   <div class="featured-incident-card">
-    <div class="featured-incident-card__thumbnail">
-    </div>
+    {{c-figure src=fire.thumbnail class="featured-incident-card__thumbnail"}}
     <div class="featured-incident-card__description">
       <a href="/{{fire.slug}}" class="featured-incident-card__heading">{{fire.name}}</a>
-      <h6 class="featured-incident-card__county">{{fire.county}}</h6>
+      <h6 class="featured-incident-card__county">{{fire.countyName}}</h6>
       <span class="featured-incident-card__started featured-incident-card__stat">
         <span class="featured-incident-card__stat-title">Started:</span> {{moment-format fire.startedAt 'MMM DD, YYYY'}}
       </span>

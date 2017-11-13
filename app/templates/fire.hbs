@@ -70,7 +70,7 @@
         </div>
       </div>
 
-      {{air-quality-aside airQuality=model.weather.airQuality}}
+      {{air-quality-aside airQuality=model.airQuality}}
 
     </div>
   </div>
@@ -80,13 +80,27 @@
   <div id="l-fire__i-have-questions" class="i-have-questions">
     <h4 class="i-have-questions__heading">I HAVE QUESTIONS</h4>
     <ul class="i-have-questions__links">
-      <li class="i-have-questions__links__link">What can I do to prepare for wildfire season?</li>
-      <li class="i-have-questions__links__link">The air is brown with wildfire smoke – should I wear a mask?</li>
-      <li class="i-have-questions__links__link">How can I protect my pets?</li>
-      <li class="i-have-questions__links__link">How can I check the air quality?</li>
-      <li class="i-have-questions__links__link">What should I do to keep myself safe from wildfire smoke?</li>
-      <li class="i-have-questions__links__link">What kind of things influence wildfire behavior?</li>
-      <li class="i-have-questions__links__link">I’ve just been asked to evacuate – what should I do?</li>
+      <li class="i-have-questions__links__link">
+        <a href="#" class="i-have-qestions__links__anchor">What can I do to prepare for wildfire season?</a>
+      </li>
+      <li class="i-have-questions__links__link">
+        <a href="#" class="i-have-qestions__links__anchor">The air is brown with wildfire smoke – should I wear a mask?</a>
+      </li>
+      <li class="i-have-questions__links__link">
+        <a href="#" class="i-have-qestions__links__anchor">How can I protect my pets?</a>
+      </li>
+      <li class="i-have-questions__links__link">
+        <a href="#" class="i-have-qestions__links__anchor">How can I check the air quality?</a>
+      </li>
+      <li class="i-have-questions__links__link">
+        <a href="#" class="i-have-qestions__links__anchor">What should I do to keep myself safe from wildfire smoke?</a>
+      </li>
+      <li class="i-have-questions__links__link">
+        <a href="#" class="i-have-qestions__links__anchor">What kind of things influence wildfire behavior?</a>
+      </li>
+      <li class="i-have-questions__links__link">
+        <a href="#" class="i-have-qestions__links__anchor">I’ve just been asked to evacuate – what should I do?</a>
+      </li>
     </ul>
   </div>
 
@@ -120,17 +134,17 @@
 
       <h6 class="additional-details__body__heading">STRUCTURES THREATENED</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.stats.damage.structuresThreatened}}
+        {{or-not-any model.structuresThreatened}}
       </p>
 
       <h6 class="additional-details__body__heading">STRUCTURES DESTROYED</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.stats.damage.structuresDestroyed}}
+        {{or-not-any model.structuresDestroyed}}
       </p>
 
       <h6 class="additional-details__body__heading">INJURIES</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.stats.damage.injuries}}
+        {{or-not-any model.injuries}}
       </p>
 
       <h6 class="additional-details__body__heading">ROAD CLOSURES</h6>
@@ -160,7 +174,7 @@
 
       <h6 class="additional-details__body__heading">PHONE NUMBERS</h6>
       <p class="additional-details__body__paragraph">
-        {{#each model.contact.phoneNumbers as |contact|}}
+        {{#each model.phoneNumbers as |contact|}}
           <p>{{contact.title}}</p>
           <p>{{contact.number}}</p>
           <br />

@@ -11,7 +11,7 @@ export default DS.Serializer.extend({
     return {
       data: (((payload.results || [])[0] || payload).rows || []).map(r => {
         let row = r.key.concat(r.value);
-        return {id: r.id, type: 'sparse-fire', attributes: {
+        return {id: r.id, type: 'fire', attributes: {
           _id: row[0],
           slug: row[1],
           name: row[2],
@@ -21,7 +21,8 @@ export default DS.Serializer.extend({
           long: row[6],
           acres: row[7],
           contained: row[8],
-          countyName: row[9]
+          county: row[9],
+          thumbnailId: row[10]
         }};
       })
     }
@@ -30,7 +31,7 @@ export default DS.Serializer.extend({
     return {
       data: {
         id: resourceHash._id,
-        type: modelClass.modelName,
+        type: 'fire',
         attributes: resourceHash
       }
     };

@@ -2,12 +2,12 @@
   @include skew(-1.4deg)
   display: block
   font-size: 18px
-  margin-top: -$gutter-in-pixels
+  margin-top: -$gutter
   overflow: hidden
-  padding-bottom: $unit-in-pixels
-  // padding-left: $gutter-in-pixels / 2
-  padding-top: $unit-in-pixels * 3
-  // padding-right: $gutter-in-pixels / 2
+  padding-bottom: $row
+  // padding-left: $gutter / 2
+  padding-top: $row * 3
+  // padding-right: $gutter / 2
   position: relative
 
 .fire-header__heading
@@ -17,11 +17,12 @@
   font-weight: 800
   line-height: 1
   margin-bottom: 15px
+  max-width: 700px
 
 .fire-header__basic-info
   float: left
   margin-right: auto
-  // margin-right: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
+  // margin-right: ($col * 2) + ($gutter * 2)
 
 .fire-header__basic-info__data-name
   font-weight: 700
@@ -37,10 +38,18 @@
 
 .fire-header__stats
   display: flex
-  // height: $unit-in-pixels * 2
+  // height: $row * 2
 
 .fire-header__stats__item
-  // margin-right: ($col-in-pixels / 2) + $gutter-in-pixels
+  align-items: center
+  display: flex
+  flex-wrap: wrap
+  height: $row * 2
+  margin-bottom: $row
+
+.fire-header__stats__item-heading
+  width: 100%
+  // margin-right: ($col / 2) + $gutter
 
 .fire-header__stats__item-heading, .fire-header__basic-info__data
   text-transform: uppercase
@@ -49,9 +58,9 @@
   background: #F3AA27
   display: block
   flex-shrink: 0
-  height: $unit-in-pixels * 2
-  margin-left: $col-in-pixels / 2
-  margin-right: $gutter-in-pixels
+  height: $row * 2
+  margin-left: $col / 2
+  margin-right: $gutter
   width: 1px
 
 .fire-header__stats__item-heading
@@ -63,7 +72,7 @@
 
 .fire-header__stats__item-icon
   float: left
-  height: $unit-in-pixels
+  height: $row
   margin-right: 10px
 
 .fire-header__stats__stat
@@ -79,20 +88,19 @@
 
 @mixin fire-header--lg
   .fire-header__basic-info
-    margin-right: $col-in-pixels
+    margin-right: $col
+
 
 @mixin fire-header--med
   .fire-header__content
     align-items: center
   .fire-header__basic-info
-    margin-right: ($col-in-pixels * 2) + ($gutter-in-pixels * 2)
-    margin-bottom: $unit-in-pixels
+    margin-right: ($col * 2) + ($gutter * 2)
+    margin-bottom: $row
   .fire-header__stats
     flex-direction: column
   .fire-header__stats__pipe
     display: none
-
-
 
 @mixin fire-header--sm
   font-size: 16px
@@ -101,10 +109,12 @@
   .fire-header__content
     flex-direction: column
   .fire-header__basic-info
-    margin-bottom: $unit-in-pixels
+    margin-bottom: $row
     margin-right: 0px
   .fire-header__heading
     font-size: 32px
+  .fire-header__heading
+    max-width: initial
   .fire-header__basic-info__data-item, .fire-header__basic-info__pipe
     display: block
     float: left

@@ -24,6 +24,14 @@ module.exports = function(environment) {
     },
     moment: {
       includeTimezone: 'all'
+    },
+    couchdb: {
+      host: 'jollypod.com',
+      protocol: 'https'
+    },
+    assethost: {
+      host: 'localhost:3000',
+      protocol: 'http',
     }
   };
 

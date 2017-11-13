@@ -26,14 +26,15 @@
   // width: $col-in-pixels + $gutter-in-pixels + $col-in-pixels + $col-in-pixels + $gutter-in-pixels + $col-in-pixels + $gutter-in-pixels
 
 .featured-incident-card__heading
+  @include link-effect($color-primary, $t-dark-color-background)
   color: $color-primary
   font-family: $font-serif-titling
   font-size: 26px
   font-weight: 500
   margin-bottom: 0px
   
-.featured-incident-card__heading:hover
-  @include link-underline($color-primary, $t-dark-color-background)
+// .featured-incident-card__heading:hover
+  // @include link-effect($color-primary, $t-dark-color-background)
 
 .featured-incident-card__thumbnail
   float: left

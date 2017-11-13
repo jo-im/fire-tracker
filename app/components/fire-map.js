@@ -31,6 +31,7 @@ export default LeafletMap.extend({
     // Let base layer bind the events first
     delete options.center;
     delete options.zoom;
+    // NOTE: we can probably get rid of most of this crap
     options.timeDimensionControlOptions = {
         position: options.timeDimensionControlPosition || 'bottomleft',
         autoPlay: options.autoplay || false,

@@ -20,7 +20,9 @@
   // justify-content: center
   margin-bottom: $row
   margin-right: $gutter
-  height: $row * 4
+
+.incidents-grid__card, .incidents-grid__link-card
+  min-height: $row * 4
 
 .incidents-grid__card__heading
   color: $color-primary
@@ -48,8 +50,8 @@
   margin-top: 15px
   width: 1px
 
-.incidents-grid__card__heading-text:hover
-  @include link-underline($color-primary, $t-dark-color-background);
+.incidents-grid__card__heading-text
+  @include link-effect($color-primary, $t-dark-color-background);
 
 .incidents-grid__card__item
   display: flex
@@ -80,6 +82,7 @@
   background: url('/images/icons/firetruck-sm.svg')
 
 @mixin incidents-grid--justify-center
+  // :notsure:
   justify-content: center
 
 @mixin incidents-grid--xl
