@@ -9,7 +9,7 @@ import ENV from '../config/environment';
 export default DS.Adapter.extend({
 
   findAll: function(store){
-    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/sparse?reduce=false&descending=true`)
+    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/sparse?reduce=false&descending=true`)
       .then(resp => resp.json());
   },
 
@@ -18,7 +18,7 @@ export default DS.Adapter.extend({
     query.descending = query.descending || false;
     query.limit      = query.limit      || 100;
     query.reduce     = query.reduce     || false;
-    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/sparse?reduce=false`, {
+    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/sparse?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
@@ -32,7 +32,7 @@ export default DS.Adapter.extend({
   },
 
   queryRecord: function(store, type, query){
-    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/sparse?reduce=false`, {
+    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/sparse?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {

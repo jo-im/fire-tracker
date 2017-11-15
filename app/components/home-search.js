@@ -4,6 +4,7 @@ import fetch from 'fetch';
 import sortBy from 'npm:lodash.sortby';
 import searchico from 'npm:searchico';
 import template from '../templates/components/fire-search';
+import ENV from '../config/environment';
 
 function getDistance(lat1, lon1, lat2, lon2) {
   // returns distance in miles
@@ -56,7 +57,7 @@ export default FireSearch.extend({
       })
       .catch(() => {
         // text search returned nothing... let's try geocoding
-        return fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ`)
+        return fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${ENV.mapbox.geocoding.accessToken}`)
           .then((resp) => {
             return resp.json();
           })

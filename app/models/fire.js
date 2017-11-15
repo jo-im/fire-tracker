@@ -2,6 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import moment from 'npm:moment';
 import ENV from '../config/environment';
+import L from '../lib/L';
 
 const monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
 
@@ -99,6 +100,16 @@ export default DS.Model.extend({
       return `${days} days`;
     }
   }),
+  burnedFor: Ember.computed('startedAt', 'extinguishedAt', function(){
+    let startedAt      = this.get('startedAt');
+    let extinguishedAt = this.get('extinguishedAt') || new Date();
+    if(startedAt){
+      let a = moment(startedAt);
+      let b = moment(extinguishedAt);
+      let days = Math.abs(b.diff(a, 'days'));
+      return `${days} days`;
+    }
+  }),
   shouldPlaybackPerimeter: Ember.computed('perimeter', function(){
     let perimeter       = this.get('perimeter') || {features: []};
     let numTimeInstants = perimeter.features.length || 0;
@@ -161,7 +172,7 @@ export default DS.Model.extend({
   thumbnail: Ember.computed('thumbnailId', function(){
     let thumbnailId = this.get('thumbnailId');
     if(thumbnailId){
-      return `${ENV.assethost.protocol}://${ENV.assethost.host}/i/original/${thumbnailId}-full.jpg`;
+      return `${ENV.assethost.endpoint}/i/original/${thumbnailId}-full.jpg`;
     }
   })
 });

@@ -20,23 +20,41 @@
     </ul>
   </div>
   <div class="fire-header__stats">
-    <div class="fire-header__stats__item">
-      <h6 class="fire-header__stats__item-heading">Burning For</h6>
-      <img class="fire-header__stats__item-icon" src="/images/icons/calendar.svg">
-      <h3 class="fire-header__stats__stat">{{fire.duration}}</h3>
-    </div>
-    <div class="fire-header__stats__pipe"></div>
+    {{#if fire.startedAt}}
+      <div class="fire-header__stats__item">
+        {{#if fire.extinguishedAt}}
+          <h6 class="fire-header__stats__item-heading">Burned For</h6>
+        {{else}}
+          <h6 class="fire-header__stats__item-heading">Burning For</h6>
+        {{/if}}
+        <div class="fire-header__stats__item-stat">
+          <img class="fire-header__stats__item-icon" src="/images/icons/calendar.svg">
+          {{#if fire.extinguishedAt}}
+            <h3 class="fire-header__stats__stat">{{fire.burnedFor}}</h3>
+          {{else}}
+            <h3 class="fire-header__stats__stat">{{fire.duration}}</h3>
+          {{/if}}
+        </div>
+      </div>
+      <div class="fire-header__stats__pipe"></div>
+    {{/if}}
     <div class="fire-header__stats__item">
       <h6 class="fire-header__stats__item-heading">Containment</h6>
-      {{containment-graph containment=fire.containment}}
-      <h3 class="fire-header__stats__stat">{{fire.containment}}</h3>
+      <div class="fire-header__stats__item-stat">
+        {{containment-graph containment=fire.containment}}
+        <h3 class="fire-header__stats__stat">{{fire.containment}}</h3>
+      </div>
     </div>
-    <div class="fire-header__stats__pipe"></div>
-    <div class="fire-header__stats__item">
-      <h6 class="fire-header__stats__item-heading">Acres Burned</h6>
-      <img class="fire-header__stats__item-icon" src="/images/icons/map.svg">
-      <h3 class="fire-header__stats__stat">{{fire.acreage}}</h3>
-    </div>
+    {{#if fire.acres}}
+      <div class="fire-header__stats__pipe"></div>
+      <div class="fire-header__stats__item">
+        <h6 class="fire-header__stats__item-heading">Acres Burned</h6>
+        <div class="fire-header__stats__item-stat">
+          <img class="fire-header__stats__item-icon" src="/images/icons/map.svg">
+          <h3 class="fire-header__stats__stat">{{fire.acreage}}</h3>
+        </div>
+      </div>
+    {{/if}}
   </div>
   {{share-icons extra-classes="fire-header__share-icons share-icons--sm share-icons--horiz share-icons--darker"}}
 </div>

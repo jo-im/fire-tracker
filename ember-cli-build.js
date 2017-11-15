@@ -9,7 +9,6 @@ module.exports = function(defaults) {
     // Add options here
     sassOptions: {
       includePaths: [
-        // 'node_modules/kpcc.style/'
       ],
       extension: 'sass',
       nodeSass: nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117
@@ -24,9 +23,6 @@ module.exports = function(defaults) {
       ]
     },
     nodeModulesToVendor: [
-      // 'node_modules/leaflet-timedimension/dist',
-      // 'node_modules/iso8601-js-period/',
-      // 'node_modules/leaflet-canvas-geojson/dist'
       'node_modules/phantomjs-polyfills/polyfills'
     ]
   });

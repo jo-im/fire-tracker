@@ -38,17 +38,19 @@
 
 .fire-header__stats
   display: flex
+  // max-width: ($col * 6) + ($row * 5)
   // height: $row * 2
 
 .fire-header__stats__item
-  align-items: center
+  // align-items: center
   display: flex
-  flex-wrap: wrap
+  flex-direction: column
+  // flex-wrap: wrap
   height: $row * 2
   margin-bottom: $row
 
 .fire-header__stats__item-heading
-  width: 100%
+  // width: 100%
   // margin-right: ($col / 2) + $gutter
 
 .fire-header__stats__item-heading, .fire-header__basic-info__data
@@ -81,7 +83,7 @@
   font-family: $font-serif-text
   font-size: 31px
   font-weight: 300
-  line-height: 1
+  line-height: 0.85
 
 .fire-header__share-icons
   display: none

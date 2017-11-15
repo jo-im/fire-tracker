@@ -7,8 +7,8 @@
 
     <div id="l-fire__map-with-description" class="map-with-description">
 
-      {{#fire-map lat=model.lat lng=model.long zoom=14 id="l-fire__primary-content__map" timeDimensionControl=true timeDimension=true loop=true autoplay=true}}
-        {{tile-layer url="https://api.mapbox.com/styles/v1/kbriggs/cj8m2vtqn1j4w2rpmy9bi0ga2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ" reuseTiles=true detectRetina=true attribution="© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"}}
+      {{#fire-map lat=model.lat lng=model.long zoom=14 id="l-fire__primary-content__map" loop=true autoplay=true}}
+        {{tile-layer url=tilesEndpoint reuseTiles=true detectRetina=true attribution="© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"}}
         {{#if model.perimeter}}
           {{#time-series geoJSON=model.perimeter fill=true color='#F87E21' fillColor='#FF6B00' weight=0 fillOpacity=1 transitionDuration=2000}}
             {{#if model.shouldPlaybackPerimeter}}

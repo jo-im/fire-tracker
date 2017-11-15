@@ -26,12 +26,18 @@ module.exports = function(environment) {
       includeTimezone: 'all'
     },
     couchdb: {
-      host: 'jollypod.com',
-      protocol: 'https'
+      endpoint: process.env.FIRE_TRACKER_COUCHDB_ENDPOINT
     },
     assethost: {
-      host: 'localhost:3000',
-      protocol: 'http',
+      endpoint: process.env.FIRE_TRACKER_ASSETHOST_ENDPOINT
+    },
+    mapbox: {
+      geocoding: {
+        accessToken: process.env.FIRE_TRACKER_MAPBOX_GEOCODING_ACCESS_TOKEN
+      },
+      tiles: {
+        endpoint: process.env.FIRE_TRACKER_MAPBOX_TILES_ENDPOINT
+      }
     }
   };
 

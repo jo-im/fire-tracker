@@ -19,12 +19,16 @@ export default DS.Adapter.extend({
     var callback = bind(this, 'onChange');
     let longpoll = () => {
 
-    fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_changes?since=now&feed=longpoll`)
+    fetch(`${ENV.couchdb.endpoint}/fires/_changes?since=now&feed=longpoll`)
       .then(function(response) {
-        ((response.json() || {}).results || []).forEach(callback);
+        // ((response.json() || {}).results || []).forEach(callback);
+        return response.json();
       })
       .catch(function() {
         Ember.run.later(longpoll, 10000);
+      })
+      .then(function(json) {
+        ((json || {}).results || []).forEach(callback);
       });
     }
     longpoll();
@@ -32,7 +36,6 @@ export default DS.Adapter.extend({
 
   onChange: function (change) {
     var store = this.store;
-
     try {
       store.modelFor('fire');
     } catch (e) {
@@ -43,7 +46,7 @@ export default DS.Adapter.extend({
 
     var recordInStore = store.peekRecord('fire', change.id);
 
-    if (!recordInStore.get('isLoaded') || recordInStore.get('hasDirtyAttributes')) {
+    if (!recordInStore.get('isLoaded') || recordInStore.get('hasDirtyAttributes') ) {
       // The record either hasn't loaded yet or has unpersisted local changes.
       // In either case, we don't want to refresh it in the store
       // (and for some substates, attempting to do so will result in an error).
@@ -59,7 +62,7 @@ export default DS.Adapter.extend({
   },
 
   findAll: function(store){
-    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/full?reduce=false&descending=true`).then((resp) => {
+    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false&descending=true`).then((resp) => {
       return resp.json()
         .then((json) => {
           json.rows.forEach(r => r.doc = r.value);
@@ -73,7 +76,7 @@ export default DS.Adapter.extend({
     query.descending = query.descending || false;
     query.limit      = query.limit      || 100;
     query.reduce     = query.reduce     || false;
-    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/full?reduce=false`, {
+    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
@@ -83,11 +86,11 @@ export default DS.Adapter.extend({
   },
 
   findRecord: function(store, type, id){
-    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/${id}`).then(resp => resp.json());
+    return fetch(`${ENV.couchdb.endpoint}/fires/${id}`).then(resp => resp.json());
   },
 
   queryRecord: function(store, type, query){
-    return fetch(`${ENV.couchdb.protocol}://${ENV.couchdb.host}/fires/_design/display/_view/full?reduce=false`, {
+    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {

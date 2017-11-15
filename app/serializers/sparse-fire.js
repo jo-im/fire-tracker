@@ -12,10 +12,10 @@ export default DS.Serializer.extend({
       data: (((payload.results || [])[0] || payload).rows || []).map(r => {
         let row = r.key.concat(r.value);
         return {id: r.id, type: 'fire', attributes: {
-          _id: row[0],
+          startedAt: row[0],
           slug: row[1],
-          name: row[2],
-          startedAt: row[3],
+          _id: row[2],
+          name: row[3],
           locationDescription: row[4],
           lat: row[5],
           long: row[6],
