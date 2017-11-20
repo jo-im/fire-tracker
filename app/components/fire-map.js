@@ -1,6 +1,7 @@
 import LeafletMap from 'ember-leaflet/components/leaflet-map';
 
 export default LeafletMap.extend({
+  classNames: ['fire-map'],
   leafletOptions: [
     // timeseries options
     'timeDimension', 'timeDimensionControl', 'timeSeries', 'timeInterval', 
@@ -31,19 +32,24 @@ export default LeafletMap.extend({
     // Let base layer bind the events first
     delete options.center;
     delete options.zoom;
-    // NOTE: we can probably get rid of most of this crap
-    options.timeDimensionControlOptions = {
-        position: options.timeDimensionControlPosition || 'bottomleft',
-        autoPlay: options.autoplay || false,
-        timeSlider: options.timeSlider || true,
-        loopButton: options.loopButton || true,
-        playerOptions: {
-            transitionTime: options.transitionTime,
-            loop: options.loop || false,
-        }
-    };
+
+    if(!options.hasOwnProperty('zoomControl')){
+      options.zoomControl = false;
+    }
+
     let map = this.L.map(this.element, options);
     map.scrollWheelZoom.disable()
+
+    let topZoom = new this.L.Control.Zoom();
+    map.addControl(topZoom);
+    topZoom.setPosition('topleft');
+    topZoom._container.classList.add('fire-map__top-zoom');
+
+    let bottomZoom = new this.L.Control.Zoom();
+    map.addControl(bottomZoom);
+    bottomZoom.setPosition('bottomleft');
+    bottomZoom._container.classList.add('fire-map__bottom-zoom');
+
     this.trigger('didInitializeMap', map);
     return map;
   }

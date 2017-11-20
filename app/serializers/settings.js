@@ -3,7 +3,7 @@ import DS from 'ember-data';
 export default DS.Serializer.extend({
   normalizeResponse: function(store, primaryModelClass, payload, id, requestType){
     if (requestType === 'findRecord') {
-      return this.normalize(primaryModelClass, payload)
+      return this.normalize(primaryModelClass, payload);
     }
     if (requestType === 'queryRecord') {
       return this.normalize(primaryModelClass, payload.docs[0]);
@@ -28,7 +28,12 @@ export default DS.Serializer.extend({
       data: {
         id: resourceHash._id,
         type: modelClass.modelName,
-        attributes: resourceHash
+        attributes: resourceHash,
+        relationships: {
+          featuredFires: {
+            data: resourceHash.featuredFires.map(id => { return {id: id, type: 'fire'}; })
+          }
+        }
       }
     };
   }
