@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   version: "1.1",
   didRender: function(){
     let el = this.get('element');
-    if(!el){return};
+    if(!el){return;}
     let containment = parseInt(this.get('containment'));
     let i = 0;
     let cells = el.querySelectorAll('.containment-graph__cell');

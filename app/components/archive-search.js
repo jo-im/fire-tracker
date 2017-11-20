@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import FireSearch from './fire-search';
 import template from '../templates/components/fire-search';
 
@@ -7,3 +8,4 @@ export default FireSearch.extend({
     return template;
   })
 });
+

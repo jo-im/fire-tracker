@@ -61,7 +61,7 @@ export default DS.Adapter.extend({
     recordInStore.set('isOutdated', true);
   },
 
-  findAll: function(store){
+  findAll: function(){
     return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false&descending=true`).then((resp) => {
       return resp.json()
         .then((json) => {

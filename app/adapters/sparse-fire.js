@@ -8,7 +8,7 @@ import ENV from '../config/environment';
 
 export default DS.Adapter.extend({
 
-  findAll: function(store){
+  findAll: function(){
     return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/sparse?reduce=false&descending=true`)
       .then(resp => resp.json());
   },
@@ -27,7 +27,7 @@ export default DS.Adapter.extend({
     }).then(resp => resp.json());
   },
 
-  findRecord: function(store, type, id){
+  findRecord: function(){
     return Ember.RSVP.Promise.resolve();
   },
 

@@ -1,5 +1,7 @@
 /* global L */
 
+import _Proxy from 'npm:proxy-polyfill'; // it will polyfill the global namespace rather than returning the Proxy object.
+
 let L_ = null;
 
 if (typeof L !== 'undefined') {

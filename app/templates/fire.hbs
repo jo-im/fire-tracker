@@ -1,30 +1,30 @@
 {{masthead-component id="l-masthead" hasBorder=true}}
-{{notification-component active=model.isOutdated}}
+{{notification-component active=model.fire.isOutdated}}
 <main id="l-fire">
-  {{fire-header id="l-fire__header" fire=model}}
+  {{fire-header id="l-fire__header" fire=model.fire}}
   <div id="l-fire__primary-content">
-    {{share-icons id="l-fire__primary-content__share-icons" fire=model}}
+    {{share-icons id="l-fire__primary-content__share-icons" fire=model.fire}}
 
     <div id="l-fire__map-with-description" class="map-with-description">
 
-      {{#fire-map lat=model.lat lng=model.long zoom=14 id="l-fire__primary-content__map" loop=true autoplay=true}}
+      {{#fire-map lat=model.fire.lat lng=model.fire.long zoom=14 id="l-fire__primary-content__map" loop=true autoplay=true}}
         {{tile-layer url=tilesEndpoint reuseTiles=true detectRetina=true attribution="© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"}}
-        {{#if model.perimeter}}
-          {{#time-series geoJSON=model.perimeter fill=true color='#F87E21' fillColor='#FF6B00' weight=0 fillOpacity=1 transitionDuration=2000}}
-            {{#if model.shouldPlaybackPerimeter}}
+        {{#if model.fire.perimeter}}
+          {{#time-series geoJSON=model.fire.perimeter fill=true color='#F87E21' fillColor='#FF6B00' weight=0 fillOpacity=1 transitionDuration=2000}}
+            {{#if model.fire.shouldPlaybackPerimeter}}
               {{time-series-control}}
             {{/if}}
           {{/time-series}}
         {{/if}}
-        {{#marker-layer location=model.latLong icon=model.markerIcon}}
+        {{#marker-layer location=model.fire.latLong icon=model.fire.markerIcon}}
           {{#popup-layer}}
-            <h3>{{model.name}}</h3>
+            <h3>{{model.fire.name}}</h3>
           {{/popup-layer}}
         {{/marker-layer}}
       {{/fire-map}}
       
       <div id="l-fire__description" class="fire-description">
-        {{model.computedDescription}}
+        {{model.fire.computedDescription}}
       </div>
     </div>
 
@@ -37,7 +37,7 @@
           Do people near this fire need to evacuate?
         </h4>
         <div class="important-facts__item__status">
-          {{#if model.evacuations}}
+          {{#if model.fire.evacuations}}
             <div class="important-facts__item__status__yes important-facts__item__status__boolean"><span>YES</span></div>
             <div class="important-facts__item__status__description">
               Evacuation orders have been issued. <a class="important-facts__item__link" href="#">Learn more</a>
@@ -56,7 +56,7 @@
           Have any road closures been announced?
         </h4>
         <div class="important-facts__item__status">
-          {{#if model.roadClosures}}
+          {{#if model.fire.roadClosures}}
             <div class="important-facts__item__status__yes important-facts__item__status__boolean"><span>YES</span></div>
             <div class="important-facts__item__status__description">
               Nearby roads have been closed. <a class="important-facts__item__link" href="#">Learn more</a>
@@ -70,7 +70,7 @@
         </div>
       </div>
 
-      {{air-quality-aside airQuality=model.airQuality}}
+      {{air-quality-aside airQuality=model.fire.airQuality}}
 
     </div>
   </div>
@@ -80,34 +80,18 @@
   <div id="l-fire__i-have-questions" class="i-have-questions">
     <h4 class="i-have-questions__heading">I HAVE QUESTIONS</h4>
     <ul class="i-have-questions__links">
-      <li class="i-have-questions__links__link">
-        <a href="#" class="i-have-qestions__links__anchor">What can I do to prepare for wildfire season?</a>
-      </li>
-      <li class="i-have-questions__links__link">
-        <a href="#" class="i-have-qestions__links__anchor">The air is brown with wildfire smoke – should I wear a mask?</a>
-      </li>
-      <li class="i-have-questions__links__link">
-        <a href="#" class="i-have-qestions__links__anchor">How can I protect my pets?</a>
-      </li>
-      <li class="i-have-questions__links__link">
-        <a href="#" class="i-have-qestions__links__anchor">How can I check the air quality?</a>
-      </li>
-      <li class="i-have-questions__links__link">
-        <a href="#" class="i-have-qestions__links__anchor">What should I do to keep myself safe from wildfire smoke?</a>
-      </li>
-      <li class="i-have-questions__links__link">
-        <a href="#" class="i-have-qestions__links__anchor">What kind of things influence wildfire behavior?</a>
-      </li>
-      <li class="i-have-questions__links__link">
-        <a href="#" class="i-have-qestions__links__anchor">I’ve just been asked to evacuate – what should I do?</a>
-      </li>
+      {{#each model.settings.faqs as |faq|}}
+        <li class="i-have-questions__links__link">
+          <a href="{{faq.href}}" class="i-have-qestions__links__anchor">{{faq.title}}</a>
+        </li>
+      {{/each}}
     </ul>
   </div>
 
-  {{#if model.tweets}}
+  {{#if model.fire.tweets}}
 
     <div class="pointy-hat pointy-hat--right t-dark"></div>
-    {{tweets-slider id='l-fire__tweets' tweets=model.latestTweets}}
+    {{tweets-slider id='l-fire__tweets' tweets=model.fire.latestTweets}}
 
   {{/if}}
 
@@ -121,12 +105,12 @@
 
       <h6 class="additional-details__body__heading">ADMINISTRATIVE UNIT</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.administrativeUnit}}
+        {{or-not-any model.fire.administrativeUnit}}
       </p>
 
       <h6 class="additional-details__body__heading">CAUSE</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.cause 'Unknown'}}
+        {{or-not-any model.fire.cause 'Unknown'}}
       </p>
 
       <h6 class="additional-details__body__heading">DAMAGE ASSESSMENT</h6>
@@ -134,47 +118,47 @@
 
       <h6 class="additional-details__body__heading">STRUCTURES THREATENED</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.structuresThreatened}}
+        {{or-not-any model.fire.structuresThreatened}}
       </p>
 
       <h6 class="additional-details__body__heading">STRUCTURES DESTROYED</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.structuresDestroyed}}
+        {{or-not-any model.fire.structuresDestroyed}}
       </p>
 
       <h6 class="additional-details__body__heading">INJURIES</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.injuries}}
+        {{or-not-any model.fire.injuries}}
       </p>
 
       <h6 class="additional-details__body__heading">ROAD CLOSURES</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.roadClosures}}
+        {{or-not-any model.fire.roadClosures}}
       </p>
 
       <h6 class="additional-details__body__heading">CURRENT SITUATION</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.currentSitutation}}
+        {{or-not-any model.fire.currentSitutation}}
       </p>
 
       <h6 class="additional-details__body__heading">SCHOOL CLOSURES</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.schoolClosures}}
+        {{or-not-any model.fire.schoolClosures}}
       </p>
 
       <h6 class="additional-details__body__heading">COOPERATING AGENCIES</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.cooperatingAgencies}}
+        {{or-not-any model.fire.cooperatingAgencies}}
       </p>
 
       <h6 class="additional-details__body__heading">CONDITIONS</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.conditions}}
+        {{or-not-any model.fire.conditions}}
       </p>
 
       <h6 class="additional-details__body__heading">PHONE NUMBERS</h6>
       <p class="additional-details__body__paragraph">
-        {{#each model.phoneNumbers as |contact|}}
+        {{#each model.fire.phoneNumbers as |contact|}}
           <p>{{contact.title}}</p>
           <p>{{contact.number}}</p>
           <br />

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['leaflet-right','leaflet-control', 'leaflet-control-custom'],
-  setMap(map){},
+  setMap(){},
   willRender(){
     this.get('parentView').on('didSetMap', Ember.run.bind(this, 'setMap'));
   },

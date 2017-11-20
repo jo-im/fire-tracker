@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
   getResults(){
     let query = this.get('query');
     if(query && query.length){
-      var index = this.get('searchIndex');
+      // var index = this.get('searchIndex');
       let results = this.get('searchIndex').search(query);
       this.set('filteredResults', results);
     } else {

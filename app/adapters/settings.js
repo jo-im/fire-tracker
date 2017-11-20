@@ -5,7 +5,7 @@ import ENV from '../config/environment';
 
 export default DS.Adapter.extend({
 
-  findAll: function(store){
+  findAll: function(){
     return fetch(`${ENV.couchdb.endpoint}/settings/_all_docs/?include_docs=true&reduce=false&descending=true`).then((resp) => {
       return resp.json();
     });

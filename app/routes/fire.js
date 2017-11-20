@@ -4,11 +4,14 @@ export default Ember.Route.extend({
   fastboot: Ember.inject.service(),
   isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
   titleToken: function(model) {
-    return model.get('name');
+    return model.fire.get('name');
   },
   model(params){
-    return this.store.queryRecord('fire', {
-      "keys": [params.slug]
+    return Ember.RSVP.hash({
+      settings: this.store.findRecord('settings', 'global'),
+      fire: this.store.queryRecord('fire', {
+        "keys": [params.slug]
+      })
     });
   },
   activate() {

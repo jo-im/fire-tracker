@@ -116,7 +116,7 @@ export default GeoJSONLayer.extend({
   // },
 
   didCreateLayer() {
-    var layer = this.get('_layer');
+    // var layer = this.get('_layer');
     this.adjustMap();
     this.runLoop();
   },
@@ -144,7 +144,7 @@ export default GeoJSONLayer.extend({
 
   renderAnimationFrame(){
     var layer        = this.get('_layer');
-    var map          = layer._map;
+    // var map          = layer._map;
     var i            = this.get('i') || 0;
     var series       = this.get('series');
     var timeInstants = this.get('timeInstants');
