@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'oyster-cracker',
+    modulePrefix: 'fire-tracker',
     environment,
     rootURL: '/',
     locationType: 'auto',

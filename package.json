@@ -1,7 +1,7 @@
 {
-  "name": "oyster-cracker",
+  "name": "fire-tracker",
   "version": "0.0.0",
-  "description": "Small description for oyster-cracker goes here",
+  "description": "Fire Tracker is KPCC's tool for following & researching California wildfires.",
   "license": "MIT",
   "author": "",
   "directories": {
