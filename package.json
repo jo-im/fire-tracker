@@ -15,21 +15,18 @@
     "test": "ember test"
   },
   "dependencies": {
-    "lodash.sortby": "^4.7.0",
-    "moment": "^2.18.1",
-    "phantomjs-polyfills": "^1.0.1",
-    "proxy-polyfill": "^0.1.7",
-    "searchico": "^1.2.0"
+    "fastboot-app-server": "^1.1.0",
+    "moment-timezone": "^0.5.14",
+    "node-fetch": "^1.7.3"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
-    "ember-ajax": "^3.0.0",
     "ember-browserify": "^1.2.0",
     "ember-cli": "~2.14.2",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.3.0",
     "ember-cli-dependency-checker": "^1.3.0",
-    "ember-cli-document-title": "^0.3.3",
+    "ember-cli-document-title": "ravenstine/ember-cli-document-title",
     "ember-cli-dotenv": "^2.0.0",
     "ember-cli-eslint": "^3.0.0",
     "ember-cli-fastboot": "^1.1.0",
@@ -52,10 +49,13 @@
     "ember-moment": "^7.4.1",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.14.1",
-    "ember-welcome-page": "^3.0.0",
     "leaflet": "^1.2.0",
     "loader.js": "^4.2.3",
-    "sass-module-importer": "^1.4.0"
+    "lodash.sortby": "^4.7.0",
+    "moment": "^2.18.1",
+    "node-sass": "^4.7.2",
+    "sass-module-importer": "^1.4.0",
+    "searchico": "^1.2.0"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

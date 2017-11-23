@@ -1,0 +1,4 @@
+#!/bin/sh
+cd $HOME
+nginx -g "daemon off;" & node fastboot-server.js
+

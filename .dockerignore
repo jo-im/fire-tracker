@@ -1,0 +1,24 @@
+# Ignore dependencies
+node_modules/
+/node_modules/*
+/node_modules/*/*
+
+# Ignore editor config.
+/.editorconfig
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+/tmp/*/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore secrets
+.env
+.env.production
+.DS_Store
+
+# We don't need the git repo to be
+# a part of the image.
+.git
+

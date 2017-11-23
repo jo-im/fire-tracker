@@ -3,10 +3,10 @@ import DS from 'ember-data';
 export default DS.Serializer.extend({
   normalizeResponse: function(store, primaryModelClass, payload, id, requestType){
     if (requestType === 'findRecord') {
-      return this.normalize(primaryModelClass, payload)
+      return this.normalize(primaryModelClass, payload);
     }
     if (requestType === 'queryRecord') {
-      return this.normalize(primaryModelClass, (payload.docs || payload.rows)[0].value);
+      return this.normalize(primaryModelClass, payload);
     }
     if (payload.results) {
       return {

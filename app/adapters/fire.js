@@ -2,6 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import fetch from 'fetch';
 import ENV from '../config/environment';
+import { NotFoundError } from '../lib/fetch-errors';
 
 const {
   run: {
@@ -86,17 +87,27 @@ export default DS.Adapter.extend({
   },
 
   findRecord: function(store, type, id){
-    return fetch(`${ENV.couchdb.endpoint}/fires/${id}`).then(resp => resp.json());
+    return fetch(`${ENV.couchdb.endpoint}/fires/${id}`)
+      .then(resp => resp.json())
+      .catch(err => new NotFoundError(err));
   },
 
   queryRecord: function(store, type, query){
-    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false`, {
+    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false&limit=1`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
         'Content-Type': 'application/json; charset=utf-8'
       }
-    }).then(resp => resp.json());
+    }).then(resp => resp.json())
+    .then(json => {
+      let data = (json.rows || []);
+      if(data.length){
+        return Ember.RSVP.Promise.resolve(data[0].value);
+      } else {
+        return Ember.RSVP.Promise.reject(new NotFoundError('hey'));
+      }
+    });
   }
 
 });

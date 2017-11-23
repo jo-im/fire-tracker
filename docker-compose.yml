@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+
+  firetracker:
+    # build: .
+    image: firetracker
+    container_name: firetracker
+    ports:
+      - 8080:8080/tcp
+      - 4000:4000/tcp
+    # env_file:
+    #   - .env
+    stdin_open: true
+    tty: true
+

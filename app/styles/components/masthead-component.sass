@@ -23,6 +23,12 @@
 .masthead-component__logo, .masthead-component__donate
   display: block
   height: $row
+
+.masthead-component__logo
+  transition: filter 0.15s
+
+.masthead-component__logo:hover
+  filter: brightness(1.15)
     
 .masthead-component__spacer
   flex-grow: 1
@@ -54,6 +60,10 @@
   font-weight: medium
   margin-right: $gutter
   text-transform: uppercase
+  transition: filter 0.15s
+
+.masthead-component__donate:hover
+  filter: brightness(1.15)
 
 .masthead-component__donate__icon
   fill: #F3AA27

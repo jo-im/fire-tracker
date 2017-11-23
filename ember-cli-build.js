@@ -23,7 +23,7 @@ module.exports = function(defaults) {
       ]
     },
     nodeModulesToVendor: [
-      'node_modules/phantomjs-polyfills/polyfills'
+      // 'node_modules/phantomjs-polyfills/polyfills'
     ]
   });
 
@@ -43,8 +43,9 @@ module.exports = function(defaults) {
   // app.import('vendor/leaflet.timedimension.src.js');
   // app.import('vendor/leaflet.timedimension.control.css');
   // app.import('vendor/leaflet-canvas-geojson.js');
-  app.import('vendor/element-remove-polyfill.js');
-  app.import('vendor/function-bind-polyfill.js');
+  
+  // app.import('vendor/element-remove-polyfill.js');
+  // app.import('vendor/function-bind-polyfill.js');
 
 
   return app.toTree();
