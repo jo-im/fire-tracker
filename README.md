@@ -1,4 +1,4 @@
-Oyster Cracker
+Fire Tracker
 ==============
 
 This README outlines the details of collaborating on this Ember application.
@@ -42,7 +42,23 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 No deployment process has been outlined yet.
 
-Hypothetically, the basic application assets can be served from a basic file-server like Nginx, or even S3, and a load balancer can direct most requests directly to `index.html` where the Ember router will take over.  Special routes can be mapped to CouchDB databases so they are hosted under the same domain(no opportunity for weird CORS issues).  The same thing could possibly be done for an admin application(i.e. Fire Marshal), so when a request to `/admin` is made, the respose is served from the admin application rather than Oyster Cracker or CouchDB.
+Hypothetically, the basic application assets can be served from a basic file-server like Nginx, or even S3, and a load balancer can direct most requests directly to `index.html` where the Ember router will take over.  Special routes can be mapped to CouchDB databases so they are hosted under the same domain(no opportunity for weird CORS issues).  The same thing could possibly be done for an admin application(i.e. Fire Marshal), so when a request to `/admin` is made, the respose is served from the admin application rather than Fire Tracker or CouchDB.
+
+#### More on building Docker images
+
+The Docker file was written to support a multi-stage build.  For example, if you want to just create a new build of the Ember application without rebuilding the base image(native libraries) or the dependencies image(node modules), you can simply target the *release* build like so:
+
+```sh
+docker build -t firetracker --target release .
+```
+
+If you've changed your `package-json` file, then you will probably want to target *dependencies*:
+
+```sh
+docker build -t firetracker --target dependencies .
+```
+
+That stage will run `npm install` and then build the Ember app.
 
 ### API
 
@@ -50,13 +66,13 @@ The API used for the backend is run with CouchDB.  CouchDB is a NoSQL database t
 
 The CouchDB instance needs to have these three databases initialized:
 
-- incidents
+- fires
 - settings
 - content
 
 Think of CouchDB "databases" in the same way you would think of "tables" in a relational database.
 
-This application mainly accesses the `incidents` database through [CouchDB views](http://docs.couchdb.org/en/2.0.0/couchapp/ddocs.html#view-functions), which are special records that contain JavaScript map/reduce functions to create filtered results that are indexed.  This is how we can retrieve lots of sparse fire records without bringing in information we don't need(like perimeter data and tweets), keeping the application performant.
+This application mainly accesses the `fires` database through [CouchDB views](http://docs.couchdb.org/en/2.0.0/couchapp/ddocs.html#view-functions), which are special records that contain JavaScript map/reduce functions to create filtered results that are indexed.  This is how we can retrieve lots of sparse fire records without bringing in information we don't need(like perimeter data and tweets), keeping the application performant.
 
 Copies of design documents are located under the `_design/` directory in this repo.
 
