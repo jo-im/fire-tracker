@@ -32,7 +32,7 @@ FROM base AS release
 
 # Production API settings
 ARG FIRE_TRACKER_COUCHDB_ENDPOINT=https://jollypod.com/
-ARG FIRE_TRACKER_ASSETHOST_ENDPOINT=http://localhost:3000/
+ARG FIRE_TRACKER_ASSETHOST_ENDPOINT=https://a.scpr.org/
 ARG FIRE_TRACKER_MAPBOX_TILES_ENDPOINT=https://api.mapbox.com/styles/v1/kbriggs/cj8m2vtqn1j4w2rpmy9bi0ga2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ
 ARG FIRE_TRACKER_MAPBOX_GEOCODING_ACCESS_TOKEN=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ
 
@@ -44,7 +44,7 @@ COPY --from=dependencies /home/firetracker/package-lock.json .
 
 COPY --from=dependencies /home/firetracker/node_modules ./node_modules
 
-RUN node_modules/ember-cli/bin/ember build
+RUN node_modules/ember-cli/bin/ember build --production
 
 RUN npm prune --production
 

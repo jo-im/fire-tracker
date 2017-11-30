@@ -27,6 +27,7 @@ export default LeafletMap.extend({
 
 
   createLayer() {
+    // if(!this.get('lat') || !this.get('lng')) return;
     let options = this.get('options');
     // Don't set center and zoom right now.
     // Let base layer bind the events first

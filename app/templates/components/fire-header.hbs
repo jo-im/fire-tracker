@@ -20,7 +20,31 @@
     </ul>
   </div>
   <div class="fire-header__stats">
-    {{#if fire.startedAt}}
+    {{#if fire.wasExtinguished}}
+      {{#if fire.shouldDisplayBurnedFor}}
+        <div class="fire-header__stats__item">
+          <h6 class="fire-header__stats__item-heading">Burned For</h6>
+          <div class="fire-header__stats__item-stat">
+            <img class="fire-header__stats__item-icon" src="/images/icons/calendar.svg">
+            <h3 class="fire-header__stats__stat">{{fire.burnedFor}}</h3>
+          </div>
+        </div>
+        <div class="fire-header__stats__pipe"></div>
+      {{/if}}
+    {{else}}
+      {{#if fire.startedAt}}
+        <div class="fire-header__stats__item">
+          <h6 class="fire-header__stats__item-heading">Burning For</h6>
+          <div class="fire-header__stats__item-stat">
+            <img class="fire-header__stats__item-icon" src="/images/icons/calendar.svg">
+            <h3 class="fire-header__stats__stat">{{fire.duration}}</h3>
+          </div>
+        </div>
+        <div class="fire-header__stats__pipe"></div>
+      {{/if}}
+    {{/if}}
+
+{{!--     {{#if fire.startedAt}}
       <div class="fire-header__stats__item">
         {{#if fire.extinguishedAt}}
           <h6 class="fire-header__stats__item-heading">Burned For</h6>
@@ -37,7 +61,7 @@
         </div>
       </div>
       <div class="fire-header__stats__pipe"></div>
-    {{/if}}
+    {{/if}} --}}
     <div class="fire-header__stats__item">
       <h6 class="fire-header__stats__item-heading">Containment</h6>
       <div class="fire-header__stats__item-stat">

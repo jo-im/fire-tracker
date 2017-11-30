@@ -66,11 +66,11 @@ export default DS.Model.extend({
   roadClosures: DS.attr('string'),
   schoolClosures: DS.attr('string'),
   weatherConcerns: DS.attr('string'),
-  images: DS.attr('array'),
-  audio: DS.attr('array'),
-  video: DS.attr('array'),
-  tweets: DS.attr('array'),
-  phoneNumbers: DS.attr('array'),
+  images: DS.attr(),
+  audio: DS.attr(),
+  video: DS.attr(),
+  tweets: DS.attr(),
+  phoneNumbers: DS.attr(),
   acres: DS.attr('string'),
   contained: DS.attr('string'),
   lat: DS.attr('string'),
@@ -82,6 +82,16 @@ export default DS.Model.extend({
   injuries: DS.attr('string'),
   isOutdated: DS.attr('boolean', {default: false}),
   county: DS.attr('string'),
+  isExtinguished: DS.attr('boolean'),
+  extinguishedAt: DS.attr('date'),
+  isLegacy: DS.attr('boolean'),
+  wasExtinguished: Ember.computed('isExtinguished', 'extinguishedAt', 'isLegacy', function(){
+    // just consider legacy fires to be extinguished
+    return (this.get('isExtinguished') || this.get('extinguishedAt') || this.get('isLegacy')) ? true : false;
+  }),
+  shouldDisplayBurnedFor: Ember.computed('wasExtinguished', 'startedAt', 'extinguishedAt', function(){
+    return (this.get('wasExtinguished') && this.get('startedAt') && this.get('extinguishedAt')) ? true : false;
+  }),
   countyName: Ember.computed('county', function(){
     let countyName = this.get('county');
     if(countyName){

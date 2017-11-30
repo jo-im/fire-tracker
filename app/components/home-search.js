@@ -2,7 +2,7 @@ import Ember from 'ember';
 import FireSearch from './fire-search';
 import fetch from 'fetch';
 import sortBy from 'npm:lodash.sortby';
-import searchico from 'npm:searchico';
+import SearchIndex from '../lib/search-index';
 import template from '../templates/components/fire-search';
 import ENV from '../config/environment';
 
@@ -30,7 +30,7 @@ export default FireSearch.extend({
       .then(results => {
         let fires = results.toArray();
         this.set('searchData', fires);
-        this.set('searchIndex', searchico([], {deep: false, hyper_indexing: false}));
+        this.set('searchIndex', new SearchIndex(fires));
       });
   }),
   onQuery: Ember.observer('query', function() {
@@ -46,10 +46,16 @@ export default FireSearch.extend({
       return;
     }
     // first try a full text search
-    Ember.RSVP.Promise.resolve(this.get('searchIndex').find(query))
+    Ember.RSVP.Promise.resolve(this.get('searchIndex').search(query))
       .then((results) => {
         if(results.length){
-          let oresults = results.map(r => new Ember.Object(r)).slice(0,3);
+          // doing this so that the distance attributes we
+          // add later do not persist on the model object
+          let oresults = results.map(r => new Ember.Object({
+            slug: r.get('slug'),
+            name: r.get('name'),
+            countyName: r.get('countyName')
+          })).slice(0,3);
           this.set('results', oresults);
         } else {
           return Ember.RSVP.Promise.reject();
