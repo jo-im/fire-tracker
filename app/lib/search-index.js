@@ -1,5 +1,5 @@
-import Ember from 'ember';
 import fuzzySoundex from 'npm:talisman/phonetics/fuzzy-soundex';
+import moment from 'npm:moment';
 
 // This is a very simplistic full-text search implementation.
 // It is not advanced in any way.  It just creates a regex
@@ -14,40 +14,26 @@ import fuzzySoundex from 'npm:talisman/phonetics/fuzzy-soundex';
 
 class SearchIndex {
   constructor(items){
-    this.items = [];
-
-    // NOT SURE IF THIS REALLY HELPS SO COMMENTED OUT FOR NOW
-    // (items || []).forEach(item => {
-    //   Ember.run.later(() => {
-    //     let data = item.data;
-    //     let searchable = [];
-    //     Object.keys(data).forEach(k => {
-    //       let value = data[k];
-    //       if(typeof value === 'string'){
-    //         // searchable.push(value);
-    //         let val = value.split(' ').map(i => fuzzySoundex(i)).join('');
-    //         searchable.push(val);
-    //       }
-    //     });
-    //     this.items.push([searchable.join(' '), item]);
-    //   }, 0);
-    // });
-
     this.items = (items || []).map((item) => {
       let data = item.data;
       let searchable = [];
       Object.keys(data).forEach((k) => {
-        let value = data[k];
+        let value   = data[k];
         if(typeof value === 'string'){
-          let val = value.split(' ').map(i => fuzzySoundex(i)).join('');
-          searchable.push(val);
+          value.split(' ').forEach(v => searchable.push(fuzzySoundex(v)));
+        }
+        if(typeof value === 'number'){
+          let vals = moment(value).format('MMMM MMM YYYY').split(' ');
+          searchable.push(fuzzySoundex(vals[0]));
+          searchable.push(fuzzySoundex(vals[1]));
+          searchable.push(vals[2]);
         }
       });
       return [searchable.join(' '), item];
     });
   }
   search(query){
-    let stripped = '' + query.replace(/[^\w\s]/g, '').split(' ').map(i => `(?=.*${fuzzySoundex(i)})`).join('') + '';
+    let stripped = query.replace(/[^\w\s\d]/g, '').split(' ').map(i => `(?=.*${parseInt(i) ? i : fuzzySoundex(i)})`).join('');
     let matcher  = new RegExp(stripped, 'gi');
     return this.items.filter(item => (item[0] || '').match(matcher)).map(item => item[1]);
   }
