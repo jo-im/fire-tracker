@@ -1,7 +1,7 @@
 <h2 class="fire-search__heading">{{heading}}</h2>
 
 <div class="fire-search__search-area">
-  {{input value=query type="text" class="fire-search__input" placeholder=placeholder}}
+  {{input value=query type="text" class="fire-search__input" placeholder=placeholder key-up="onKeyUp"}}
 
   <ul class="fire-search__results">
     {{#each results as |result|}}

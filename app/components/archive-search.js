@@ -6,6 +6,13 @@ export default FireSearch.extend({
   classNames: ['archive-search'],
   layout: Ember.computed(function() {
     return template;
-  })
+  }),
+  actions: {
+    onKeyUp(val, e){
+      if (e.which === 13) {
+        e.target.blur();
+      }
+    }
+  }
 });
 

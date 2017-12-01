@@ -17,6 +17,9 @@ export default Ember.Component.extend({
     let n = Array(Math.max(2 - String(i).length + 1, 0)).join(0) + i;
     return `/images/backgrounds/Search_Background-Image${n}.jpg`;
   }),
-  attributeBindings: ['style']
+  attributeBindings: ['style'],
+  actions: {
+    onKeyUp(){}
+  }
 });
 
