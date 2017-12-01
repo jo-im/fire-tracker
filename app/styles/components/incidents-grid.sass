@@ -1,8 +1,6 @@
 .incidents-grid
   display: flex
   flex-wrap: wrap
-  // justify-content: center
-  // margin-right: -$gutter
 
 .incidents-grid__heading
   color: $color-gray
@@ -17,7 +15,6 @@
   display: flex
   flex-basis: ($col * 2) + ($gutter * 2)
   flex-direction: column
-  // justify-content: center
   margin-bottom: $row
   margin-right: $gutter
 
@@ -39,16 +36,6 @@
 .incidents-grid__spacer
   height: 0px
   margin-bottom: 0px
-
-.incidents-grid__card:after
-  background-color: #F3AA27
-  content: ""
-  display: none
-  height: ($row * 4) - 2px
-  position: absolute
-  margin-left: ($col * 2) + ($gutter * 2)
-  margin-top: 15px
-  width: 1px
 
 .incidents-grid__card__heading-text
   @include link-effect($color-primary, $t-dark-color-background);
@@ -81,40 +68,44 @@
 .incidents-grid__card .incidents-grid__card__item:nth-child(4):before
   background: url('/images/icons/firetruck-sm.svg')
 
+@mixin incidents-grid__card--divider
+  border-right: 1px solid #F3AA27
+
 @mixin incidents-grid--justify-center
   // :notsure:
   justify-content: center
 
+
 @mixin incidents-grid--xl
   // min-width: ($col * 10) + ($gutter * 9)
   width: ($col * 10) + ($gutter * 10)
-  .incidents-grid__card:after
-    display: block
-  .incidents-grid__card:nth-child(4n + 1):after
-    display: none
+  .incidents-grid__card
+    @include incidents-grid__card--divider
+  .incidents-grid__card:nth-child(4n + 1)
+    border: none
 
 @mixin incidents-grid--lg
   min-width: ($col * 7) + ($gutter * 8)
   width: ($col * 7) + ($gutter * 8)
-  .incidents-grid__card:after
-    display: block
-  .incidents-grid__card:nth-child(3n + 1):after
-    display: none
-  .incidents-grid__card:nth-child(4n + 1):after
-    display: block
-  .incidents-grid__card:nth-child(6n + 1):after
-    display: none
+  .incidents-grid__card
+    @include incidents-grid__card--divider
+  .incidents-grid__card:nth-child(3n + 1)
+    border: none
+  .incidents-grid__card:nth-child(4n + 1)
+    @include incidents-grid__card--divider
+  .incidents-grid__card:nth-child(6n + 1)
+    border: none
 
 
 @mixin incidents-grid--med
   min-width: ($col * 5) + ($gutter * 5)
   width: ($col * 5) + ($gutter * 5)
-  .incidents-grid__card:after
-    display: block
-  .incidents-grid__card:nth-child(3n + 1):after
-    display: block
-  .incidents-grid__card:nth-child(2n + 1):after
-    display: none
+  .incidents-grid__card
+    @include incidents-grid__card--divider
+  .incidents-grid__card:nth-child(3n + 1)
+    @include incidents-grid__card--divider
+  .incidents-grid__card:nth-child(2n + 1)
+    border: none
 
 
 @mixin incidents-grid--sm
@@ -122,16 +113,16 @@
   width: ($col * 3) + ($gutter * 2)
   .incidents-grid__heading
     font-size: 23px
-  .incidents-grid__card:after
-    display: none
-  .incidents-grid__card:nth-child(2n + 1):after
-    display: none
-  .incidents-grid__card:nth-child(3n + 1):after
-    display: none
-  .incidents-grid__card:nth-child(2n + 1):after
-    display: none
-  .incidents-grid__card:nth-child(4n + 1):after
-    display: none
+  .incidents-grid__card
+    border: none
+  .incidents-grid__card:nth-child(2n + 1)
+    border: none
+  .incidents-grid__card:nth-child(3n + 1)
+    border: none
+  .incidents-grid__card:nth-child(2n + 1)
+    border: none
+  .incidents-grid__card:nth-child(4n + 1)
+    border: none
   .incidents-grid__card
     height: initial
     .incidents-grid__card__list
