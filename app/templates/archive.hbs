@@ -6,12 +6,18 @@
   <div id="l-archive__grid" class="t-dark">
     <div id="l-archive__grid__container">
       {{#if filteredResults.length}}
-        {{incidents-grid fires=filteredResults}}
+        {{incidents-grid fires=searchResults}}
       {{else}}
         <div id="l-archive__no-results" class="fire-search__no-results">
           No results found.
         </div>
       {{/if}}
+      {{#if hasMoreResults}}
+        <div id="l-archive__loadimg-message" class="fire-search__loading-message">
+          Loading more items...
+        </div>
+      {{/if}}
+      {{infinite-scroller class='incidents-grid' trigger-at="60%" use-document=true on-load-more=(action 'loadMore')}}
     </div>
   </div>
 

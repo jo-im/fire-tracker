@@ -6,7 +6,13 @@ import config from './config/environment';
 const App = Ember.Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  Resolver
+  Resolver,
+  customEvents: {
+    touchstart: null,
+    touchmove: null,
+    touchend: null,
+    touchcancel: null
+  }
 });
 
 loadInitializers(App, config.modulePrefix);
