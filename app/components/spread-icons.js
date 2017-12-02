@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'nav',
-  classNames: ['share-icons'],
+  classNames: ['spread-icons'],
   classNameBindings: ['getClassNames'],
   fastboot: Ember.inject.service(),
   getClassNames: Ember.computed('extra-classes', function(){
