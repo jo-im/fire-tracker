@@ -12,5 +12,18 @@ export default Ember.Route.extend({
     if(!this.get('isFastBoot')){
       window.scrollTo(0,0);
     }
+  },
+  actions: {
+    // These actions add the dark theme to the body element
+    // in order to hide page redraw artifacts while scrolling,
+    // which look much more apparent when the body background is white.
+    loading() {
+      if(this.get('isFastBoot')) return;
+      Ember.$('body').addClass("t-dark");
+    },
+    willTransition(){
+      if(this.get('isFastBoot')) return;
+      Ember.$('body').removeClass("t-dark");
+    }
   }
 });
