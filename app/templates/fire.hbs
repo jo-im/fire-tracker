@@ -18,7 +18,20 @@
         {{/if}}
         {{#marker-layer location=model.fire.latLong icon=model.fire.markerIcon}}
           {{#popup-layer}}
-            <h3>{{model.fire.name}}</h3>
+            <div class="fire-map__popup">
+              <h3 class="fire-map__popup-heading">{{model.fire.name}}</h3>
+              <div class="fire-map__popup-description">
+                {{#if model.fire.startedAt}}
+                  <p>Started {{moment-format fire.startedAt 'MMM DD, YYYY'}}</p>
+                {{/if}}
+                {{#if model.fire.acres}}
+                  <p>{{model.fire.acreage}} acres burned</p>
+                {{/if}}
+                {{#if model.fire.extinguishedAt}}
+                  <p>Extinguished {{moment-format fire.extinguishedAt 'MMM DD, YYYY'}}</p>
+                {{/if}}
+              </div>
+            </div>
           {{/popup-layer}}
         {{/marker-layer}}
       {{/fire-map}}

@@ -150,7 +150,7 @@ export default DS.Model.extend({
       iconRetinaUrl: '/images/marker-icon-2x.png',
       iconSize: [46, 60],
       iconAnchor: [23, 60],
-      popupAnchor: [0, 57],
+      popupAnchor: [0, -45],
       shadowUrl: '/images/marker-shadow.png',
       shadowRetinaUrl: '/images/marker-shadow-2x.png',
       shadowSize: [45, 29],
