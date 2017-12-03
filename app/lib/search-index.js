@@ -16,25 +16,32 @@ class SearchIndex {
   constructor(items){
     this.items = (items || []).map((item) => {
       let data = item.data;
-      let searchable = [];
+      let indice = [];
       Object.keys(data).forEach((k) => {
         let value   = data[k];
         if(typeof value === 'string'){
-          value.split(' ').forEach(v => searchable.push(fuzzySoundex(v)));
+          value.split(' ').forEach(v => {
+            indice.push(v);
+            indice.push(fuzzySoundex(v));
+          });
         }
         if(typeof value === 'number'){
           let vals = moment(value).format('MMMM MMM YYYY').split(' ');
-          searchable.push(fuzzySoundex(vals[0]));
-          searchable.push(fuzzySoundex(vals[1]));
-          searchable.push(vals[2]);
+          indice.push(vals[0]);
+          indice.push(vals[1]);
+          // indice.push(fuzzySoundex(vals[0]));
+          // indice.push(fuzzySoundex(vals[1]));
+          indice.push(vals[2]);
         }
       });
-      return [searchable.join(' '), item];
+      return [indice.join(' '), item];
     });
   }
   search(query){
-    let stripped = query.replace(/[^\w\s\d]/g, '').split(' ').map(i => `(?=.*${parseInt(i) ? i : fuzzySoundex(i)})`).join('');
-    let matcher  = new RegExp(stripped, 'gi');
+    let matcherString = query.replace(/[^\w\s\d]/g, '')
+      .split(' ')
+      .map(i => `(?=.*${parseInt(i) ? i : '(' + i + '|' + fuzzySoundex(i) + ')' })`).join('');
+    let matcher  = new RegExp(matcherString, 'gi');
     return this.items.filter(item => (item[0] || '').match(matcher)).map(item => item[1]);
   }
 }
