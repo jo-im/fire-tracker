@@ -13,6 +13,10 @@ module.exports = function(defaults) {
       extension: 'sass',
       nodeSass: nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117
     },
+    autoprefixer: {
+      browsers: ['since 2013', 'not ie <= 11', '> 5% in US'],
+      cascade: false
+    },
     fingerprint: {
       exclude: [
         'images/layers-2x.png',
