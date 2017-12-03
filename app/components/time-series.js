@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import GeoJSONLayer from 'ember-leaflet/components/geojson-layer';
+import objectAssign from 'npm:object.assign';
+objectAssign.shim();
 
 // HOW THE HELL DOES THIS THING WORK???
 //
@@ -15,38 +17,6 @@ import GeoJSONLayer from 'ember-leaflet/components/geojson-layer';
 // new layers if `playing` is set to true.  This is easier than
 // starting and stopping the run loop, and is less likely to lead
 // to weird timing conditions.  
-
-
-if (typeof Object.assign != 'function') {
-  // Must be writable: true, enumerable: false, configurable: true
-  Object.defineProperty(Object, "assign", {
-    value: function assign(target) { // .length of function is 2
-      'use strict';
-      if (target == null) { // TypeError if undefined or null
-        throw new TypeError('Cannot convert undefined or null to object');
-      }
-
-      var to = Object(target);
-
-      for (var index = 1; index < arguments.length; index++) {
-        var nextSource = arguments[index];
-
-        if (nextSource != null) { // Skip over if undefined or null
-          for (var nextKey in nextSource) {
-            // Avoid bugs when hasOwnProperty is shadowed
-            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-              to[nextKey] = nextSource[nextKey];
-            }
-          }
-        }
-      }
-      return to;
-    },
-    writable: true,
-    configurable: true
-  });
-}
-
 
 export default GeoJSONLayer.extend({
 
@@ -77,8 +47,7 @@ export default GeoJSONLayer.extend({
       // features with the same time instant are
       // loaded at once
 
-      // compensate for old-style timestamps
-      let timestamp = (f.feature.properties.time < 9999999999) ? (f.feature.properties.time * 1000) : f.feature.properties.time;
+      let timestamp = f.feature.properties.time;
 
       series[timestamp] = series[timestamp] || [];
       series[timestamp].push(f);

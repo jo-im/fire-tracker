@@ -14,10 +14,10 @@ import moment from 'npm:moment';
 
 class SearchIndex {
   constructor(items){
-    this.items = (items || []).map((item) => {
+    this.items = (items || []).map(item => {
       let data = item.data;
       let indice = [];
-      Object.keys(data).forEach((k) => {
+      Object.keys(data).forEach(k => {
         let value   = data[k];
         if(typeof value === 'string'){
           value.split(' ').forEach(v => {

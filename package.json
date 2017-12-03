@@ -55,6 +55,7 @@
     "lodash.sortby": "^4.7.0",
     "moment": "^2.18.1",
     "node-sass": "^4.7.2",
+    "object.assign": "^4.0.4",
     "sass-module-importer": "^1.4.0",
     "talisman": "^0.20.0"
   },

@@ -3,16 +3,14 @@ import FireSearch from './fire-search';
 import template from '../templates/components/fire-search';
 
 export default FireSearch.extend({
+  tagName: 'form',
   classNames: ['archive-search'],
   layout: Ember.computed(function() {
     return template;
   }),
-  actions: {
-    onKeyUp(val, e){
-      if (e.which === 13) {
-        e.target.blur();
-      }
-    }
+  submit(e){
+    e.preventDefault();
+    e.target.querySelector('input').blur();
   }
 });
 
