@@ -7,10 +7,10 @@
 
     <div id="l-fire__map-with-description" class="map-with-description">
 
-      {{#fire-map lat=model.fire.lat lng=model.fire.long zoom=14 id="l-fire__primary-content__map" loop=true autoplay=true}}
+      {{#fire-map lat=model.fire.lat lng=model.fire.long zoom=14 id="l-fire__primary-content__map"}}
         {{tile-layer url=tilesEndpoint reuseTiles=true detectRetina=true attribution="© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"}}
         {{#if model.fire.perimeter}}
-          {{#time-series geoJSON=model.fire.perimeter fill=true color='#F87E21' fillColor='#FF6B00' weight=0 fillOpacity=1 transitionDuration=2000}}
+          {{#time-series geoJSON=model.fire.perimeter transitionDuration=2000}}
             {{#if model.fire.shouldPlaybackPerimeter}}
               {{time-series-control}}
             {{/if}}
@@ -144,9 +144,14 @@
         {{or-not-any model.fire.injuries}}
       </p>
 
-      <h6 class="additional-details__body__heading">ROAD CLOSURES</h6>
+      <h6 id="additional-details__road-closures" class="additional-details__body__heading">ROAD CLOSURES</h6>
       <p class="additional-details__body__paragraph">
         {{or-not-any model.fire.roadClosures}}
+      </p>
+
+      <h6 id="additional-details__evacuations" class="additional-details__body__heading">EVACUATIONS</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.evacuations}}
       </p>
 
       <h6 class="additional-details__body__heading">CURRENT SITUATION</h6>

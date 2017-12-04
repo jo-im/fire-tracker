@@ -26,3 +26,8 @@
   </span>
 </div>
 
+{{#if this.hasInteracted}}
+  <div class="time-series-control__progress">
+    <div class="time-series-control__progress-bar {{unless this.parentView.currentTime 'time-series-control__progress-bar--resetting'}}" style="width: {{this.parentView.progress}};"></div>
+  </div>
+{{/if}}

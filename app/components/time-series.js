@@ -20,6 +20,10 @@ objectAssign.shim();
 
 export default GeoJSONLayer.extend({
 
+  fillOpacity: 1,
+
+  weight: 0,
+
   init(){
     this._super(...arguments);
     this.set('i', 0);
@@ -100,7 +104,7 @@ export default GeoJSONLayer.extend({
 
   runLoop(){
     this.onTick();
-    if(this.get('shouldDestroyLoop')){return;}
+    if(this.get('shouldDestroyLoop')) return;
     Ember.run.later(Ember.run.bind(this, 'runLoop'), this.get('transitionDuration'));
   },
 
@@ -137,8 +141,8 @@ export default GeoJSONLayer.extend({
     var layer        = this.get('_layer');
     var series       = this.get('series');
     layer.clearLayers();
-    Object.keys(this.get('timeInstants')).forEach((instant) => {
-      (series[instant] || []).forEach((f) => {
+    Object.keys(this.get('timeInstants')).forEach(instant => {
+      (series[instant] || []).forEach(f => {
         let el = f._path;
         if (el.classList){
           el.classList.remove('time-series__feature--rendered');
@@ -160,6 +164,14 @@ export default GeoJSONLayer.extend({
     }
     this.set('i', i);
   },
+
+  progress: Ember.computed('i', 'timeInstants.length', 'shouldReplay', function(){
+    if(this.get('shouldReplay')){
+      return '100%';
+    } else {
+      return `${100 * (this.get('i') / this.get('timeInstants.length'))}%`;
+    }
+  }),
   
   play(){
     // reset playhead if we are already at the end.

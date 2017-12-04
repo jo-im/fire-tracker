@@ -42,6 +42,23 @@
   padding: 0
   width: 0px
 
+.time-series-control__progress
+  // background: rgba(255,255,255,0.53)
+  bottom: -4px
+  height: 4px
+  position: absolute
+  width: 100%
+
+.time-series-control__progress-bar
+  // background: linear-gradient(to right, #F87E21 0%,#ffcd70 100%)
+  background: #F87E21
+  box-shadow: inset 0px 2px 4px 0px rgba(0,0,0,0.2)
+  height: 100%
+  transition: width 2s linear
+
+.time-series-control__progress-bar--resetting
+  transition: none
+
 .time-series-control--playing
   // .time-series-control__toggle
   //   min-width: 45px
