@@ -4,6 +4,7 @@ export default LeafletMap.extend({
   classNames: ['fire-map'],
   leafletOptions: [
     // timeseries options
+    'thumbnailMode',
     'timeDimension', 'timeDimensionControl', 'timeSeries', 'timeInterval', 
     'period', 'currentTime', 'validTimeRange', 'currentTime', 'loadingTimeout', 
     'lowerLimitTime', 'upperLimitTime', 'timeDimensionControlPosition',
@@ -40,16 +41,29 @@ export default LeafletMap.extend({
 
     let map = this.L.map(this.element, options);
     map.scrollWheelZoom.disable()
+    map.touchZoom.disable();
 
-    let topZoom = new this.L.Control.Zoom();
-    map.addControl(topZoom);
-    topZoom.setPosition('topleft');
-    topZoom._container.classList.add('fire-map__top-zoom');
+    if(options.thumbnailMode){
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+      map.boxZoom.disable();
+      map.keyboard.disable();
+      if (map.tap) map.tap.disable();
+      // debugger
+      map.getContainer().style.cursor='default';
+    }else {
+      let topZoom = new this.L.Control.Zoom();
+      map.addControl(topZoom);
+      topZoom.setPosition('topleft');
+      topZoom._container.classList.add('fire-map__top-zoom');
 
-    let bottomZoom = new this.L.Control.Zoom();
-    map.addControl(bottomZoom);
-    bottomZoom.setPosition('bottomleft');
-    bottomZoom._container.classList.add('fire-map__bottom-zoom');
+      let bottomZoom = new this.L.Control.Zoom();
+      map.addControl(bottomZoom);
+      bottomZoom.setPosition('bottomleft');
+      bottomZoom._container.classList.add('fire-map__bottom-zoom');
+    }
 
     this.trigger('didInitializeMap', map);
     return map;
