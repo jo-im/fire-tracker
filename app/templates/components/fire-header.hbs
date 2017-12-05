@@ -26,18 +26,18 @@
           <h6 class="fire-header__stats__item-heading">Burned For</h6>
           <div class="fire-header__stats__item-stat">
             <img class="fire-header__stats__item-icon" src="/images/icons/calendar.svg">
-            <h3 class="fire-header__stats__stat">{{fire.burnedFor}}</h3>
+            <h3 class="fire-header__stats__stat">{{fire.burnedFor}} days</h3>
           </div>
         </div>
         <div class="fire-header__stats__pipe"></div>
       {{/if}}
     {{else}}
-      {{#if fire.startedAt}}
+      {{#if fire.shouldDisplayDuration}}
         <div class="fire-header__stats__item">
           <h6 class="fire-header__stats__item-heading">Burning For</h6>
           <div class="fire-header__stats__item-stat">
             <img class="fire-header__stats__item-icon" src="/images/icons/calendar.svg">
-            <h3 class="fire-header__stats__stat">{{fire.duration}}</h3>
+            <h3 class="fire-header__stats__stat">{{fire.duration}} days</h3>
           </div>
         </div>
         <div class="fire-header__stats__pipe"></div>
@@ -69,7 +69,7 @@
         <h3 class="fire-header__stats__stat">{{fire.containment}}</h3>
       </div>
     </div>
-    {{#if fire.acres}}
+    {{#if fire.shouldDisplayAcres}}
       <div class="fire-header__stats__pipe"></div>
       <div class="fire-header__stats__item">
         <h6 class="fire-header__stats__item-heading">Acres Burned</h6>

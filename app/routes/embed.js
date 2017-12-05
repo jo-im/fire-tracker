@@ -5,13 +5,17 @@ export default Ember.Route.extend({
     return model.get('name');
   },
   model(params){
+    // debugger
+    // return this.store.queryRecord('fire', {
+    //   "selector": {
+    //     "slug": {
+    //       "$eq": params.slug
+    //     }
+    //   }
+    // });
     return this.store.queryRecord('fire', {
-      "selector": {
-        "slug": {
-          "$eq": params.slug
-        }
-      }
-    });
+      "keys": [params.slug]
+    })
   }
 });
 

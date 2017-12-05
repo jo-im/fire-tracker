@@ -2,19 +2,18 @@
 
 {{#each fires as |fire|}}
   <div class="featured-incident-card">
-    {{c-figure src=fire.thumbnail class="featured-incident-card__thumbnail"}}
-{{!--     {{#fire-map class="featured-incident-card__thumbnail" lat=fire.lat lng=fire.long zoom=14}}
-      {{tile-layer url=tilesEndpoint reuseTiles=true detectRetina=true attribution="© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"}}
-      {{#if fire.perimeter}}
-        {{#time-series geoJSON=model.fire.perimeter fill=true color='#F87E21' fillColor='#FF6B00' weight=0 fillOpacity=1 transitionDuration=2000}}
-          {{#if fire.shouldPlaybackPerimeter}}
-            {{time-series-control}}
-          {{/if}}
-        {{/time-series}}
-      {{/if}}
-      {{#marker-layer location=fire.latLong icon=fire.markerIcon}}
-      {{/marker-layer}}
-    {{/fire-map}} --}}
+    {{#link-to 'fire' fire.slug}}
+      {{c-figure src=fire.thumbnail class="featured-incident-card__thumbnail"}}
+{{!--       {{#fire-map class="featured-incident-card__thumbnail" lat=fire.lat lng=fire.long zoom=7 thumbnailMode=true attributionControl=false}}
+        {{tile-layer url="https://api.mapbox.com/styles/v1/kbriggs/cj8m2vtqn1j4w2rpmy9bi0ga2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ" reuseTiles=true detectRetina=true}}
+        {{#if fire.perimeter}}
+          {{time-series geoJSON=fire.perimeter transitionDuration=2000}}
+        {{/if}}
+        {{#link-to 'fire' fire.slug}}
+          {{marker-layer location=fire.latLong icon=fire.markerIcon interactive=false}}
+        {{/link-to}}
+      {{/fire-map}} --}}
+    {{/link-to}}
 
     <div class="featured-incident-card__description">
       <a href="/{{fire.slug}}" class="featured-incident-card__heading">{{fire.name}}</a>
