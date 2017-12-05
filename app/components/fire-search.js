@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   style: Ember.computed('background', function(){
     let bg = this.get('background');
     if(bg){
-      return `background-image: url('${bg}');`;
+      return `background-image:  url('${bg}'), linear-gradient(to bottom, #0d0101 0%, #a24e13 100%);`;
     }
   }),
   background: Ember.computed(function(){
