@@ -10,7 +10,7 @@ export default MapControl.extend({
     if(parent.get('playing')){
       parent.trigger('stop');
     } else {
-      parent.adjustMap();
+      // parent.adjustMap();
       parent.trigger('play');
     }
   }
