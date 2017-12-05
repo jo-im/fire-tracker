@@ -2,11 +2,9 @@ import Ember from 'ember';
 import { NotFoundError } from '../lib/fetch-errors';
 
 export default Ember.Route.extend({
-  _title: '',
+  headData: Ember.inject.service(),
   title: function(tokens) {
     let title = tokens.concat(['Fire Tracker | 89.3 KPCC']).join(' | ');
-    // debugger
-    this.set('_title', title);
     return title;
   },
   actions: {
@@ -19,8 +17,7 @@ export default Ember.Route.extend({
       }
     }
   },
-  headTags: Ember.observer('_title', function(){
-    // debugger
+  headTags: function(){
     let description = '89.3 KPCC\'s Fire Tracker is a tool for following and researching California wildfires.';
     return [
         {
@@ -45,14 +42,6 @@ export default Ember.Route.extend({
           attrs: {
             name: 'author',
             content: '89.3 KPCC'
-          }
-        },
-        {
-          type: 'meta',
-          tagId: 'og:title',
-          attrs: {
-            property: 'og:title',
-            content: this.get('_title')
           }
         },
         {
@@ -153,14 +142,6 @@ export default Ember.Route.extend({
         },
         {
           type: 'meta',
-          tagId: 'twitter:title',
-          attrs: {
-            name: 'twitter:title',
-            content: this.get('_title')
-          }
-        },
-        {
-          type: 'meta',
           tagId: 'twitter:description',
           attrs: {
             name: 'twitter:description',
@@ -176,7 +157,7 @@ export default Ember.Route.extend({
           }
         },
       ];
-  })
+  }
 });
 
 

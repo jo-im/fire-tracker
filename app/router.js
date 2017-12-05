@@ -6,7 +6,7 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL,
   headData: Ember.inject.service(),
   setTitle(title) {
-    this.get('headData').set('title', title);
+    this.set('headData.title', title);
   }
 });
 
