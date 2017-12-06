@@ -34,11 +34,9 @@
 <aside class="l-home__resources-list list-aside l-home__resources-list-2">
   <h6 class="season-stats__heading">California fire resources</h6>
   <ul>
-    <li>Cal Fire</li>
-    <li>California Fire and Resource Assessment Program (FRAP)</li>
-    <li>California Incident Information System</li>
-    <li>Northern California Geographic Area Coordination Center (ONCC)</li>
-    <li>L.A. Fire Department</li>
+    {{#each model.settings.californiaFireResources as |link|}}
+      <li><a href="{{link.href}}">{{link.title}}</a></li>
+    {{/each}}
   </ul>
 </aside>
 
