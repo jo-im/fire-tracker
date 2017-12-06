@@ -17,22 +17,14 @@ export default DS.Adapter.extend({
   }),
 
   _startChangesToStoreListener: function () {
-    var callback = bind(this, 'onChange');
-    let longpoll = () => {
-
-    fetch(`${ENV.couchdb.endpoint}/fires/_changes?since=now&feed=longpoll`)
-      .then(function(response) {
-        // ((response.json() || {}).results || []).forEach(callback);
-        return response.json();
-      })
-      .catch(function() {
-        Ember.run.later(longpoll, 10000);
-      })
-      .then(function(json) {
-        ((json || {}).results || []).forEach(callback);
-      });
-    }
-    longpoll();
+    // var callback = bind(this, 'onChange');
+    // if (window && window.EventSource) {
+    //   new EventSource(`${ENV.couchdb.endpoint}/fires/_changes?since=now&feed=eventsource`).on('message', function(data){
+    //     debugger
+    //     let json = JSON.parse(data);
+    //     ((json || {}).results || []).forEach(callback);
+    //   }, false);
+    // }
   },
 
   onChange: function (change) {

@@ -89,8 +89,14 @@ export default DS.Model.extend({
     // just consider legacy fires to be extinguished
     return (this.get('isExtinguished') || this.get('extinguishedAt') || this.get('isLegacy')) ? true : false;
   }),
-  shouldDisplayBurnedFor: Ember.computed('wasExtinguished', 'startedAt', 'extinguishedAt', function(){
-    return (this.get('wasExtinguished') && this.get('startedAt') && this.get('extinguishedAt')) ? true : false;
+  shouldDisplayBurnedFor: Ember.computed('wasExtinguished', 'burnedFor', function(){
+    return (this.get('wasExtinguished') && this.get('burnedFor') && (this.get('burnedFor') > 0)) ? true : false;
+  }),
+  shouldDisplayDuration: Ember.computed('wasExtinguished', 'duration', function(){
+    return (this.get('duration') && (this.get('duration') > 0)) ? true : false;
+  }),
+  shouldDisplayAcres: Ember.computed('acres', function(){
+    return parseInt(this.get('acres')) > 0;
   }),
   countyName: Ember.computed('county', function(){
     let countyName = this.get('county');
@@ -107,7 +113,8 @@ export default DS.Model.extend({
       let a = moment(startedAt);
       let b = moment(new Date());
       let days = Math.abs(b.diff(a, 'days'));
-      return `${days} days`;
+      // return `${days} days`;
+      return days;
     }
   }),
   burnedFor: Ember.computed('startedAt', 'extinguishedAt', function(){
@@ -117,7 +124,8 @@ export default DS.Model.extend({
       let a = moment(startedAt);
       let b = moment(extinguishedAt);
       let days = Math.abs(b.diff(a, 'days'));
-      return `${days} days`;
+      // return `${days} days`;
+      return days;
     }
   }),
   shouldPlaybackPerimeter: Ember.computed('perimeter', function(){

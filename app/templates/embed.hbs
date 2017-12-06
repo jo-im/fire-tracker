@@ -7,28 +7,51 @@
         <h2 class="fire-embed__header__heading">{{model.name}}</h2>
         <ul class="fire-embed__header__basic-info__data b-text--uppercase">
           <li class="fire-embed__header__basic-info__data-item">
-            <span class="b-text--bold">{{model.county}}</span>
+            <span class="b-text--bold">{{model.county}} County</span>
           </li>
         </ul>
       </div>
+
       <div class="fire-embed__header__stats">
-        <div class="fire-embed__header__stats__item">
-          <h6 class="fire-embed__header__stats__item-heading">Burning For</h6>
-          <img class="fire-embed__header__stats__item-icon" src="/images/icons/calendar.svg">
-          <h3 class="fire-embed__header__stats__stat">{{model.duration}} days</h3>
-        </div>
-        <div class="fire-embed__header__stats__pipe"></div>
+
+
+        {{#if model.wasExtinguished}}
+          {{#if model.shouldDisplayBurnedFor}}
+            <div class="fire-embed__header__stats__item">
+              <h6 class="fire-embed__header__stats__item-heading">Burned For</h6>
+
+                <img class="fire-embed__header__stats__item-icon" src="/images/icons/calendar.svg">
+                <h3 class="fire-embed__header__stats__stat">{{model.burnedFor}} days</h3>
+
+            </div>
+            <div class="fire-embed__header__stats__pipe"></div>
+          {{/if}}
+        {{else}}
+          {{#if model.shouldDisplayDuration}}
+            <div class="fire-embed__header__stats__item">
+              <h6 class="fire-embed__header__stats__item-heading">Burning For</h6>
+
+                <img class="fire-embed__header__stats__item-icon" src="/images/icons/calendar.svg">
+                <h3 class="fire-embed__header__stats__stat">{{model.duration}} days</h3>
+
+            </div>
+            <div class="fire-embed__header__stats__pipe"></div>
+          {{/if}}
+        {{/if}}
         <div class="fire-embed__header__stats__item">
           <h6 class="fire-embed__header__stats__item-heading">Containment</h6>
-          <img class="fire-embed__header__stats__item-icon" src="/images/icons/containment.svg">
-          <h3 class="fire-embed__header__stats__stat">{{model.containment}}</h3>
+            {{containment-graph containment=model.containment}}
+            <h3 class="fire-embed__header__stats__stat">{{model.containment}}</h3>
+
         </div>
-        <div class="fire-embed__header__stats__pipe"></div>
-        <div class="fire-embed__header__stats__item">
-          <h6 class="fire-embed__header__stats__item-heading">Acres Burned</h6>
-          <img class="fire-embed__header__stats__item-icon" src="/images/icons/map.svg">
-          <h3 class="fire-embed__header__stats__stat">{{model.acreage}}</h3>
-        </div>
+        {{#if model.shouldDisplayAcres}}
+          <div class="fire-embed__header__stats__pipe"></div>
+          <div class="fire-embed__header__stats__item">
+            <h6 class="fire-embed__header__stats__item-heading">Acres Burned</h6>
+              <img class="fire-embed__header__stats__item-icon" src="/images/icons/map.svg">
+              <h3 class="fire-embed__header__stats__stat">{{model.acreage}}</h3>
+          </div>
+        {{/if}}
       </div>
       <a href="#" class="fire-embed__header__foot">
         <img class="fire-embed__header__foot__img" src="/images/kpcc-logo-embed.svg">
