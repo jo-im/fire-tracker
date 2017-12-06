@@ -44,7 +44,7 @@ COPY --from=dependencies /home/firetracker/package-lock.json .
 
 COPY --from=dependencies /home/firetracker/node_modules ./node_modules
 
-RUN node_modules/ember-cli/bin/ember build
+RUN node_modules/ember-cli/bin/ember build --environment=production
 
 RUN npm prune --production
 
