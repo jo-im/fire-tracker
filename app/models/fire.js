@@ -4,10 +4,6 @@ import moment from 'npm:moment';
 import ENV from '../config/environment';
 import L from '../lib/L';
 
-// const monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-
-// const shortMonthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ];
-
 export default DS.Model.extend({
   _id: DS.attr('string'),
   name: DS.attr('string'),
@@ -50,6 +46,28 @@ export default DS.Model.extend({
     }
 
     return output.join('  ');
+  }),
+  pageDescription: Ember.computed('name', 'countyName', 'startedAt', 'locationDescription', function(){
+    return [
+      `The ${this.get('name')}`, 
+      this.get('countyName') ? `in ${this.get('countyName')}` : null,
+      this.get('startedAt') ? `began burning ${moment(this.get('startedAt')).format('dddd, MMMM Do YYYY')}` : null,
+      this.get('locationDescription') ? `near ${this.get('locationDescription')}` : null,
+      '.',
+      this.get('updatedAt') ? `As of ${moment(this.get('updatedAt')).format('dddd, MMMM Do YYYY')}` : null,
+      this.get('updatedAt') ? ',' : null,
+      this.get('acreage') ? `${this.get('acreage')} acres have burned` : null,
+      (this.get('containment') && this.get('acreage')) ? ', and' : '.',
+      this.get('containment') ? `the fire is ${this.get('containment')} contained.` : null
+    ].filter(x => x).join(' ').replace(/\s(,|\.)/g, '$1')
+  }),
+  socialDescription: Ember.computed('name', 'countyName', 'startedAt', 'locationDescription', function(){
+    return [
+      `Get details about the ${this.get('name')}`, 
+      this.get('countyName') ? `in ${this.get('countyName')}` : null,
+      this.get('startedAt') ? `that began burning ${moment(this.get('startedAt')).format('dddd, MMMM Do YYYY')}` : null,
+      this.get('locationDescription') ? `near ${this.get('locationDescription')}` : null
+    ].filter(x => x).join(' ').replace(/\s(,|\.)/g, '$1')
   }),
   startedAt: DS.attr('date'),
   updatedAt: DS.attr('date'),

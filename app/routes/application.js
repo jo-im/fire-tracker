@@ -102,14 +102,6 @@ export default Ember.Route.extend({
         },
         {
           type: 'meta',
-          tagId: 'og:description',
-          attrs: {
-            property: 'og:description',
-            content: description
-          }
-        },
-        {
-          type: 'meta',
           tagId: 'twitter:card',
           attrs: {
             name: 'twitter:card',
