@@ -11,9 +11,11 @@
         {{tile-layer url=tilesEndpoint reuseTiles=true detectRetina=true attribution="© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"}}
         {{#if model.fire.perimeter}}
           {{#time-series geoJSON=model.fire.perimeter transitionDuration=2000}}
-            {{#if model.fire.shouldPlaybackPerimeter}}
-              {{time-series-control}}
-            {{/if}}
+            {{#unless fastboot.isFastBoot}}
+              {{#if model.fire.shouldPlaybackPerimeter}}
+                {{time-series-control}}
+              {{/if}}
+            {{/unless}}
           {{/time-series}}
         {{/if}}
         {{#marker-layer location=model.fire.latLong icon=model.fire.markerIcon}}

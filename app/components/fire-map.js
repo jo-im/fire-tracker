@@ -26,6 +26,7 @@ export default LeafletMap.extend({
     'fadeAnimation', 'zoomAnimation', 'zoomAnimationThreshold', 'markerZoomAnimation'
   ],
 
+  hasLoaded: false,
 
   createLayer() {
     // if(!this.get('lat') || !this.get('lng')) return;
@@ -40,6 +41,7 @@ export default LeafletMap.extend({
     }
 
     let map = this.L.map(this.element, options);
+    map.on('load', () => this.set('hasLoaded', true));
     map.scrollWheelZoom.disable()
     map.touchZoom.disable();
 
@@ -64,7 +66,6 @@ export default LeafletMap.extend({
       bottomZoom.setPosition('bottomleft');
       bottomZoom._container.classList.add('fire-map__bottom-zoom');
     }
-
     this.trigger('didInitializeMap', map);
     return map;
   }
