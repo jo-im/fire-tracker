@@ -4,11 +4,11 @@ import fetch from 'fetch';
 import ENV from '../config/environment';
 import { NotFoundError } from '../lib/fetch-errors';
 
-const {
-  run: {
-    bind
-  }
-} = Ember;
+// const {
+//   run: {
+//     bind
+//   }
+// } = Ember;
 
 export default DS.Adapter.extend({
 

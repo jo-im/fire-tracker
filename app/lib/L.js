@@ -1,4 +1,5 @@
 /* global L */
+/* global Proxy */
 
 // import _Proxy from 'npm:proxy-polyfill'; // it will polyfill the global namespace rather than returning the Proxy object.
 

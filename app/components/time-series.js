@@ -1,3 +1,5 @@
+/* global L */
+
 import Ember from 'ember';
 import GeoJSONLayer from 'ember-leaflet/components/geojson-layer';
 import objectAssign from 'npm:object.assign';

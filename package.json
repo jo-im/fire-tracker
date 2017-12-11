@@ -47,6 +47,7 @@
     "ember-fetch": "^3.4.0",
     "ember-leaflet": "^3.0.12",
     "ember-load-initializers": "^1.0.0",
+    "ember-metrics": "^0.12.1",
     "ember-moment": "^7.4.1",
     "ember-resolver": "^4.0.0",
     "ember-simple-infinite-scroller": "^1.0.10",

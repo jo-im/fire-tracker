@@ -1,5 +1,4 @@
 import MapControl from './map-control';
-import Ember from 'ember';
 
 export default MapControl.extend({
   classNames: ['time-series-control'],

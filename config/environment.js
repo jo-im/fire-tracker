@@ -22,6 +22,35 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+    metricsAdapters: [
+      {
+        name: 'GoogleTagManager',
+        environments: ['production'],
+        config: {
+          id: 'GTM-KVHTMW'
+          // ,
+          // dataLayer: [{
+          //   'pageCategory': 'signup',
+          //   'visitorType': 'high-value'
+          // }]
+        }
+      }
+      // {
+      //   name: 'GoogleTagManager',
+      //   environments: ['development', 'production'],
+      //   config: {
+      //     id: 'GTM-XXXX',
+      //     // Use `analytics_debug.js` in development
+      //     debug: environment === 'development',
+      //     // Use verbose tracing of GA events
+      //     trace: environment === 'development',
+      //     // Ensure development env hits aren't sent to GA
+      //     sendHitTask: environment !== 'development',
+      //     // Specify Google Analytics plugins
+      //     require: ['ecommerce']
+      //   }
+      // }
+    ],
     moment: {
       includeTimezone: 'all'
     },
