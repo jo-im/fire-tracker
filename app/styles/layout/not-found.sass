@@ -1,0 +1,15 @@
+#l-not-found
+  // position: absolute
+  // top: $row * 1.5
+
+#l-not-found__message
+  position: absolute
+  top: $row * 2
+  width: 100% 
+
+#l-not-found #l-archive__search
+  @include fire-search--alt
+
+@media (max-width: $l-med-breakpoint)
+  #l-not-found
+    @include not-found--sm

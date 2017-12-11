@@ -29,6 +29,9 @@ Router.map(function() {
   this.route('fire', {path: '/:slug'});
   this.route('content');
   this.route('archive');
+  this.route('not-found', {path: '/*path'});
 });
+
+
 
 export default Router;

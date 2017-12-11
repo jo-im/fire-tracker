@@ -1,6 +1,8 @@
 {{masthead-component id="l-archive__masthead"}}
 <div id="l-archive">
 
+  {{yield}}
+
   {{archive-search query=query id="l-archive__search" heading="Search the archives" filterResults='filterResults' placeholder="Enter a search term here."}}
 
   <div id="l-archive__grid" class="t-dark">

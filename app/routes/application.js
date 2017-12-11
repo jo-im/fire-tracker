@@ -3,6 +3,7 @@ import { NotFoundError } from '../lib/fetch-errors';
 
 export default Ember.Route.extend({
   headData: Ember.inject.service(),
+  fastboot: Ember.inject.service(),
   title: function(tokens) {
     let title = tokens.concat(['Fire Tracker | 89.3 KPCC']).join(' | ');
     return title;
@@ -10,7 +11,9 @@ export default Ember.Route.extend({
   actions: {
     error(error) {
       if (error instanceof NotFoundError) {
-        this.transitionTo('archive');
+        this.transitionTo('not-found', '/not-found');
+        if(!this.get('fastboot.isFastBoot')) return;
+        this.set('fastboot.response.statusCode', 404);
       } else {
         // otherwise let the error bubble
         return true;
