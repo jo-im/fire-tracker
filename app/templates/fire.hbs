@@ -116,7 +116,11 @@
       <h4 class="additional-details__heading">Additional Details</h4>
 
       <h6 class="additional-details__body__heading">DATA SOURCE</h6>
-      <p class="additional-details__body__paragraph">CalFire</p>
+      {{#each model.fire.sources as |source|}}
+        <p class="additional-details__body__paragraph">
+          <a href="{{source.href}}" target="_blank">{{source.title}}</a>
+        </p>
+      {{/each}}
 
       <h6 class="additional-details__body__heading">ADMINISTRATIVE UNIT</h6>
       <p class="additional-details__body__paragraph">
