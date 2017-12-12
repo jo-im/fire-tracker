@@ -28,24 +28,30 @@ export default GeoJSONLayer.extend({
 
   init(){
     this._super(...arguments);
+    // this.set('i', 0);
+    // this.set('playing', false);
+    // this.set('series', {});
+    // this.set('timeInstants', []);
+    // this.set('currentTime', null);
+  },
+
+  createLayer() {
     this.set('i', 0);
     this.set('playing', false);
     this.set('series', {});
     this.set('timeInstants', []);
     this.set('currentTime', null);
-  },
-
-  createLayer() {
+    
     // add a separate pane to the map that we can render to
     let map        = this.get('parentComponent')._layer;
     map.createPane('time-series');
-    let options = Object.assign({
+    let options  = Object.assign({
       pane: 'time-series',
       className: 'time-series__feature'
     }, this.get('options'));
     var layer    = L.geoJson(...this.get('requiredOptions'), options);
     let features = [].concat(layer.getLayers());
-    let series   = this.get('series');
+    var series   = this.get('series');
 
     features.forEach((f) => {
       // load each feature into our series object
@@ -53,7 +59,7 @@ export default GeoJSONLayer.extend({
       // features with the same time instant are
       // loaded at once
 
-      let timestamp = f.feature.properties.time;
+      let timestamp = (f.toGeoJSON ? f.toGeoJSON().properties : f.feature.properties).time;
 
       series[timestamp] = series[timestamp] || [];
       series[timestamp].push(f);

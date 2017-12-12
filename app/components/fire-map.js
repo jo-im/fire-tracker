@@ -55,7 +55,7 @@ export default LeafletMap.extend({
       if (map.tap) map.tap.disable();
       // debugger
       map.getContainer().style.cursor='default';
-    }else {
+    } else {
       let topZoom = new this.L.Control.Zoom();
       map.addControl(topZoom);
       topZoom.setPosition('topleft');

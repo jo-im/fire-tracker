@@ -14,16 +14,16 @@
 
 .featured-incident-card
   display: block
-  margin-bottom: $unit-in-pixels
+  margin-bottom: $row
 
 .featured-incident-card__description
   display: block
   display: flex
   flex-wrap: wrap
   // float: left
-  // height: $unit-in-pixels * 6
-  min-height: $unit-in-pixels * 6
-  // width: $col-in-pixels + $gutter-in-pixels + $col-in-pixels + $col-in-pixels + $gutter-in-pixels + $col-in-pixels + $gutter-in-pixels
+  // height: $row * 6
+  min-height: $row * 6
+  // width: $col + $gutter + $col + $col + $gutter + $col + $gutter
 
 .featured-incident-card__heading
   @include link-effect($color-primary, $t-dark-color-background)
@@ -38,14 +38,14 @@
 
 .featured-incident-card__thumbnail
   float: left
-  height: $unit-in-pixels * 6
-  background-image: url('/images/fallback.png')
+  height: $row * 6
+  // background-image: url('/images/fallback.png')
   background-color: $color-gray-light
   background-size: cover
   background-position: center
-  margin-right: $gutter-in-pixels
+  margin-right: $gutter
   position: relative
-  width: $col-in-pixels + $gutter-in-pixels + $col-in-pixels
+  width: $col + $gutter + $col
 
 .featured-incident-card__stat
   margin-bottom: 3px
@@ -78,9 +78,9 @@
   font-size: 12px
 
 @mixin featured-incidents--lg
-  width: ($col-in-pixels * 5) + ($gutter-in-pixels * 5)
+  width: ($col * 5) + ($gutter * 5)
 @mixin featured-incidents--med
-  width: ($col-in-pixels * 4) + ($gutter-in-pixels * 4)
+  width: ($col * 4) + ($gutter * 4)
 @mixin featured-incidents--sm
   width: 100%
   .featured-incidents__heading
