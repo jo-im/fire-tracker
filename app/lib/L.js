@@ -1,7 +1,9 @@
 /* global L */
 /* global Proxy */
 
-// import _Proxy from 'npm:proxy-polyfill'; // it will polyfill the global namespace rather than returning the Proxy object.
+// it will polyfill the global namespace rather than returning the Proxy object.
+import _Proxy from 'npm:proxy-polyfill'; // eslint-disable-line no-unused-vars
+
 
 let L_ = null;
 
@@ -21,3 +23,4 @@ if (typeof L !== 'undefined') {
 }
 
 export default L_;
+

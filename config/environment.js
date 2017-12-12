@@ -67,6 +67,9 @@ module.exports = function(environment) {
       tiles: {
         endpoint: process.env.FIRE_TRACKER_MAPBOX_TILES_ENDPOINT
       }
+    },
+    fastboot: {
+      hostWhitelist: ['projectnumbers.org', /^localhost:\d+$/]
     }
   };
 

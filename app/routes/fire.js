@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   fastboot: Ember.inject.service(),
-  isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
   titleToken: function(model) {
     return model.fire.get('name');
   },
@@ -14,8 +13,12 @@ export default Ember.Route.extend({
       })
     });
   },
+  afterModel(model){
+    let alias = (model.settings.get('aliases') || []).filter(a => a.from === model.fire.get('slug')).shift();
+    if(alias) return this.transitionTo('fire', alias.to);
+  },
   activate() {
-    if(!this.get('isFastBoot')){
+    if(!this.get('fastboot.isFastBoot')){
       window.scrollTo(0,0);
     }
   },

@@ -17,7 +17,8 @@
   "dependencies": {
     "fastboot-app-server": "^1.1.0",
     "moment-timezone": "^0.5.14",
-    "node-fetch": "^1.7.3"
+    "node-fetch": "^1.7.3",
+    "proxy-polyfill": "^0.1.7"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

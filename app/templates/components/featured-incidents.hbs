@@ -23,7 +23,7 @@
       </span>
       {{#if fire.acres}}
         <span class="featured-incident-card__acres featured-incident-card__stat">
-          <span class="featured-incident-card__stat-title">Acres Burned:</span> {{fire.acres}}
+          <span class="featured-incident-card__stat-title">Acres Burned:</span> {{comma-separate fire.acres}}
         </span>
       {{/if}}
       {{#if fire.containment}}

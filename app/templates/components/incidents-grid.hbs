@@ -16,7 +16,7 @@
         <li class="incidents-grid__card__item">{{fire.countyName}}</li>
       {{/if}}
       {{#if fire.acreage}}
-        <li class="incidents-grid__card__item">{{fire.acreage}} Acres</li>
+        <li class="incidents-grid__card__item">{{comma-separate fire.acreage}} Acres</li>
       {{/if}}
       {{#if fire.containment}}
         <li class="incidents-grid__card__item">{{fire.containment}} contained</li>

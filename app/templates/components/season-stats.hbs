@@ -5,7 +5,7 @@
     <div class="season-stats__item__description">
       <span class="season-stats__item__figure">
         <span class="season-stats__item__figure-title">Fires this year:</span> 
-        <span class="season-stats__item__figure-number">{{stats.count}}</span>
+        <span class="season-stats__item__figure-number">{{comma-separate stats.count}}</span>
       </span>
       <span class="season-stats__item__trend">
         About average
@@ -19,7 +19,7 @@
     <div class="season-stats__item__description">
       <span class="season-stats__item__figure">
         <span class="season-stats__item__figure-title">Acres Burned:</span> 
-        <span class="season-stats__item__figure-number">{{stats.sum}}</span>
+        <span class="season-stats__item__figure-number">{{comma-separate stats.sum}}</span>
       </span>
       <span class="season-stats__item__trend">
         Above average
