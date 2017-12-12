@@ -17,11 +17,6 @@ export default Ember.Route.extend({
     let alias = (model.settings.get('aliases') || []).filter(a => a.from === model.fire.get('slug')).shift();
     if(alias) return this.transitionTo('fire', alias.to);
   },
-  activate() {
-    if(!this.get('fastboot.isFastBoot')){
-      window.scrollTo(0,0);
-    }
-  },
   headTags(){
     let model       = this.modelFor(this.routeName);
     let fire        = model.fire;

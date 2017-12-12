@@ -6,7 +6,9 @@ module.exports = function(environment) {
     modulePrefix: 'fire-tracker',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    // locationType: 'auto',
+    locationType: 'router-scroll',
+    historySupportMiddleware: true,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

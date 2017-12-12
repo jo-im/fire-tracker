@@ -21,7 +21,8 @@
     {{/link-to}}
 
     <div class="featured-incident-card__description">
-      <a href="/{{fire.slug}}" class="featured-incident-card__heading">{{fire.name}}</a>
+      {{#link-to 'fire' fire.slug class="featured-incident-card__heading"}}{{fire.name}}{{/link-to}}
+      {{!-- <a href="/{{fire.slug}}" class="featured-incident-card__heading">{{fire.name}}</a> --}}
       <h6 class="featured-incident-card__county">{{fire.countyName}}</h6>
       <span class="featured-incident-card__started featured-incident-card__stat">
         <span class="featured-incident-card__stat-title">Started:</span> {{moment-format fire.startedAt 'MMM DD, YYYY'}}

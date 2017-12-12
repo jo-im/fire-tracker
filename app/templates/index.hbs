@@ -14,7 +14,7 @@
         <h6 class="season-stats__heading">California fire resources</h6>
         <ul>
           {{#each model.settings.californiaFireResources as |link|}}
-            <li><a href="{{link.href}}">{{link.title}}</a></li>
+            <li><a href="{{link.href}}" target="_blank">{{link.title}}</a></li>
           {{/each}}
         </ul>
       </aside>
@@ -35,7 +35,7 @@
   <h6 class="season-stats__heading">California fire resources</h6>
   <ul>
     {{#each model.settings.californiaFireResources as |link|}}
-      <li><a href="{{link.href}}">{{link.title}}</a></li>
+      <li><a href="{{link.href}}" target="_blank">{{link.title}}</a></li>
     {{/each}}
   </ul>
 </aside>

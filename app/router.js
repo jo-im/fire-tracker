@@ -2,8 +2,10 @@ import Ember from 'ember';
 import config from './config/environment';
 import { get } from '@ember/object';
 import { scheduleOnce } from '@ember/runloop';
+import RouterScroll from 'ember-router-scroll';
 
-const Router = Ember.Router.extend({
+
+const Router = Ember.Router.extend(RouterScroll, {
   location: config.locationType,
   rootURL: config.rootURL,
   headData: Ember.inject.service(),
