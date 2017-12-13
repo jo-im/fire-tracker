@@ -44,13 +44,6 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-  // app.import('vendor/iso8601.js');
-  // app.import('vendor/leaflet.timedimension.src.js');
-  // app.import('vendor/leaflet.timedimension.control.css');
-  // app.import('vendor/leaflet-canvas-geojson.js');
-  
-  // app.import('vendor/element-remove-polyfill.js');
-  // app.import('vendor/function-bind-polyfill.js');
 
 
   return app.toTree();

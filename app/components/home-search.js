@@ -28,7 +28,7 @@ export default FireSearch.extend({
   getSearchData: Ember.on('didInsertElement', function() {
     this.get('store').query('sparse-fire', {queries: [{limit: 20, descending: true}]})
       .then(results => {
-        let fires = results.toArray();
+        let fires = results.toArray().filter(f => !f.get('wasExtinguished'));
         this.set('searchData', fires);
         this.set('searchIndex', new SearchIndex(fires));
       });

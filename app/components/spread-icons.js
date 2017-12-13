@@ -8,17 +8,25 @@ export default Ember.Component.extend({
   getClassNames: Ember.computed('extra-classes', function(){
     return (this.get('extra-classes') || '').replace(',', ' ');
   }),
-  subject: Ember.computed('fire', function(){
-    return `Learn about the ${this.get('fire.name')} in ${this.get('fire.county')} via @KPCC's Fire Tracker`;
+  subject: Ember.computed('fire', 'article', function(){
+    if(this.get('fire')){
+      return `Learn about the ${this.get('fire.name')} in ${this.get('fire.county')} via @KPCC's Fire Tracker`;
+    } else if(this.get('article')){
+      return this.get('article.title');
+    }
   }),
-  href: Ember.computed('fire', function(){
-    if(this.get('fastboot.isFastBoot') || !this.get('fire.slug')){
+  href: Ember.computed('fire', 'article', function(){
+    let slug = this.get('fire.slug') || this.get('article.slug');
+    if(this.get('fastboot.isFastBoot') || !slug){
       return '#';
+    }
+    if(this.get('article')) {
+      return `${window.location.protocol}://${window.location.host}/articles/${this.get('article.slug')}`;
     }
     return `${window.location.protocol}://${window.location.host}/${this.get('fire.slug')}`;
   }),
   mailtoHref: Ember.computed('fire', function(){
-    let body    = encodeURIComponent(`${this.get('fire.name')}: ${this.get('href')}`);
+    let body    = encodeURIComponent(`${this.get('fire.name') || this.get('article.title')}: ${this.get('href')}`);
     return `mailto:?subject=${encodeURIComponent(this.get('subject'))}&body=${body}`;
   }),
   tweetHref: Ember.computed('fire', function(){

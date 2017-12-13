@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export function commaSeparate([number]) {
   if(number){
-    return parseInt(number).toLocaleString();
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
 

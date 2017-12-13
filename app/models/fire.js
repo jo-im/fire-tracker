@@ -138,8 +138,8 @@ export default DS.Model.extend({
   }),
   burnedFor: Ember.computed('startedAt', 'extinguishedAt', function(){
     let startedAt      = this.get('startedAt');
-    let extinguishedAt = this.get('extinguishedAt') || new Date();
-    if(startedAt){
+    let extinguishedAt = this.get('extinguishedAt');
+    if(startedAt && extinguishedAt){
       let a = moment(startedAt);
       let b = moment(extinguishedAt);
       let days = Math.abs(b.diff(a, 'days'));
