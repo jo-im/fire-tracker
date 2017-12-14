@@ -30,28 +30,8 @@ module.exports = function(environment) {
         environments: ['production'],
         config: {
           id: 'GTM-KVHTMW'
-          // ,
-          // dataLayer: [{
-          //   'pageCategory': 'signup',
-          //   'visitorType': 'high-value'
-          // }]
         }
       }
-      // {
-      //   name: 'GoogleTagManager',
-      //   environments: ['development', 'production'],
-      //   config: {
-      //     id: 'GTM-XXXX',
-      //     // Use `analytics_debug.js` in development
-      //     debug: environment === 'development',
-      //     // Use verbose tracing of GA events
-      //     trace: environment === 'development',
-      //     // Ensure development env hits aren't sent to GA
-      //     sendHitTask: environment !== 'development',
-      //     // Specify Google Analytics plugins
-      //     require: ['ecommerce']
-      //   }
-      // }
     ],
     moment: {
       includeTimezone: 'all'
@@ -63,12 +43,9 @@ module.exports = function(environment) {
       endpoint: process.env.FIRE_TRACKER_ASSETHOST_ENDPOINT
     },
     mapbox: {
-      geocoding: {
-        accessToken: process.env.FIRE_TRACKER_MAPBOX_GEOCODING_ACCESS_TOKEN
-      },
-      tiles: {
-        endpoint: process.env.FIRE_TRACKER_MAPBOX_TILES_ENDPOINT
-      }
+      username: process.env.FIRE_TRACKER_MAPBOX_USERNAME,
+      accessToken: process.env.FIRE_TRACKER_MAPBOX_ACCESS_TOKEN,
+      tilesId: process.env.FIRE_TRACKER_MAPBOX_TILES_ID
     },
     fastboot: {
       hostWhitelist: ['projectnumbers.org', /^localhost:\d+$/]

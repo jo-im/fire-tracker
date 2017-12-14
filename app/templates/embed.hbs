@@ -61,7 +61,7 @@
     {{!-- {{c-figure class="fire-embed__map" four-by-three=true}} --}}
 
     {{#fire-map lat=model.lat lng=model.long zoom=14 class="fire-embed__map fire-embed__map--four-by-three" thumbnailMode=true}}
-      {{tile-layer url="https://api.mapbox.com/styles/v1/kbriggs/cj8m2vtqn1j4w2rpmy9bi0ga2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ" reuseTiles=true detectRetina=true attribution="© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"}}
+      {{map-tiles}}
       {{#if model.perimeter}}
         {{time-series geoJSON=model.perimeter transitionDuration=2000}}
       {{/if}}

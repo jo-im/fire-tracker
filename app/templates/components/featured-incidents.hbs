@@ -6,7 +6,7 @@
       {{!-- {{c-figure src=fire.thumbnail class="featured-incident-card__thumbnail"}} --}}
       {{#if fire.isLoaded}}
         {{#fire-map class="featured-incident-card__thumbnail" lat=fire.lat lng=fire.long zoom=7 thumbnailMode=true attributionControl=false}}
-          {{tile-layer url="https://api.mapbox.com/styles/v1/kbriggs/cj8m2vtqn1j4w2rpmy9bi0ga2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ" reuseTiles=true detectRetina=true}}
+          {{map-tiles attribution=false}}
           {{#if fire.perimeter}}
             {{#time-series geoJSON=fire.perimeter transitionDuration=2000}}
             {{/time-series}}

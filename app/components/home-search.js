@@ -63,7 +63,7 @@ export default FireSearch.extend({
       })
       .catch(() => {
         // text search returned nothing... let's try geocoding
-        return fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${ENV.mapbox.geocoding.accessToken}`)
+        return fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${ENV.mapbox.accessToken}`)
           .then((resp) => {
             return resp.json();
           })

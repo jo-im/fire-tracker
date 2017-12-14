@@ -59,9 +59,11 @@
     </div>
   {{/each}}
 </div>
-<div class="tweets-slider__selector">
-  {{#each tweets as |tweet index|}}
-    <div class="tweets-slider__selector__dot" selected={{eq selected index}} {{action 'selectTweet' index}}></div>
-  {{/each}}
-</div>
+{{#if shouldDisplayDots}}
+  <div class="tweets-slider__selector">
+    {{#each tweets as |tweet index|}}
+      <div class="tweets-slider__selector__dot" selected={{eq selected index}} {{action 'selectTweet' index}}></div>
+    {{/each}}
+  </div>
+{{/if}}
 

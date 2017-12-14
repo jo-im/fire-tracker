@@ -27,6 +27,9 @@ export default Ember.Component.extend({
   atEnd: Ember.computed('selected', function(){
     return this.get('selected') === (this.get('cardCount') - 1);
   }),
+  shouldDisplayDots: Ember.computed('cardCount', function(){
+    return (this.get('cardCount') || 0) > 1;
+  }),
   actions: {
     selectTweet(index){
       let i,
