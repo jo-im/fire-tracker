@@ -32,6 +32,7 @@ Router.map(function() {
   this.route('content', {path: '/articles/:slug'});
   this.route('archive');
   this.route('not-found', {path: '/*path'});
+  this.route('error');
 });
 
 

@@ -3,12 +3,13 @@
   font-size: 18px
   line-height: 30px
 
-.content-article .c-figure, .content-article__lede, .content-article__paragraph, .content-article *
+.content-article .c-figure, .content-article__lede, .content-article__paragraph, .content-article > *, .content-article > ul li
   margin-bottom: $row
 
-.content-article__lede, .content-article *:first-child
+.content-article__lede, .content-article > *:first-child
   font-size: 22px
 
 @mixin content-article--sm
-  .content-article__lede, .content-article *:first-child
+  .content-article__lede, .content-article > *:first-child
     font-size: 20px
+

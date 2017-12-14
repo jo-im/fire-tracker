@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import fetch from 'fetch';
 import ENV from '../config/environment';
+import Ember from 'ember';
 import { NotFoundError } from '../lib/fetch-errors';
 
 export default DS.Adapter.extend({
@@ -15,7 +16,7 @@ export default DS.Adapter.extend({
       .then(resp => resp.json())
       .then(json => {
         let doc = json.docs[0];
-        if(!doc) return Ember.RSVP.Promise.reject(new NotFoundError('Article not found.'));;
+        if(!doc) return Ember.RSVP.Promise.reject(new NotFoundError('Article not found.'));
         return doc;
       });
   }

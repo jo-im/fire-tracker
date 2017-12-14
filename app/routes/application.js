@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { NotFoundError } from '../lib/fetch-errors';
+import ENV from '../config/environment';
 
 export default Ember.Route.extend({
   headData: Ember.inject.service(),
@@ -15,7 +16,10 @@ export default Ember.Route.extend({
         if(!this.get('fastboot.isFastBoot')) return;
         this.set('fastboot.response.statusCode', 404);
       } else {
-        // otherwise let the error bubble
+        if(ENV.environment === 'production'){
+          return this.transitionTo('error');
+        }
+        // // otherwise let the error bubble
         return true;
       }
     }

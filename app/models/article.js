@@ -1,8 +1,5 @@
 import DS from 'ember-data';
-import fetch from 'fetch';
 import Ember from 'ember';
-import ENV from '../config/environment';
-
 
 export default DS.Model.extend({
   title: DS.attr('string'),
