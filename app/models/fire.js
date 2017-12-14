@@ -104,6 +104,7 @@ export default DS.Model.extend({
   extinguishedAt: DS.attr('date'),
   isLegacy: DS.attr('boolean'),
   sources: DS.attr(),
+  hashtag: DS.attr('string'),
   wasExtinguished: Ember.computed('isExtinguished', 'extinguishedAt', 'isLegacy', function(){
     // just consider legacy fires to be extinguished
     return (this.get('isExtinguished') || this.get('extinguishedAt') || this.get('isLegacy')) ? true : false;

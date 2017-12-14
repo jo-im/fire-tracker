@@ -4,9 +4,11 @@
     <div class="tweets-slider__header__description__text">
       Are you near the Whittier Fire?  Get updates from fire and rescue agencies, post photos, and videos and see up-to-the-minute coverage on Twitter with #WhittierFire
     </div>
-    <div class="tweets-slider__header__description__button">
-      <span>See more on Twitter</span>
-    </div>
+    {{#if hashtag}}
+      <a href="https://twitter.com/search?q=%23{{hashtag}}" target="_blank" class="tweets-slider__header__description__button">
+        <span>See more on Twitter</span>
+      </a>
+    {{/if}}
   </div>
 </div>
 <div class="tweets-slider__control tweets-slider__control-left" {{action 'slideLeft'}}>
