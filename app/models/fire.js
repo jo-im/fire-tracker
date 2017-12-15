@@ -79,6 +79,7 @@ export default DS.Model.extend({
   conditions: DS.attr('string'),
   cooperatingAgencies: DS.attr('string'),
   currentSituation: DS.attr('string'),
+  damageAssessment: DS.attr('string'),
   evacuations: DS.attr('string'),
   fuelsInvolved: DS.attr('string'),
   roadClosures: DS.attr('string'),
@@ -87,7 +88,7 @@ export default DS.Model.extend({
   images: DS.attr(),
   audio: DS.attr(),
   video: DS.attr(),
-  tweets: DS.attr(),
+  tweets: DS.attr({defaultValue: []}),
   phoneNumbers: DS.attr(),
   acres: DS.attr('string'),
   contained: DS.attr('string'),
@@ -203,8 +204,7 @@ export default DS.Model.extend({
     }
   }),
   latestTweets: Ember.computed('tweets', function(){
-    let tweets = this.get('tweets') || [];
-    return tweets.splice(0,5);
+    return (this.get('tweets') || []).filter(t => !t.isHidden).splice(0, 5);
   }),
   thumbnailId: DS.attr('number'),
   thumbnail: Ember.computed('thumbnailId', function(){
