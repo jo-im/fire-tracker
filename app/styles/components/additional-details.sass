@@ -19,6 +19,9 @@
   line-height: 26px
   margin-bottom: $row
 
+.additional-details__source:not(:last-child):after
+  content: ', '
+
 @mixin additional-details--xl
   .additional-details__body
     max-width: ($col * 6) + ($gutter * 5)
