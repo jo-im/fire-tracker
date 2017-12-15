@@ -33,20 +33,22 @@
       <ul class="recent-fires__list c-list c-list--vert">
         {{#each model.recentFires as |fire|}}
           <li class="recent-fires__list__item">
-            <h6 class="recent-fires__list__item__heading">{{fire.name}}</h6>
-            <div class="recent-fires__list__item__stats">
-              <span class="recent-fires__list__item__date">
-                {{moment-format fire.startedAt 'MMM DD, YYYY'}}
-              </span>
-              {{#if fire.acreage}}
-                <span class="recent-fires__list__item__pipe">
-                  |
+            {{#link-to 'fire' fire.slug}}
+              <h6 class="recent-fires__list__item__heading">{{fire.name}}</h6>
+              <div class="recent-fires__list__item__stats">
+                <span class="recent-fires__list__item__date">
+                  {{moment-format fire.startedAt 'MMM DD, YYYY'}}
                 </span>
-                <span class="recent-fires__list__item__acres">
-                  {{comma-separate fire.acreage}} acres
-                </span>
-              {{/if}}
-            </div>
+                {{#if fire.acreage}}
+                  <span class="recent-fires__list__item__pipe">
+                    |
+                  </span>
+                  <span class="recent-fires__list__item__acres">
+                    {{comma-separate fire.acreage}} acres
+                  </span>
+                {{/if}}
+              </div>
+            {{/link-to}}
           </li>
         {{/each}}
       </ul>

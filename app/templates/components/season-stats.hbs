@@ -1,33 +1,41 @@
 <h6 class="season-stats__heading">Fire Season 2017</h6>
 {{#if stats.count}}
   <div class="season-stats__item season-stats__item--warning">
-    <div class="season-stats__item__icon"></div>
+    {{#if settings.totalFiresTrend}}
+      <div class="season-stats__item__icon"></div>
+    {{/if}}
     <div class="season-stats__item__description">
       <span class="season-stats__item__figure">
         <span class="season-stats__item__figure-title">Fires this year:</span> 
         <span class="season-stats__item__figure-number">{{comma-separate stats.count}}</span>
       </span>
-      <span class="season-stats__item__trend">
-        About average
-      </span>
+      {{#if settings.totalFiresTrend}}
+        <span class="season-stats__item__trend">
+          About average
+        </span>
+      {{/if}}
     </div>
   </div>
 {{/if}}
 {{#if stats.sum}}
   <div class="season-stats__item season-stats__item--danger">
-    <div class="season-stats__item__icon"></div>
+    {{#if settings.acresTrend}}
+      <div class="season-stats__item__icon"></div>
+    {{/if}}
     <div class="season-stats__item__description">
       <span class="season-stats__item__figure">
         <span class="season-stats__item__figure-title">Acres Burned:</span> 
         <span class="season-stats__item__figure-number">{{comma-separate stats.sum}}</span>
       </span>
-      <span class="season-stats__item__trend">
-        Above average
-      </span>
+      {{#if settings.acresTrend}}
+        <span class="season-stats__item__trend">
+          Above average
+        </span>
+      {{/if}}
     </div>
   </div>
 {{/if}}
 <p class="season-stats__note">
-  Note about our methodology Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Curabitur consequat vel mauris sed consequat.
+  {{#link-to 'content' 'about-data'}}* Read more about the data and methodology.{{/link-to}}
 </p>
 

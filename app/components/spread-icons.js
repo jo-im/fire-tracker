@@ -16,10 +16,11 @@ export default Ember.Component.extend({
     }
   }),
   href: Ember.computed('fire', 'article', function(){
-    let slug = this.get('fire.slug') || this.get('article.slug');
+    let slug     = this.get('fire.slug') || this.get('article.slug');
     if(this.get('fastboot.isFastBoot') || !slug){
       return '#';
     }
+    let protocol = (window.location.protocol || '').replace(/:+/g, ':');
     if(this.get('article')) {
       return `${window.location.protocol}://${window.location.host}/articles/${this.get('article.slug')}`;
     }
@@ -36,3 +37,4 @@ export default Ember.Component.extend({
     return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(this.get('href'))}?t=${encodeURIComponent(this.get('subject'))}`;
   })
 });
+
