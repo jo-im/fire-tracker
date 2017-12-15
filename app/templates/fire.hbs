@@ -104,7 +104,7 @@
     </ul>
   </div>
 
-  {{#if model.fire.tweets}}
+  {{#if model.fire.latestTweets}}
 
     <div class="pointy-hat pointy-hat--right t-dark"></div>
     {{tweets-slider id='l-fire__tweets' tweets=model.fire.latestTweets hashtag=model.fire.hashtag}}
@@ -117,24 +117,32 @@
       <h4 class="additional-details__heading">Additional Details</h4>
 
       <h6 class="additional-details__body__heading">DATA SOURCE</h6>
-      {{#each model.fire.sources as |source|}}
-        <p class="additional-details__body__paragraph">
-          <a href="{{source.href}}" target="_blank">{{source.title}}</a>
-        </p>
-      {{/each}}
-
-      <h6 class="additional-details__body__heading">ADMINISTRATIVE UNIT</h6>
       <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.administrativeUnit}}
+        {{#each model.fire.sources as |source|}}
+          <a class="additional-details__source" href="{{source.href}}" target="_blank">{{source.title}}</a>
+        {{else}}
+          CalFire
+        {{/each}}
       </p>
+
+      {{#if model.fire.administrativeUnit}}
+        <h6 class="additional-details__body__heading">ADMINISTRATIVE UNIT</h6>
+        <p class="additional-details__body__paragraph">
+          {{or-not-any model.fire.administrativeUnit}}
+        </p>
+      {{/if}}
 
       <h6 class="additional-details__body__heading">CAUSE</h6>
       <p class="additional-details__body__paragraph">
         {{or-not-any model.fire.cause 'Unknown'}}
       </p>
 
-      <h6 class="additional-details__body__heading">DAMAGE ASSESSMENT</h6>
-      <p class="additional-details__body__paragraph">Damage assessment teams have updated the number of structures damaged or destroyed. These structures were damaged or destroyed during the early hours of the fire. Damage assessment teams, using new software technology, completed the assessment. The incident would like to commend the damage assessment efforts of the Santa Barbara County Office of Emergency Management with regard to their efficient and ongoing operations. 16 residences destroyed, 1 residence damaged. 30 outbuildings destroyed, 6 outbuildings damaged.</p>
+      {{#if model.fire.damageAssessment}}
+        <h6 class="additional-details__body__heading">DAMAGE ASSESSMENT</h6>
+        <p class="additional-details__body__paragraph">
+          {{or-not-any model.fire.damageAssessment}}
+        </p>
+      {{/if}}
 
       <h6 class="additional-details__body__heading">STRUCTURES THREATENED</h6>
       <p class="additional-details__body__paragraph">
@@ -151,10 +159,12 @@
         {{or-not-any model.fire.injuries}}
       </p>
 
-      <h6 id="additional-details__road-closures" class="additional-details__body__heading">ROAD CLOSURES</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.roadClosures}}
-      </p>
+      {{#if model.fire.roadClosures}}
+        <h6 id="additional-details__road-closures" class="additional-details__body__heading">ROAD CLOSURES</h6>
+        <p class="additional-details__body__paragraph">
+          {{or-not-any model.fire.roadClosures}}
+        </p>
+      {{/if}}
 
       <h6 id="additional-details__evacuations" class="additional-details__body__heading">EVACUATIONS</h6>
       <p class="additional-details__body__paragraph">
@@ -191,9 +201,6 @@
           n/a
         {{/each}}
       </p>
-
-      <h6 class="additional-details__body__heading">TRAINING</h6>
-      <p class="additional-details__body__paragraph">n/a</p>
 
     </div>
   </div>
