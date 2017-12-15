@@ -15,14 +15,20 @@ export default Ember.Component.extend({
   didRender: function(){
     let el = this.get('element');
     if(!el){return;}
-    let containment = parseInt(this.get('containment'));
+    let containment = parseInt(this.get('containment') || 0);
     let i = 0;
     let cells = el.querySelectorAll('.containment-graph__cell');
     while(i<cells.length){
-      // let cell = cells[(i + 20) % 100];
       let cell = cells[i];
-      if(i >= containment){
-        cell.classList.add('containment-graph__cell--muted');
+      cell.classList.add('containment-graph__cell--muted');
+      i++;
+    }
+    i = 0;
+    while(i<cells.length){
+      let idx = ((i + (i * 19)) + Math.floor((i + (i * 19)) / 100)) % 100;
+      let cell = cells[idx];
+      if(i <= containment){
+        cell.classList.remove('containment-graph__cell--muted');
       }
       i++;
     }
