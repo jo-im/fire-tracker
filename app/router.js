@@ -28,8 +28,9 @@ const Router = Ember.Router.extend(RouterScroll, {
 
 Router.map(function() {
   this.route('embed', {path: '/:slug/embed'});
-  this.route('fire', {path: '/:slug'});
-  this.route('content', {path: '/articles/:slug'});
+  this.route('map',   {path: '/:slug/map'});
+  this.route('fire',  {path: '/:slug'});
+  this.route('content',   {path: '/articles/:slug'});
   this.route('archive');
   this.route('not-found', {path: '/*path'});
   this.route('error');
