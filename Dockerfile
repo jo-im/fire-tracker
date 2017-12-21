@@ -61,6 +61,8 @@ RUN node_modules/ember-cli/bin/ember build --environment=production
 
 # RUN npm prune --production
 
+RUN apk add --no-cache nginx
+
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # we don't need what's already in the tmp directory
