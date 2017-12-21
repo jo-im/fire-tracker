@@ -20,19 +20,8 @@ export default DS.Model.extend({
     let asset = (this.get('assets') || [])[0];
     if(!asset) return;
     return asset;
-    // return fetch(`${ENV.assethost.endpoint}/api/assets/${asset.id}/?auth_token=t5m0KOPV4R4ZdoCy0xdHFg`)
-    //   .then(resp => resp.json())
-    //   .then(json => {
-    //     json.caption = asset.caption || json.caption;
-    //     json.title   = asset.title   || json.title;
-    //     return json;
-    //   })
   }),
   generatedTeaser: Ember.computed('teaser', function(){
     return this.get('teaser') || this.get('title');
-    // if(teaser) return teaser;
-    // let body   = this.get('body');
-    // let max    = 300;
-    // return (teaser.length > max ? teaser.substring(0, max) + '...' : teaser);
   })
 });
