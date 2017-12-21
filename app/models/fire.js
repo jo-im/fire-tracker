@@ -88,7 +88,7 @@ export default DS.Model.extend({
   images: DS.attr(),
   audio: DS.attr(),
   video: DS.attr(),
-  tweets: DS.attr({defaultValue: []}),
+  tweets: DS.attr(),
   phoneNumbers: DS.attr(),
   acres: DS.attr('string'),
   contained: DS.attr('string'),

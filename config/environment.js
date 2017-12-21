@@ -48,7 +48,7 @@ module.exports = function(environment) {
       tilesId: process.env.FIRE_TRACKER_MAPBOX_TILES_ID
     },
     fastboot: {
-      hostWhitelist: ['projectnumbers.org', /^localhost:\d+$/]
+      hostWhitelist: ['firetracker.scprdev.org', 'projectnumbers.org', /^localhost:\d+$/]
     }
   };
 
