@@ -7,3 +7,4 @@ export default DS.Model.extend({
   faqs: DS.attr('array'),
   aliases: DS.attr('array')
 });
+

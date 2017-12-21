@@ -1,5 +1,0 @@
-{
-  "_id": "_design/_auth",
-  "_rev": "4-f1c8f5b69395a487560ccfd9e5ff9577",
-  "validate_doc_update": "function(newDoc, oldDoc, userCtx) {if(!userCtx.name){throw({forbidden : 'User not authorized to update/delete documents.'});}}"
-}

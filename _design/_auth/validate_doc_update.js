@@ -1,5 +1,5 @@
 function(newDoc, oldDoc, userCtx) {
-  if('_admin' in userCtx.roles) return; // skip anonymous in Admin Party case;
+  if('_admin' in userCtx.roles) { return; } /* skip anonymous in Admin Party case; */
   if(!userCtx.name){
     throw({forbidden : 'User not authorized to update/delete documents.'});
   }

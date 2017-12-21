@@ -116,6 +116,62 @@
     <div class="additional-details__body">
       <h4 class="additional-details__heading">Additional Details</h4>
 
+      <h6 class="additional-details__body__heading">CURRENT SITUATION</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.currentSitutation}}
+      </p>
+
+      <h6 id="additional-details__evacuations" class="additional-details__body__heading">EVACUATIONS</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.evacuations}}
+      </p>
+
+      {{#if model.fire.roadClosures}}
+        <h6 id="additional-details__road-closures" class="additional-details__body__heading">ROAD CLOSURES</h6>
+        <p class="additional-details__body__paragraph">
+          {{or-not-any model.fire.roadClosures}}
+        </p>
+      {{/if}}
+
+      <h6 class="additional-details__body__heading">SCHOOL CLOSURES</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.schoolClosures}}
+      </p>
+
+      <h6 class="additional-details__body__heading">CAUSE</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.cause 'Unknown'}}
+      </p>
+
+      <h6 class="additional-details__body__heading">INJURIES</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.injuries}}
+      </p>
+
+      <h6 class="additional-details__body__heading">STRUCTURES THREATENED</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.structuresThreatened}}
+      </p>
+
+      <h6 class="additional-details__body__heading">STRUCTURES DESTROYED</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.structuresDestroyed}}
+      </p>
+
+      {{#if model.fire.damageAssessment}}
+        <h6 class="additional-details__body__heading">DAMAGE ASSESSMENT</h6>
+        <p class="additional-details__body__paragraph">
+          {{or-not-any model.fire.damageAssessment}}
+        </p>
+      {{/if}}
+
+      <h6 class="additional-details__body__heading">CONDITIONS</h6>
+      <p class="additional-details__body__paragraph">
+        {{or-not-any model.fire.conditions}}
+      </p>
+
+
+
       <h6 class="additional-details__body__heading">DATA SOURCE</h6>
       <p class="additional-details__body__paragraph">
         {{#each model.fire.sources as |source|}}
@@ -132,64 +188,11 @@
         </p>
       {{/if}}
 
-      <h6 class="additional-details__body__heading">CAUSE</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.cause 'Unknown'}}
-      </p>
-
-      {{#if model.fire.damageAssessment}}
-        <h6 class="additional-details__body__heading">DAMAGE ASSESSMENT</h6>
-        <p class="additional-details__body__paragraph">
-          {{or-not-any model.fire.damageAssessment}}
-        </p>
-      {{/if}}
-
-      <h6 class="additional-details__body__heading">STRUCTURES THREATENED</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.structuresThreatened}}
-      </p>
-
-      <h6 class="additional-details__body__heading">STRUCTURES DESTROYED</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.structuresDestroyed}}
-      </p>
-
-      <h6 class="additional-details__body__heading">INJURIES</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.injuries}}
-      </p>
-
-      {{#if model.fire.roadClosures}}
-        <h6 id="additional-details__road-closures" class="additional-details__body__heading">ROAD CLOSURES</h6>
-        <p class="additional-details__body__paragraph">
-          {{or-not-any model.fire.roadClosures}}
-        </p>
-      {{/if}}
-
-      <h6 id="additional-details__evacuations" class="additional-details__body__heading">EVACUATIONS</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.evacuations}}
-      </p>
-
-      <h6 class="additional-details__body__heading">CURRENT SITUATION</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.currentSitutation}}
-      </p>
-
-      <h6 class="additional-details__body__heading">SCHOOL CLOSURES</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.schoolClosures}}
-      </p>
-
       <h6 class="additional-details__body__heading">COOPERATING AGENCIES</h6>
       <p class="additional-details__body__paragraph">
         {{or-not-any model.fire.cooperatingAgencies}}
       </p>
 
-      <h6 class="additional-details__body__heading">CONDITIONS</h6>
-      <p class="additional-details__body__paragraph">
-        {{or-not-any model.fire.conditions}}
-      </p>
 
       <h6 class="additional-details__body__heading">PHONE NUMBERS</h6>
       <p class="additional-details__body__paragraph">
