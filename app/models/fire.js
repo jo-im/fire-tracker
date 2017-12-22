@@ -199,7 +199,7 @@ export default DS.Model.extend({
   }),
   acreage: Ember.computed('acres', function(){
     let acres = this.get('acres') || '0';
-    if(acres){
+    if(acres > 0){
       return acres.replace(/,\s*$/, '');
     }
   }),
