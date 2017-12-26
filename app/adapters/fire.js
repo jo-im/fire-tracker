@@ -97,7 +97,7 @@ export default DS.Adapter.extend({
       if(data.length){
         return Ember.RSVP.Promise.resolve(data[0].value);
       } else {
-        return Ember.RSVP.Promise.reject(new NotFoundError('hey'));
+        return Ember.RSVP.Promise.reject(new NotFoundError());
       }
     });
   }

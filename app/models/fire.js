@@ -198,9 +198,9 @@ export default DS.Model.extend({
     return moment(this.get('updatedAt')).format('MMMM Do YYYY, h:mm a');
   }),
   acreage: Ember.computed('acres', function(){
-    let acres = this.get('acres') || '0';
+    let acres = `${this.get('acres') || '0'}`.replace(/,\s{0,1}/g, '');
     if(acres > 0){
-      return acres.replace(/,\s*$/, '');
+      return acres;
     }
   }),
   latestTweets: Ember.computed('tweets', function(){
