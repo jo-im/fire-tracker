@@ -85,8 +85,10 @@
           {{/if}}
         </div>
       </div>
-
-      {{air-quality-aside airQuality=model.fire.airQuality}}
+      
+      {{#if model.fire.airQuality}}
+        {{air-quality-aside airQuality=model.fire.airQuality}}
+      {{/if}}
 
     </div>
   </div>
