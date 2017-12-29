@@ -8,6 +8,7 @@ import fetch from 'fetch';
 const PromiseObjectProxy = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);
 
 export default DS.Model.extend({
+  fastboot: Ember.inject.service(),
   _id: DS.attr('string'),
   name: DS.attr('string'),
   slug: DS.attr('string'),
@@ -98,6 +99,7 @@ export default DS.Model.extend({
   lat: DS.attr('string'),
   long: DS.attr('string'),
   perimeter: Ember.computed('_id', function(){
+    if(this.get('fastboot.isFastBoot')) return PromiseObjectProxy.create({promise: Ember.RSVP.Promise.resolve()});
     return PromiseObjectProxy.create({
       promise: fetch(`${ENV.couchdb.endpoint}/fires/${this.get('_id')}/perimeter-history.json`)
         .then(resp => resp.json())

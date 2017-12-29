@@ -12,7 +12,7 @@
         {{#if model.fire.perimeter.content}}
           {{#time-series geoJSON=model.fire.perimeter.content transitionDuration=2000}}
             {{#unless fastboot.isFastBoot}}
-              {{#if shouldPlaybackPerimeter}}
+              {{#if model.fire.shouldPlaybackPerimeter}}
                 {{time-series-control}}
               {{/if}}
             {{/unless}}
