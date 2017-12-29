@@ -7,8 +7,8 @@
       {{#if fire.isLoaded}}
         {{#fire-map class="featured-incident-card__thumbnail" lat=fire.lat lng=fire.long zoom=7 thumbnailMode=true attributionControl=false}}
           {{map-tiles attribution=false}}
-          {{#if fire.perimeter}}
-            {{#time-series geoJSON=fire.perimeter transitionDuration=2000}}
+          {{#if fire.perimeter.content}}
+            {{#time-series geoJSON=fire.perimeter.content transitionDuration=2000}}
             {{/time-series}}
           {{/if}}
           {{#link-to 'fire' fire.slug}}

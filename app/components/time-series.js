@@ -2,8 +2,8 @@
 
 import Ember from 'ember';
 import GeoJSONLayer from 'ember-leaflet/components/geojson-layer';
-import objectAssign from 'npm:object.assign';
-objectAssign.shim();
+// import LGeoJSON from '../lib/geojson-layer';
+
 
 // HOW THE HELL DOES THIS THING WORK???
 //
@@ -43,23 +43,39 @@ export default GeoJSONLayer.extend({
     this.set('currentTime', null);
     
     // add a separate pane to the map that we can render to
-    let map        = this.get('parentComponent')._layer;
+    let map      = this.get('parentComponent')._layer;
     map.createPane('time-series');
     let options  = Object.assign({
       pane: 'time-series',
       className: 'time-series__feature'
     }, this.get('options'));
-    var layer    = L.geoJson(...this.get('requiredOptions'), options);
+
+    // featurecollections don't work because leaflet decides to just
+    // use the contents of each featurecollection and eject the 
+    // featurecollection object, and the child content doesn't
+    // inherit the properties of the parent.
+    let fixedGeoJSON = this.get('requiredOptions')[0].features = 
+      [].concat.apply([], this.get('requiredOptions')[0].features.map(f => {
+        if(f.type !== 'FeatureCollection') return f;
+        return f.features.map(feat => {
+          feat.properties = f.properties;
+          return feat;
+        });
+      }));
+
+    var layer    = new L.GeoJSON(fixedGeoJSON, options);
+
     let features = [].concat(layer.getLayers());
     var series   = this.get('series');
 
-    features.forEach((f) => {
+    features.forEach(f => {
       // load each feature into our series object
       // into groups of time instants, so that all
       // features with the same time instant are
       // loaded at once
 
-      let timestamp = (f.toGeoJSON ? f.toGeoJSON().properties : f.feature.properties).time;
+      // let timestamp = (f.toGeoJSON ? f.toGeoJSON().properties : f.feature.properties).time;
+      let timestamp = f.feature.properties.time;
 
       series[timestamp] = series[timestamp] || [];
       series[timestamp].push(f);

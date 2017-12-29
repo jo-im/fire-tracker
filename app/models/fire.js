@@ -3,6 +3,9 @@ import DS from 'ember-data';
 import moment from 'npm:moment';
 import ENV from '../config/environment';
 import L from '../lib/L';
+import fetch from 'fetch';
+
+const PromiseObjectProxy = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);
 
 export default DS.Model.extend({
   _id: DS.attr('string'),
@@ -94,7 +97,17 @@ export default DS.Model.extend({
   contained: DS.attr('string'),
   lat: DS.attr('string'),
   long: DS.attr('string'),
-  perimeter: DS.attr(),
+  perimeter: Ember.computed('_id', function(){
+    return PromiseObjectProxy.create({
+      promise: fetch(`${ENV.couchdb.endpoint}/fires/${this.get('_id')}/perimeter-history.json`)
+        .then(resp => resp.json())
+        .catch(console.error)
+        .then(json => {
+          if(!json || json.error) return;
+          return json;
+        })
+    });
+  }),
   airQuality: DS.attr(),
   structuresThreatened: DS.attr('string'),
   structuresDestroyed: DS.attr('string'),
@@ -149,8 +162,8 @@ export default DS.Model.extend({
       return days;
     }
   }),
-  shouldPlaybackPerimeter: Ember.computed('perimeter', function(){
-    let perimeter       = this.get('perimeter') || {features: []};
+  shouldPlaybackPerimeter: Ember.computed('perimeter.content', function(){
+    let perimeter       = this.get('perimeter.content') || {features: []};
     let numTimeInstants = perimeter.features.length || 0;
     if(numTimeInstants > 2){
       return true;
