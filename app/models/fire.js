@@ -98,8 +98,9 @@ export default DS.Model.extend({
   contained: DS.attr('string'),
   lat: DS.attr('string'),
   long: DS.attr('string'),
+  _attachments: DS.attr(),
   perimeter: Ember.computed('_id', function(){
-    if(this.get('fastboot.isFastBoot')) return PromiseObjectProxy.create({promise: Ember.RSVP.Promise.resolve()});
+    if(this.get('fastboot.isFastBoot') || !this.get('_attachments.permieter-history.json')) return PromiseObjectProxy.create({promise: Ember.RSVP.Promise.resolve()});
     return PromiseObjectProxy.create({
       promise: fetch(`${ENV.couchdb.endpoint}/fires/${this.get('_id')}/perimeter-history.json`)
         .then(resp => resp.json())

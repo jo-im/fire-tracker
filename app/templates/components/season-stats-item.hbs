@@ -1,0 +1,25 @@
+{{#if (exists trend)}}
+  <div class="season-stats__item__icon"></div>
+{{/if}}
+<div class="season-stats__item__description">
+  <span class="season-stats__item__figure">
+    <span class="season-stats__item__figure-title">{{title}}:</span> 
+    <span class="season-stats__item__figure-number">{{comma-separate value}}</span>
+  </span>
+  {{#if isBelowAverage}}
+    <span class="season-stats__item__trend">
+      Below average
+    </span>
+  {{/if}}
+  {{#if isAverage}}
+    <span class="season-stats__item__trend">
+      About average
+    </span>
+  {{/if}}
+  {{#if isAboveAverage}}
+    <span class="season-stats__item__trend">
+      Above average
+    </span>
+  {{/if}}
+</div>
+
