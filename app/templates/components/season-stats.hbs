@@ -1,7 +1,6 @@
-<h6 class="season-stats__heading">Fire Season 2017</h6>
-{{season-stats-item value=stats.count trend=settings.totalFiresTrend title="Fires this year"}}
-{{season-stats-item value=stats.sum trend=settings.totalAcresTrend title="Acres Burned"}}
+<h6 class="season-stats__heading">Fire Season {{settings.year}}</h6>
+{{season-stats-item value=stats.count trend=settings.totalFiresTrend shouldDisplayTrend=settings.shouldDisplayTrends title="Fires this year"}}
+{{season-stats-item value=stats.sum trend=settings.totalAcresTrend shouldDisplayTrend=settings.shouldDisplayTrends title="Acres Burned"}}
 <p class="season-stats__note">
   {{#link-to 'content' 'about-data'}}* Read more about the data and methodology.{{/link-to}}
 </p>
-
