@@ -22,7 +22,8 @@ export default DS.Serializer.extend({
           acres: row[7],
           contained: row[8],
           county: row[9],
-          isExtinguished: row[10]
+          isExtinguished: row[10],
+          _attachments: row[11]
         }};
       })
     }
