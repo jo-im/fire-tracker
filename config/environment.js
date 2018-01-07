@@ -37,7 +37,7 @@ module.exports = function(environment) {
       includeTimezone: 'all'
     },
     couchdb: {
-      endpoint: process.env.FIRE_TRACKER_COUCHDB_ENDPOINT
+      endpoint: (environment === 'development') ? (process.env.FIRE_TRACKER_COUCHDB_ENDPOINT || '') : ''
     },
     assethost: {
       endpoint: process.env.FIRE_TRACKER_ASSETHOST_ENDPOINT
@@ -48,7 +48,7 @@ module.exports = function(environment) {
       tilesId: process.env.FIRE_TRACKER_MAPBOX_TILES_ID
     },
     fastboot: {
-      hostWhitelist: ['firetracker.scprdev.org', 'projectnumbers.org', /^localhost:\d+$/]
+      hostWhitelist: ['firetracker.scpr.org', 'firetracker.scprdev.org', /^localhost:\d+$/]
     }
   };
 

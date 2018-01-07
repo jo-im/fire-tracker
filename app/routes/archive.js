@@ -4,8 +4,15 @@ export default Ember.Route.extend({
   titleToken: 'Archive',
   fastboot: Ember.inject.service(),
   isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
+  progress: Ember.inject.service(),
   model(){
+    let progress = this.get('progress');
+    progress.start();
+    progress.inc(0.25);
     return this.get('store').query('sparse-fire', {queries: [{descending: true}]});
+  },
+  afterModel(){
+    this.get('progress').done();
   },
   activate() {
     this._super();

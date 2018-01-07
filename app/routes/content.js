@@ -1,7 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  progress: Ember.inject.service(),
   model(params){
+    let progress = this.get('progress');
+    progress.start();
     return Ember.RSVP.hash({
       article: this.store.queryRecord('article', {
         selector: {
@@ -9,10 +12,22 @@ export default Ember.Route.extend({
             $eq: params.slug
           }
         }
+      }).then(article => {
+        progress.inc(1/3);
+        return article;
       }),
-      recentFires: this.get('store').query('sparse-fire', {queries: [{descending: true, limit: 3}]}),
-      settings: this.store.findRecord('settings', 'global')
+      recentFires: this.get('store').query('sparse-fire', {queries: [{descending: true, limit: 3}]}).then(fires => {
+        progress.inc(1/3);
+        return fires;
+      }),
+      settings: this.store.findRecord('settings', 'global').then(settings => {
+        progress.inc(1/3);
+        return settings;
+      })
     });
+  },
+  afterModel(){
+    this.get('progress').done();
   },
   titleToken: function(model) {
     return model.article.get('title');

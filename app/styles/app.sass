@@ -59,6 +59,32 @@ html
   li
     margin-bottom: $unit-in-pixels
 
+#nprogress .bar
+  background: $color-primary
+  z-index: 99999999
+
+#nprogress .spinner
+  z-index: 99999999
+
+#nprogress .spinner-icon
+  border-left-color: $color-primary
+  border-top-color: $color-primary
+
+#nprogress .peg // the peg is hideous
+  display: none
+
+#nprogress .bar:after // use this instead of the peg
+  content: " "
+  display: block
+  position: absolute
+  right: 0px
+  width: 100px
+  width: 120px
+  height: 100%
+  box-shadow: 0 0 10px $color-primary-lightest, 0 0 5px $color-primary-lightest
+  border-bottom-left-radius: 100px 2px
+  opacity: 1.0
+
 @media (max-width: $l-med-breakpoint)
   .footer-component
     @include footer-component--med

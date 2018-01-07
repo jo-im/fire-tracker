@@ -3,18 +3,28 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   fastboot: Ember.inject.service(),
   changes: Ember.inject.service(),
+  progress: Ember.inject.service(),
   titleToken: function(model) {
     return model.fire.get('name');
   },
   model(params){
+    let progress = this.get('progress');
+    progress.start();
     return Ember.RSVP.hash({
-      settings: this.store.findRecord('settings', 'global'),
+      settings: this.store.findRecord('settings', 'global').then(settings => {
+        progress.inc(0.5);
+        return settings;
+      }),
       fire: this.store.queryRecord('fire', {
         "keys": [params.slug]
+      }).then(fire => {
+        progress.inc(0.5);
+        return fire;
       })
     });
   },
   afterModel(model){
+    this.get('progress').done();
     let alias = (model.settings.get('aliases') || []).filter(a => a.from === model.fire.get('slug')).shift();
     if(alias) return this.transitionTo('fire', alias.to);
     this.set('onRemoteChange', Ember.run.bind(this, (change) => {
