@@ -1,20 +1,21 @@
 <h2 class="fire-search__heading">{{heading}}</h2>
 
-<div class="fire-search__search-area">
-  {{input value=query type="text" class="fire-search__input" placeholder=placeholder key-up="onKeyUp"}}
-
-  <ul class="fire-search__results">
-    {{#each results as |result|}}
-      <a class="fire-search__result" href="/{{result.slug}}">
-        <span class="fire-search__result__text">
-          <span class="fire-search__result__name">{{result.name}}</span>,{{#if result.countyName}} {{result.countyName}} {{/if}}{{#if result.distance}} | {{result.distance}} miles away{{#if result.relativeTo}} from {{result.relativeTo}}{{/if}} {{/if}}
-        </span>
-      </a>
-    {{else}}
-      {{#if hasNoResults}}
-        <li class="fire-search__result">No results found.</li>
-      {{/if}}
-    {{/each}}
-  </ul>
+<div class="fire-search__search-area-size">
+  {{#click-outside class="fire-search__search-area" action=(action 'unfocus')}}
+    {{input value=query type="text" class="fire-search__input" placeholder=placeholder key-up="onKeyUp" focus-in="focus"}}
+    <ul class="fire-search__results">
+      {{#each results as |result|}}
+        <a class="fire-search__result" href="/{{result.slug}}">
+          <span class="fire-search__result__text">
+            <span class="fire-search__result__name">{{result.name}}</span>,{{#if result.countyName}} {{result.countyName}} {{/if}}{{#if result.distance}} <span class="fire-search__result__pipe">|</span> {{result.distance}} miles away{{#if result.relativeTo}} from {{result.relativeTo}}{{/if}} {{/if}}
+          </span>
+        </a>
+      {{else}}
+        {{#if hasNoResults}}
+          <li class="fire-search__result">No results found.</li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  {{/click-outside}}
 </div>
 

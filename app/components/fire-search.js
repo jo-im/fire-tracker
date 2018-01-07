@@ -3,6 +3,7 @@ import fetch from 'fetch';
 
 export default Ember.Component.extend({
   classNames: ['fire-search'],
+  classNameBindings: ['isFocused:fire-search--focused'],
   fastboot: Ember.inject.service(),
   style: Ember.computed('background', 'willRender', function(){
     let bg = this.get('background');
@@ -23,7 +24,9 @@ export default Ember.Component.extend({
   }),
   attributeBindings: ['style'],
   actions: {
-    onKeyUp(){}
+    onKeyUp(){},
+    focus(){},
+    unfocus(){}
   }
 });
 

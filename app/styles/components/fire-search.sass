@@ -23,9 +23,12 @@
   @media (max-width: 600px)
     font-size: 32px
 
-.fire-search__search-area
+.fire-search__search-area-size
   max-width: $col * 9
   width: 100%
+
+// .fire-search__search-area
+  // transition: all 0.5s ease
 
 .fire-search__input
   color: $color-base
@@ -87,8 +90,37 @@
 //   @include link-underline($color-black, $color-gray-lightest)
 
 .fire-search__result__text
-  @include link-effect($color-black, $color-gray-lightest)
+  // @include link-effect($color-black, $color-gray-lightest)
+  color: $color-black
+
+.fire-search__result__text:hover
+  color: #F3AA27
 
 .fire-search__result__name
   font-weight: 700
 
+@media (max-width: $l-sm-breakpoint)
+  .fire-search--focused .fire-search__search-area
+    left: 0
+    position: fixed
+    top: 0
+    width: 100%
+    width: 100vw
+    z-index: 100000
+
+  .fire-search--focused .fire-search__results
+    max-width: initial
+    padding: 0
+    width: 100vw
+
+  .fire-search__result
+    padding-left: $row / 2
+    padding-right: $row / 2
+
+@media (max-width: $l-xs-breakpoint)
+  .fire-search__result__pipe
+    display: block
+    height: 0
+    opacity: 0
+
+  

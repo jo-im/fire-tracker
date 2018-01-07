@@ -37,7 +37,7 @@ module.exports = function(environment) {
       includeTimezone: 'all'
     },
     couchdb: {
-      endpoint: (environment === 'development') ? (process.env.FIRE_TRACKER_COUCHDB_ENDPOINT || '') : ''
+      endpoint: process.env.FIRE_TRACKER_COUCHDB_ENDPOINT
     },
     assethost: {
       endpoint: process.env.FIRE_TRACKER_ASSETHOST_ENDPOINT
