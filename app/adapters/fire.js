@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import fetch from 'fetch';
 import ENV from '../config/environment';
 import { NotFoundError } from '../lib/fetch-errors';
 import shoebox from '../mixins/shoebox';

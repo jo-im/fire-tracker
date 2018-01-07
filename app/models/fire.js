@@ -104,7 +104,6 @@ export default DS.Model.extend({
     return PromiseObjectProxy.create({
       promise: fetch(`${ENV.couchdb.endpoint}/fires/${this.get('_id')}/perimeter-history.json`)
         .then(resp => resp.json())
-        .catch(console.error)
         .then(json => {
           if(!json || json.error) return;
           return json;

@@ -20,7 +20,7 @@ export default Ember.Component.extend({
     if(this.get('fastboot.isFastBoot') || !slug){
       return '#';
     }
-    let protocol = (window.location.protocol || '').replace(/:+/g, ':');
+    // let protocol = (window.location.protocol || '').replace(/:+/g, ':');
     if(this.get('article')) {
       return `${window.location.protocol}://${window.location.host}/articles/${this.get('article.slug')}`;
     }

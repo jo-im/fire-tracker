@@ -2,10 +2,9 @@
 
 import Ember from 'ember';
 import GeoJSONLayer from 'ember-leaflet/components/geojson-layer';
-// import LGeoJSON from '../lib/geojson-layer';
 
 
-// HOW THE HELL DOES THIS THING WORK???
+// HOW DOES THIS THING WORK???
 //
 // I'll tell you.
 //
@@ -28,11 +27,6 @@ export default GeoJSONLayer.extend({
 
   init(){
     this._super(...arguments);
-    // this.set('i', 0);
-    // this.set('playing', false);
-    // this.set('series', {});
-    // this.set('timeInstants', []);
-    // this.set('currentTime', null);
   },
 
   createLayer() {

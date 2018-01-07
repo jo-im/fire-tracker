@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import b2a   from 'npm:b2a';
 import md5 from 'npm:blueimp-md5';
 
 const {
@@ -31,7 +30,6 @@ export default Service.extend({
   },
 
   tokenizeAjaxRequest(url, options = {}) {
-    let data = options.data;
     return md5(`${url}---${JSON.stringify(options)}`)
       .replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
   }

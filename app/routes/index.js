@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import fetch from 'fetch';
 import ENV from '../config/environment';
 import shoebox from '../mixins/shoebox';
 
@@ -18,7 +17,7 @@ export default Ember.Route.extend(shoebox, {
         if(fireSeasonYear){
           hash['fireSeason'] = this.fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/fire-season-${fireSeasonYear}?limit=20&reduce=true`)
             .then(resp => resp.json())
-            .catch(err => {
+            .catch(() => {
               // someone probably misconfigured the year
               // so do nothing
               return {};
