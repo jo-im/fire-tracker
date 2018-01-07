@@ -14,7 +14,10 @@ export default Ember.Service.extend(Ember.Evented, {
       .then(resp => resp.json())
       .then(json => {
         json.results.forEach(result => this.trigger('change', result));
-        this._listen();
-      });
+      })
+      .catch(() => { 
+        // probably got a 504 so do nothing.
+      })
+      .then(() => this._listen());
   }
 });
