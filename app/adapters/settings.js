@@ -1,12 +1,12 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import fetch from 'fetch';
 import ENV from '../config/environment';
+import shoebox from '../mixins/shoebox';
 
-export default DS.Adapter.extend({
+export default DS.Adapter.extend(shoebox, {
 
   findAll: function(){
-    return fetch(`${ENV.couchdb.endpoint}/settings/_all_docs/?include_docs=true&reduce=false&descending=true`).then((resp) => {
+    return this.fetch(`${ENV.couchdb.endpoint}/settings/_all_docs/?include_docs=true&reduce=false&descending=true`).then(resp => {
       return resp.json();
     });
   },
@@ -15,8 +15,8 @@ export default DS.Adapter.extend({
     query = query || {};
     query.descending = query.descending || false;
     query.limit      = query.limit      || 100;
-    return fetch(`${ENV.couchdb.endpoint}/settings/_all_docs/?include_docs=true&reduce=false&descending=${query.descending}&limit=${query.limit}`)
-      .then((resp) => {
+    return this.fetch(`${ENV.couchdb.endpoint}/settings/_all_docs/?include_docs=true&reduce=false&descending=${query.descending}&limit=${query.limit}`)
+      .then(resp => {
         if(resp.status === 200) {
           return resp.json();
         } else {
@@ -32,17 +32,17 @@ export default DS.Adapter.extend({
   },
 
   findRecord: function(store, type, id){
-    return fetch(`${ENV.couchdb.endpoint}/settings/${id}`).then(resp => resp.json());
+    return this.fetch(`${ENV.couchdb.endpoint}/settings/${id}`).then(resp => resp.json());
   },
 
   queryRecord: function(store, type, query){
-    return fetch(`${ENV.couchdb.endpoint}/settings/_find/?include_docs=true`, {
+    return this.fetch(`${ENV.couchdb.endpoint}/settings/_find/?include_docs=true`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
         'Content-Type': 'application/json; charset=utf-8'
       }
-    }).then((resp) => { 
+    }).then(resp => { 
       return resp.json(); 
     });
   }

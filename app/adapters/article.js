@@ -1,12 +1,12 @@
 import DS from 'ember-data';
-import fetch from 'fetch';
 import ENV from '../config/environment';
 import Ember from 'ember';
 import { NotFoundError } from '../lib/fetch-errors';
+import shoebox from '../mixins/shoebox';
 
-export default DS.Adapter.extend({
+export default DS.Adapter.extend(shoebox, {
   queryRecord: function(store, type, query){
-    return fetch(`${ENV.couchdb.endpoint}/articles/_find`, {
+    return this.fetch(`${ENV.couchdb.endpoint}/articles/_find`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {

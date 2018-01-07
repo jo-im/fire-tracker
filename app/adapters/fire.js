@@ -3,6 +3,7 @@ import DS from 'ember-data';
 import fetch from 'fetch';
 import ENV from '../config/environment';
 import { NotFoundError } from '../lib/fetch-errors';
+import shoebox from '../mixins/shoebox';
 
 // const {
 //   run: {
@@ -10,7 +11,7 @@ import { NotFoundError } from '../lib/fetch-errors';
 //   }
 // } = Ember;
 
-export default DS.Adapter.extend({
+export default DS.Adapter.extend(shoebox, {
 
   _onInit : Ember.on('init', function()  {
     this._startChangesToStoreListener();
@@ -55,7 +56,7 @@ export default DS.Adapter.extend({
   },
 
   findAll: function(){
-    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false&descending=true`).then((resp) => {
+    return this.fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false&descending=true`).then((resp) => {
       return resp.json()
         .then((json) => {
           json.rows.forEach(r => r.doc = r.value);
@@ -69,7 +70,7 @@ export default DS.Adapter.extend({
     query.descending = query.descending || false;
     query.limit      = query.limit      || 100;
     query.reduce     = query.reduce     || false;
-    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false`, {
+    return this.fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {
@@ -79,13 +80,13 @@ export default DS.Adapter.extend({
   },
 
   findRecord: function(store, type, id){
-    return fetch(`${ENV.couchdb.endpoint}/fires/${id}`)
+    return this.fetch(`${ENV.couchdb.endpoint}/fires/${id}`)
       .then(resp => resp.json())
       .catch(err => new NotFoundError(err));
   },
 
   queryRecord: function(store, type, query){
-    return fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false&limit=1`, {
+    return this.fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false&limit=1`, {
       method: "POST",
       body: JSON.stringify(query),
       headers: {

@@ -22,6 +22,7 @@
     "proxy-polyfill": "^0.1.7"
   },
   "devDependencies": {
+    "blueimp-md5": "^2.10.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-browserify": "^1.2.0",
     "ember-cli": "~2.17.0",
@@ -62,7 +63,6 @@
     "node-sass": "^4.7.2",
     "object.assign": "^4.0.4",
     "sass-module-importer": "^1.4.0",
-    "sitemap-autogenerator": "0.0.9",
     "talisman": "^0.20.0"
   },
   "engines": {
