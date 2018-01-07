@@ -1,7 +1,75 @@
 {{masthead-component id="l-masthead" hasBorder=true}}
 {{notification-component active=model.fire.isOutdated}}
 <main id="l-fire">
-  {{fire-header id="l-fire__header" fire=model.fire}}
+  <header id="l-fire__header" class="fire-header t-dark">
+    <div class="fire-header__content">
+      <div class="fire-header__basic-info">
+        <h2 class="fire-header__heading">{{model.fire.name}}</h2>
+        <ul class="fire-header__basic-info__data">
+          <li class="fire-header__basic-info__data-item">
+            <span class="fire-header__basic-info__data-name">{{model.fire.countyName}}</span> 
+          </li>
+          <li class="fire-header__basic-info__pipe">
+            |
+          </li>
+          <li class="fire-header__basic-info__data-item">
+            <span class="fire-header__basic-info__data-name">Started:</span> {{moment-format model.fire.startedAt 'MMM DD, YYYY'}}
+          </li>
+          <li class="fire-header__basic-info__pipe">
+            |
+          </li>
+          <li class="fire-header__basic-info__data-item">
+            <span class="fire-header__basic-info__data-name">Last Updated:</span> {{moment-format model.fire.updatedAt 'dddd, MMMM DD, YYYY h:mm A'}}
+          </li>
+        </ul>
+      </div>
+      <div class="fire-header__stats">
+        {{#if model.fire.wasExtinguished}}
+          {{#if model.fire.shouldDisplayBurnedFor}}
+            <div class="fire-header__stats__item">
+              <h6 class="fire-header__stats__item-heading">Burned For</h6>
+              <div class="fire-header__stats__item-stat">
+                <img class="fire-header__stats__item-icon" src="/images/icons/calendar.svg">
+                <h3 class="fire-header__stats__stat">{{model.fire.burnedFor}} days</h3>
+              </div>
+            </div>
+            <div class="fire-header__stats__pipe"></div>
+          {{/if}}
+        {{else}}
+          {{#if model.fire.shouldDisplayDuration}}
+            <div class="fire-header__stats__item">
+              <h6 class="fire-header__stats__item-heading">Burning For</h6>
+              <div class="fire-header__stats__item-stat">
+                <img class="fire-header__stats__item-icon" src="/images/icons/calendar.svg">
+                <h3 class="fire-header__stats__stat">{{model.fire.duration}} days</h3>
+              </div>
+            </div>
+            <div class="fire-header__stats__pipe"></div>
+          {{/if}}
+        {{/if}}
+        <div class="fire-header__stats__item">
+          <h6 class="fire-header__stats__item-heading">Containment</h6>
+          <div class="fire-header__stats__item-stat">
+            {{containment-graph containment=model.fire.containment}}
+            <h3 class="fire-header__stats__stat">{{model.fire.containment}}</h3>
+          </div>
+        </div>
+        {{#if model.fire.shouldDisplayAcres}}
+          <div class="fire-header__stats__pipe"></div>
+          <div class="fire-header__stats__item">
+            <h6 class="fire-header__stats__item-heading">Acres Burned</h6>
+            <div class="fire-header__stats__item-stat">
+              <img class="fire-header__stats__item-icon" src="/images/icons/map.svg">
+              <h3 class="fire-header__stats__stat">{{comma-separate model.fire.acreage}}</h3>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+      {{spread-icons fire=model.fire extra-classes="fire-header__spread-icons spread-icons--sm spread-icons--horiz spread-icons--darker"}}
+    </div>
+  </header>
+
+
   <div id="l-fire__primary-content">
     {{spread-icons id="l-fire__primary-content__spread-icons" fire=model.fire}}
 

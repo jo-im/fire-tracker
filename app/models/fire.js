@@ -158,8 +158,8 @@ export default DS.Model.extend({
     let startedAt      = this.get('startedAt');
     let extinguishedAt = this.get('extinguishedAt');
     if(startedAt && extinguishedAt){
-      let a = moment(startedAt);
-      let b = moment(extinguishedAt);
+      let a = moment(new Date(startedAt));
+      let b = moment(new Date(extinguishedAt));
       let days = Math.abs(b.diff(a, 'days'));
       // return `${days} days`;
       return days;
