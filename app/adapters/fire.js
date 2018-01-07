@@ -4,55 +4,7 @@ import ENV from '../config/environment';
 import { NotFoundError } from '../lib/fetch-errors';
 import shoebox from '../mixins/shoebox';
 
-// const {
-//   run: {
-//     bind
-//   }
-// } = Ember;
-
 export default DS.Adapter.extend(shoebox, {
-
-  _onInit : Ember.on('init', function()  {
-    this._startChangesToStoreListener();
-  }),
-
-  _startChangesToStoreListener: function () {
-    // var callback = bind(this, 'onChange');
-    // if (window && window.EventSource) {
-    //   new EventSource(`${ENV.couchdb.endpoint}/fires/_changes?since=now&feed=eventsource`).on('message', function(data){
-    //     debugger
-    //     let json = JSON.parse(data);
-    //     ((json || {}).results || []).forEach(callback);
-    //   }, false);
-    // }
-  },
-
-  onChange: function (change) {
-    var store = this.store;
-    try {
-      store.modelFor('fire');
-    } catch (e) {
-      // The record refers to a model which this version of the application
-      // does not have.
-      return;
-    }
-
-    var recordInStore = store.peekRecord('fire', change.id);
-
-    if (!recordInStore.get('isLoaded') || recordInStore.get('hasDirtyAttributes') ) {
-      // The record either hasn't loaded yet or has unpersisted local changes.
-      // In either case, we don't want to refresh it in the store
-      // (and for some substates, attempting to do so will result in an error).
-      return;
-    }
-
-    // if (change.deleted) {
-    //   store.unloadRecord(recordInStore);
-    // } else {
-    //   recordInStore.reload();
-    // }
-    recordInStore.set('isOutdated', true);
-  },
 
   findAll: function(){
     return this.fetch(`${ENV.couchdb.endpoint}/fires/_design/display/_view/full?reduce=false&descending=true`).then((resp) => {
