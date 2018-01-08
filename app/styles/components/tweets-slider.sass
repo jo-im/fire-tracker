@@ -176,7 +176,12 @@ $tweet-card-small-size: 270px
     position: absolute
     right: 20px
   .tweets-slider__control
-    display: none
+    // display: none
+    transform: translateY($tweet-card-base-size / 3)
+  .tweets-slider__control-left
+    left: 5px
+  .tweets-slider__control-right
+    right: 5px
   .tweets-slider__cards__card
     flex-direction: column
     height: $tweet-card-small-size
