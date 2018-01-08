@@ -1,8 +1,7 @@
 Fire Tracker
 ==============
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+KPCC's tool for following & researching California wildfires.
 
 ## Prerequisites
 
@@ -11,13 +10,15 @@ You will need the following things properly installed on your computer.
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with NPM)
 * [Ember CLI](https://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* [PhantomJS](http://phantomjs.org/) (optional – needed for testing)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd oyster-cracker`
+* `cd fire-tracker`
 * `npm install`
+
+You will then need to populate a `.env` file in the project root with the required environment variables.  Use `.env.template` as a reference.
 
 ## Running / Development
 
@@ -40,9 +41,11 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
+This application comes with a Dockerfile that will allow you to build a Docker image for production deployment.  The image builds with Fastboot Server to serve the application pages and Nginx for static assets.  The application is served through port `8080`.
+
 No deployment process has been outlined yet.
 
-Hypothetically, the basic application assets can be served from a basic file-server like Nginx, or even S3, and a load balancer can direct most requests directly to `index.html` where the Ember router will take over.  Special routes can be mapped to CouchDB databases so they are hosted under the same domain(no opportunity for weird CORS issues).  The same thing could possibly be done for an admin application(i.e. Fire Marshal), so when a request to `/admin` is made, the respose is served from the admin application rather than Fire Tracker or CouchDB.
+At KPCC, we use Rancher to manage Docker containers and we have a stack setup to load-balance & forward requests between different containers under the same domain.
 
 #### More on building Docker images
 
