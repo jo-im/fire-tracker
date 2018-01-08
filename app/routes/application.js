@@ -156,7 +156,7 @@ export default Ember.Route.extend({
           }
         },
       ];
-      if(this.get('fastboot.isFastBoot') && !(this.get('fastboot.host') || '').match(/firetracker.scpr.org/)){
+      if(this.get('fastboot.isFastBoot') && !this.getWithDefault('fastboot.request.host', '').match(/firetracker.scpr.org/)){
         tags.push({
           type: 'meta',
           tagId: 'robots',

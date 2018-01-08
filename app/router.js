@@ -19,9 +19,10 @@ const Router = Ember.Router.extend(RouterScroll, {
   },
   _trackPage() {
     scheduleOnce('afterRender', this, () => {
-      const page  = this.get('url');
-      const title = this.getWithDefault('currentRouteName', 'unknown');
-      get(this, 'metrics').trackPage({ page, title });
+      let page  = this.get('url');
+      let title = this.getWithDefault('headData.title', 'unknown'); 
+      let metrics = get(this, 'metrics');
+      metrics.trackPage({ page, title, dimension6: 'Southern California Public Radio', dimension7: 'Story' });
     });
   }
 });
