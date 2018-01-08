@@ -43,7 +43,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 FROM base AS release
 
 # Production API settings
-ARG FIRE_TRACKER_COUCHDB_ENDPOINT=https://firetracker.scprdev.org/api
+ARG FIRE_TRACKER_COUCHDB_ENDPOINT=https://firetracker.scpr.org/api
 ARG FIRE_TRACKER_MAPBOX_USERNAME=kpccdatadesk
 ARG FIRE_TRACKER_MAPBOX_TILES_ID=cjb72rdr026uv2snpo454snmi
 ARG FIRE_TRACKER_MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoia2JyaWdncyIsImEiOiJjajg2NHpxMmcwc2I4MzJwZGZyNTU2dTU2In0.sJblWZzx_-6PmOYVVjPfLQ
