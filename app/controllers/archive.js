@@ -18,9 +18,9 @@ export default Ember.Controller.extend({
     let query = this.get('query');
     if(query && query.length){
       let results = this.get('searchIndex').search(query);
-      this.set('filteredResults', results);
+      this.set('filteredResults', Ember.A(results));
     } else {
-      this.set('filteredResults', this.get('model').toArray() || []);
+      this.set('filteredResults', Ember.A(this.get('model').toArray() || []));
     }
     this.set('idx', 0);
     this.set('totalResults', this.get('filteredResults.length'));

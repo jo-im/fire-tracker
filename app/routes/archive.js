@@ -16,10 +16,14 @@ export default Ember.Route.extend({
   },
   activate() {
     this._super();
-    if(!this.get('isFastBoot')){
-      window.scrollTo(0,0);
-      window.addEventListener("mousewheel", this.onmousewheel);
-    }
+    if(this.get('isFastBoot')) return;
+    window.scrollTo(0,0);
+    window.addEventListener("mousewheel", this.onmousewheel);
+  },
+  deactivate() {
+    this._super();
+    if(this.get('isFastBoot')) return;
+    window.removeEventListener("mousewheel", this.onmousewheel);
   },
   onmousewheel(e){
     // fixes infinite scroll in chrome
@@ -38,7 +42,6 @@ export default Ember.Route.extend({
     willTransition(){
       if(this.get('isFastBoot')) return;
       Ember.$('body').removeClass("t-dark");
-      window.removeEventListener("mousewheel", this.onmousewheel);
     }
   }
 });
