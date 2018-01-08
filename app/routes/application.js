@@ -26,7 +26,7 @@ export default Ember.Route.extend({
   },
   headTags: function(){
     let description = '89.3 KPCC\'s Fire Tracker is a tool for following and researching California wildfires.';
-    return [
+    let tags = [
         {
           type: 'meta',
           tagId: 'description',
@@ -156,6 +156,17 @@ export default Ember.Route.extend({
           }
         },
       ];
+      if(!(this.get('fastboot.host') || '').match(/firetracker.scpr.org/)){
+        tags.push({
+          type: 'meta',
+          tagId: 'robots',
+          attrs: {
+            name: 'robots',
+            content: 'noindex nofollow'
+          }
+        });
+      }
+      return tags;
   }
 });
 
