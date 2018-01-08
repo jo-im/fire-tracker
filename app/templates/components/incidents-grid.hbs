@@ -8,18 +8,18 @@
     {{/link-to}}
     <ul class="incidents-grid__card__list">
       {{#if fire.startedAt}}
-        <li class="incidents-grid__card__item">
+        <li class="incidents-grid__card__item" data-property-name="startedAt">
           {{moment-format fire.startedAt 'MMM DD, YYYY'}}
         </li>
       {{/if}}
       {{#if fire.countyName}}
-        <li class="incidents-grid__card__item">{{fire.countyName}}</li>
+        <li class="incidents-grid__card__item" data-property-name="countyName">{{fire.countyName}}</li>
       {{/if}}
       {{#if fire.acreage}}
-        <li class="incidents-grid__card__item">{{comma-separate fire.acreage}} Acres</li>
+        <li class="incidents-grid__card__item" data-property-name="acreage">{{comma-separate fire.acreage}} Acres</li>
       {{/if}}
       {{#if fire.containment}}
-        <li class="incidents-grid__card__item">{{fire.containment}} contained</li>
+        <li class="incidents-grid__card__item" data-property-name="containment">{{fire.containment}} contained</li>
       {{/if}}
     </ul>
   </div>

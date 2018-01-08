@@ -128,14 +128,16 @@
     border: none
   .incidents-grid__card
     height: initial
-    .incidents-grid__card__list
-      display: flex
-      li:nth-child(1), li:nth-child(3)
-        display: none
-      li:nth-child(2)
-        border-right: 1px solid gray
-        margin-right: 6px
-        padding-right: 6px
+  .incidents-grid__card__list
+    display: flex
+  .incidents-grid__card__item
+    flex-shrink: 0
+  .incidents-grid__card__item[data-property-name="startedAt"], .incidents-grid__card__item[data-property-name="acreage"]
+    display: none
+  .incidents-grid__card__item[data-property-name="containment"]
+    border-left: 1px solid gray 
+    margin-left: 6px
+    padding-left: 6px
   .incidents-grid__card, .incidents-grid__link-card
     min-height: unset
     min-height: initial
