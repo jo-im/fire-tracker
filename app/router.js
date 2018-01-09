@@ -9,19 +9,21 @@ const Router = Ember.Router.extend(RouterScroll, {
   location: config.locationType,
   rootURL: config.rootURL,
   headData: Ember.inject.service(),
+  fastboot: Ember.inject.service(),
+  metrics: Ember.inject.service(),
   setTitle(title) {
     this.set('headData.title', title);
   },
-  metrics: Ember.inject.service(),
   didTransition() {
     this._super(...arguments);
+    if(this.get('fastboot.isFastBoot')) return;
     this._trackPage();
   },
   _trackPage() {
     scheduleOnce('afterRender', this, () => {
       let page  = this.get('url');
       let title = this.getWithDefault('headData.title', 'unknown'); 
-      let metrics = get(this, 'metrics');
+      let metrics = get(this, 'metrics'); 
       metrics.trackPage({ page, title, dimension6: 'Southern California Public Radio', dimension7: 'Story' });
     });
   }
