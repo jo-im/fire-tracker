@@ -1,3 +1,5 @@
+/* global MobileDetect */
+
 import Ember from 'ember';
 import fetch from 'fetch';
 
@@ -25,7 +27,12 @@ export default Ember.Component.extend({
   attributeBindings: ['style'],
   actions: {
     onKeyUp(){},
-    focus(){},
+    focus(){
+      let md = new MobileDetect(window.navigator.userAgent);
+      if(md.phone()) {
+        window.scrollTo(0, this.element.querySelector('.fire-search__search-area').getBoundingClientRect().top);
+      }
+    },
     unfocus(){}
   }
 });

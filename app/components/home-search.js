@@ -94,21 +94,7 @@ export default FireSearch.extend({
       });
   },
   actions: {
-    onKeyUp(){},
-    focus(){
-      let query = this.get('query');
-      if(this.getResults && query && query.length){
-        this.getResults();
-      }
-      this.set('isFocused', true);
-    },
-    unfocus(){
-      let results = this.get('results');
-      if(results && results.length) {
-        this.set('results', []);
-      };
-      this.set('isFocused', false);
-    }
+    onKeyUp(){}
   }
 });
 

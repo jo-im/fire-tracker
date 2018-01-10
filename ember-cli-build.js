@@ -1,8 +1,20 @@
 /* eslint-env node */
 'use strict';
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const nodeSass = require('node-sass'); // loads the version in your package.json
+const EmberApp     = require('ember-cli/lib/broccoli/ember-app');
+const nodeSass     = require('node-sass'); // loads the version in your package.json
+const Funnel       = require('broccoli-funnel');
+const UnwatchedDir = require('broccoli-source').UnwatchedDir;
+
+function funnel(options){
+  let sourceDir = options.sourceDir;
+  delete options.sourceDir;
+  let defaults  = {
+    destDir: '',
+    include: ['*.js', '*.css', '*.scss', '*.sass']
+  };
+  return new Funnel(new UnwatchedDir(sourceDir), Object.assign(defaults, options));
+}
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
@@ -29,7 +41,11 @@ module.exports = function(defaults) {
     },
     nodeModulesToVendor: [
       // 'node_modules/phantomjs-polyfills/polyfills'
-      'node_modules/nprogress/'
+      'node_modules/nprogress/',
+      funnel({
+        sourceDir: 'node_modules/mobile-detect',
+        destDir: 'mobile-detect'
+      })
     ]
   });
 
@@ -47,6 +63,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('vendor/nprogress.css');
+  app.import('vendor/mobile-detect/mobile-detect.js');
 
   return app.toTree();
 };
