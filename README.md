@@ -11,12 +11,15 @@ You will need the following things properly installed on your computer.
 * [Node.js](https://nodejs.org/) (with NPM)
 * [Ember CLI](https://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/) (optional – needed for testing)
+* [CouchDB](https://http://couchdb.apache.org/) or [PouchDB](https://pouchdb.com/)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
 * `cd fire-tracker`
 * `npm install`
+
+An instance of either CouchDB or PouchDB should be available to the application.  For development, it's recommended that you run one of these database applications locally.  [PouchDB Server](https://github.com/pouchdb/pouchdb-server) is the easiest way to to this.  Information on how to seed your database with the necessary design documents is available in the [Firewatch](https://github.com/scpr/firewatch) repo. 
 
 You will then need to populate a `.env` file in the project root with the required environment variables.  Use `.env.template` as a reference.
 
@@ -42,8 +45,6 @@ Make use of the many generators for code, try `ember help generate` for more det
 ### Deploying
 
 This application comes with a Dockerfile that will allow you to build a Docker image for production deployment.  The image builds with Fastboot Server to serve the application pages and Nginx for static assets.  The application is served through port `8080`.
-
-No deployment process has been outlined yet.
 
 At KPCC, we use Rancher to manage Docker containers and we have a stack setup to load-balance & forward requests between different containers under the same domain.
 
@@ -77,7 +78,7 @@ Think of CouchDB "databases" in the same way you would think of "tables" in a re
 
 This application mainly accesses the `fires` database through [CouchDB views](http://docs.couchdb.org/en/2.0.0/couchapp/ddocs.html#view-functions), which are special records that contain JavaScript map/reduce functions to create filtered results that are indexed.  This is how we can retrieve lots of sparse fire records without bringing in information we don't need(like perimeter data and tweets), keeping the application performant.
 
-Copies of design documents are located under the `_design/` directory in this repo.
+Copies of the required design documents are located in the [Firewatch repo](https://github.com/SCPR/firewatch/tree/master/seed).
 
 #### Authentication
 

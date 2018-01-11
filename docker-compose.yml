@@ -1,16 +1,21 @@
-version: '3'
-
+version: '2'
 services:
-
-  firetracker:
-    # build: .
-    image: scprdev/firetracker
-    container_name: firetracker
+  CouchDB:
+    image: couchdb:2.1.1
+    hostname: firetracker-couchdb
+    stdin_open: true
+    volumes:
+      - firetracker-couchdb-settings:/opt/couchdb/etc/local.d
+      - firetracker-couchdb-data:/opt/couchdb/data
+    tty: true
     ports:
-      - 8080:8080/tcp
-      - 4000:4000/tcp
-    # env_file:
-    #   - .env
+      - 5984:5984/tcp
+  Application:
+    build: .
+    hostname: firetracker
     stdin_open: true
     tty: true
+volumes:
+  firetracker-couchdb-settings:
+  firetracker-couchdb-data:
 
