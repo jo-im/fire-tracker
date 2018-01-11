@@ -43,7 +43,7 @@ export default FireSearch.extend({
     }
     // first try a full text search
     Ember.RSVP.Promise.resolve(this.get('searchIndex').search(query))
-      .then((results) => {
+      .then(results => {
         if(results.length){
           // doing this so that the distance attributes we
           // add later do not persist on the model object
