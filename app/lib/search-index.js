@@ -1,4 +1,5 @@
 import fuzzySoundex from 'npm:talisman/phonetics/fuzzy-soundex';
+import damerauLevenshtein from 'npm:talisman/metrics/distance/damerau-levenshtein';
 import moment from 'npm:moment';
 
 // This is a very simplistic full-text search implementation.
@@ -29,12 +30,10 @@ class SearchIndex {
           let vals = moment(value).format('MMMM MMM YYYY').split(' ');
           indice.push(vals[0]);
           indice.push(vals[1]);
-          // indice.push(fuzzySoundex(vals[0]));
-          // indice.push(fuzzySoundex(vals[1]));
           indice.push(vals[2]);
         }
       });
-      return [indice.join(' '), item];
+      return [indice.filter(x => x).join(' '), item];
     });
   }
   search(query){
@@ -42,7 +41,13 @@ class SearchIndex {
       .split(' ')
       .map(i => `(?=.*${parseInt(i) ? i : '(' + i + '|' + fuzzySoundex(i) + ')' })`).join('');
     let matcher  = new RegExp(matcherString, 'gi');
-    return this.items.filter(item => (item[0] || '').match(matcher)).map(item => item[1]);
+    let items = this.items.filter(item => (item[0] || '').match(matcher));
+    if(!query.match(/\d/)){
+      items = items.sort((a, b) => {
+        return damerauLevenshtein(query, a[1].get('name')) - damerauLevenshtein(query, b[1].get('name'));
+      });
+    }
+    return items.map(item => item[1]);
   }
 }
 
