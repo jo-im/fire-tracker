@@ -137,13 +137,13 @@
   color: $color-gray
 
 .footer-component__foot__link
-  @include link-effect($color-gray, $color-gray-dark)
+  @include hyperlink($color-gray, $color-primary, $color-gray-darkest)
 
 .footer-component__foot__link--primary
   color: $color-primary
 
 .footer-component__foot__link--primary
-  @include link-effect($color-primary, $color-gray-dark)
+  @include link-effect($color-primary, $color-gray-darkest)
 
 .footer-component__call-to-action
   align-items: center
@@ -164,7 +164,6 @@
   width: 17px
 
 @mixin footer-component--med
-
   .footer-component__call-to-action
     display: none
 

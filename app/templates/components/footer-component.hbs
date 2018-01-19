@@ -1,10 +1,10 @@
 <div class="footer-component__head">
   <div class="footer-component__logos">
-    <a class="footer-component__logos__firetracker" href="#">
+    {{#link-to 'index' class="footer-component__logos__firetracker"}}
       <img src="/images/logo.svg">
-    </a>
+    {{/link-to}}
     <div class="footer-component__logos__pipe"></div>
-    <a class="footer-component__logos__kpcc" href="/">
+    <a class="footer-component__logos__kpcc" href="https://www.scpr.org/" target="_blank">
       <svg class="footer-component__logos__kpcc-image">
         <use class="" xlink:href="/images/scpr-sprite.svg#logo_kpcc-white"/>
       </svg>
@@ -16,7 +16,9 @@
   </a>
 </div>
 <nav class="footer-component__foot">
-  <a class="footer-component__foot-item footer-component__foot__link footer-component__foot-item footer-component__foot__link--primary" href="/terms/">About Fire Tracker</a>
+  {{#link-to 'content' 'about-data' class="footer-component__foot-item footer-component__foot__link footer-component__foot-item footer-component__foot__link--primary"}}
+    About Fire Tracker
+  {{/link-to}}
   <a class="footer-component__foot-item footer-component__foot__link" href="https://scpr.org/terms/">Terms &amp; Conditions</a>
   <a class="footer-component__foot-item footer-component__foot__link" href="https://scpr.org/privacy/">Privacy</a>
   <a class="footer-component__foot-item footer-component__foot__link" href="https://scpr.org/web_site_feedback">Feedback</a>

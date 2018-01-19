@@ -1,4 +1,5 @@
 .content-article
+  color: $color-base
   font-family: $font-sans-base
   font-size: 18px
   line-height: 30px
@@ -13,3 +14,6 @@
   .content-article__lede, .content-article > *:first-child
     font-size: 20px
 
+.content-article a
+  color: $color-primary !important
+  @include link-effect($color-primary)

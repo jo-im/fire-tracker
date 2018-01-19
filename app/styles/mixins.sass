@@ -3,25 +3,20 @@
   & > *
     transform: skew(0deg, -$degrees)
 
-@mixin link-underline($underline-color, $bg-color: $color-white)
-  background: linear-gradient($bg-color, $bg-color), linear-gradient($bg-color, $bg-color), linear-gradient($underline-color, $underline-color)
-  background-position: 0 90%, 100% 90%, 0 90%
-  background-repeat: no-repeat, no-repeat, repeat-x
-  background-size: .05em 1px, .05em 1px, 1px 1px
-  text-shadow: .03em 0 $bg-color, -.03em 0 $bg-color, 0 .03em $bg-color, 0 -.03em $bg-color, .06em 0 $bg-color, -.06em 0 $bg-color, .09em 0 $bg-color, -.09em 0 $bg-color, .12em 0 $bg-color, -.12em 0 $bg-color, .15em 0 $bg-color, -.15em 0 $bg-color
-
-@mixin link-effect($underline-color, $bg-color: $color-white)
-  // filter: brightness(1)
-  $lighter-color: lighten($underline-color, 10%)
-  $hover-color: saturate($lighter-color, 100%)
-  color: $underline-color
+@mixin hyperlink($base-color, $hover-color, $bg-color: $color-white)
+  color: $base-color
   transition: color 0.15s ease
+  text-shadow: .03em 0 $bg-color, -.03em 0 $bg-color, 0 .03em $bg-color, 0 -.03em $bg-color, .06em 0 $bg-color, -.06em 0 $bg-color, .09em 0 $bg-color, -.09em 0 $bg-color, .12em 0 $bg-color, -.12em 0 $bg-color, .15em 0 $bg-color, -.15em 0 $bg-color
   &:hover
     color: $hover-color
     background: linear-gradient($bg-color, $bg-color), linear-gradient($bg-color, $bg-color), linear-gradient($hover-color, $hover-color)
     background-position: 0 90%, 100% 90%, 0 90%
     background-repeat: no-repeat, no-repeat, repeat-x
     background-size: .05em 1px, .05em 1px, 1px 1px
-    // filter: brightness(1.25)
-    text-shadow: .03em 0 $bg-color, -.03em 0 $bg-color, 0 .03em $bg-color, 0 -.03em $bg-color, .06em 0 $bg-color, -.06em 0 $bg-color, .09em 0 $bg-color, -.09em 0 $bg-color, .12em 0 $bg-color, -.12em 0 $bg-color, .15em 0 $bg-color, -.15em 0 $bg-color
 
+@mixin link-effect($underline-color, $bg-color: $color-white)
+  $lighter-color: lighten($underline-color, 10%)
+  $hover-color: saturate($lighter-color, 100%)
+  @include hyperlink($underline-color, $hover-color, $bg-color)
+
+    
