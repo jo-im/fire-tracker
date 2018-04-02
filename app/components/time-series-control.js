@@ -1,6 +1,13 @@
 import MapControl from './map-control';
 
-export default MapControl.extend({
+/**
+ * Toggles the time-series animation layer in the map.
+ * @class TimeSeriesControl
+ * @extends MapControl
+ * @property {boolean} hasInteracted - Indicates if the user has interacted with the control so we can give the component an initial state.
+ */
+
+const TimeSeriesControl =  MapControl.extend({
   classNames: ['time-series-control'],
   classNameBindings: [
     'parentView.playing:time-series-control--playing', 
@@ -20,3 +27,4 @@ export default MapControl.extend({
   }
 });
 
+export default TimeSeriesControl;

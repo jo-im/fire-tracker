@@ -13,6 +13,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test",
+    "documentation": "./node_modules/.bin/esdox -t ./esdox/templates/ -i -r --output doc app/",
     "postbuild": "node -e \"require('./node_modules/sitemap-autogenerator/blueprints/sitemap-autogenerator/index').triggerSitemapBuilder('https://projectnumbers.org')\""
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "proxy-polyfill": "^0.1.7"
   },
   "devDependencies": {
+    "@nphyx/esdox": "^0.3.0",
     "blueimp-md5": "^2.10.0",
     "broccoli-asset-rev": "^2.4.5",
     "broccoli-funnel": "^2.0.1",

@@ -88,6 +88,12 @@ There are many ways to [authenticate with CouchDB](http://docs.couchdb.org/en/2.
 
 The best way for a server-side application to authenticate is to use HTTP Basic authentication through an HTTPS connection.  Let's say you have user called `apiuser` and their password is `notsorandompass`; you generate a token by combining them into a colon-delimited stirng like `apiuser:notsorandompass` and Base64 encoding it.  That would generate `YXBpdXNlcjpub3Rzb3JhbmRvbXBhc3M=` as your token.  On each request, include a header called `Authorization` with the value `Basic YXBpdXNlcjpub3Rzb3JhbmRvbXBhc3M=`.
 
+## Documentation
+
+Documentation can be viewed both inline as JSDoc 3 format comments and as Markdown files [here](doc).
+
+To generate new Markdown files from JSDoc comments, run `npm run documentation`.
+
 ## Further Reading / Useful Links
 
 * [ember.js](http://emberjs.com/)

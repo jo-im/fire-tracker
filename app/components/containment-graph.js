@@ -1,5 +1,17 @@
 import Ember from 'ember';
 
+/**
+ * Displays a little progress graph, filling in individual cells
+ * based on the percentage containment.
+ * @module containment-graph
+ */
+
+/**
+ * @class ContainmentGraph
+ * @extends Ember.Component
+ * @property {string|number} containment - The percentage to be displayed by the graph.
+ */
+
 export default Ember.Component.extend({
   tagName: "svg",
   classNames: ["containment-graph", "fire-header__stats__item-icon"],
@@ -14,7 +26,7 @@ export default Ember.Component.extend({
   version: "1.1",
   didRender: function(){
     let el = this.get('element');
-    if(!el){return;}
+    if(!el) return;
     let containment = parseInt(this.get('containment') || 0);
     let i = 0;
     let cells = el.querySelectorAll('.containment-graph__cell');

@@ -3,21 +3,35 @@
 import Ember from 'ember';
 import GeoJSONLayer from 'ember-leaflet/components/geojson-layer';
 
+/**
+ * Plays a fire perimeter animation with given GeoJSON data.
+ * Must be used within a Leaflet map.
+ * The incoming GeoJSON features have timestamps which we group
+ * in the `series` object.  As soon as the layer is created,
+ * we start a `runLoop` that performs for the lifespan of the
+ * time series layer.  When the layer is set to play, each time
+ * the loop performs, it adds a layer to the map pane... then it
+ * advances the frame number so that the next loop performance will
+ * add the succeeding layer.  The loop always runs but only renders
+ * new layers if `playing` is set to true.  This is easier than
+ * starting and stopping the run loop, and is less likely to lead
+ * to weird timing conditions.
+ * @class TimeSeries
+ * @extends GeoJSONLayer
+ * @property {boolean} shouldReplay - Indicates if the replay button should be displayed(user has reached the end of the animation).
+ * @property {number}  weight       - The weight of the svg path.  Defaults to 0.
+ * @property {number}  fillOpacity  - The opacity of the svg layers.  Defaults to 1.
+ * @property {string}  progress     - The percentage progress of the animation.
+ * @property {boolean} stopped      - Indicates if the animation is paused(not playing).
+ * @example 
+ * {{time-series geoJSON=fire.perimeter.content transitionDuration=2000}}
+ */
 
-// HOW DOES THIS THING WORK???
-//
-// I'll tell you.
-//
-// The incoming GeoJSON features have timestamps which we group
-// in the `series` object.  As soon as the layer is created,
-// we start a `runLoop` that performs for the lifespan of the
-// time series later.  When the layer is set to play, each time
-// the loop performs, it adds a layer to the map pane... then it
-// advances the frame number so that the next loop performance will
-// add the succeeding layer.  The loop always runs but only renders
-// new layers if `playing` is set to true.  This is easier than
-// starting and stopping the run loop, and is less likely to lead
-// to weird timing conditions.  
+/**
+ * @function constructor
+ * @param {object} geoJSON            - An object representing geoJSON.
+ * @param {nubmer} transitionDuration - The number of milliseconds between each time a boundary is rendered.
+ */
 
 export default GeoJSONLayer.extend({
 
@@ -190,7 +204,10 @@ export default GeoJSONLayer.extend({
       return `${100 * (this.get('i') / this.get('timeInstants.length'))}%`;
     }
   }),
-  
+  /**
+   * @method play
+   * Causes the animation to start playing.
+   */
   play(){
     // reset playhead if we are already at the end.
     var i = this.get('i') || 0;
@@ -207,7 +224,10 @@ export default GeoJSONLayer.extend({
     }
     this.set('playing', true);
   },
-  
+  /**
+   * @method stop
+   * Stops the animation.
+   */
   stop(){
     this.set('playing', false);
   },

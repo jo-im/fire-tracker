@@ -1,0 +1,50 @@
+{{#name}}
+{{name}}
+========
+
+{{/name}}
+{{#description}}
+{{{description}}}
+
+{{/description}}
+{{#examples}}
+**Example:**
+```
+{{{examples}}}
+```
+{{/examples}}
+{{#hasRequires}}
+
+**Requires:**
+{{#requires}}
++ {{{req}}}
+{{/requires}}
+{{/hasRequires}}
+{{#hasMembers}}
+
+**Properties:**
+{{#members}}
++ {{{member}}}
+{{/members}}
+{{/hasMembers}}
+{{! display functions }}
+{{#functions.length}}
+
+## Functions
+{{#functions}}
+### {{name}}({{#paramsString}}{{paramsString}}{{/paramsString}}) {{#version}}{{version}}{{/version}} &#x21e8; {{#returns}}{{#typesString}}`{{typesString}}`{{/typesString}}{{/returns}}{{^returns.length}}`undefined`{{/returns.length}}
+{{> function}}
+{{/functions}}
+{{/functions.length}}
+{{! display classes }}
+{{#classes.length}}
+
+## Classes
+{{#classes}}
+{{> class-link}}
+{{/classes}}
+{{/classes.length}}
+
+{{#classes}}
+{{> class}}
+{{/classes}}

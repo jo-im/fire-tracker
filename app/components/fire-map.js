@@ -1,5 +1,29 @@
 import LeafletMap from 'ember-leaflet/components/leaflet-map';
 
+/**
+ * A Leaflet map with some special functionality.
+ * Scroll wheel and touch zoom events are disabled.
+ * A "thumbnail mode" option is added so that a map can be completely static with no interactivity.
+ * Special class names are added to zoom controls so they can be moved around with media queries.
+ * A 'didInitializeMap' event is also triggered once the map object has been instantiated so that child layers can wait for the map to be ready.
+ * @module fire-map
+ * @example
+ * {{#fire-map lat=model.lat lng=model.long zoom=14}}
+ *   {{map-tiles}}
+ *   {{marker-layer location=model.latLong icon=model.markerIcon}}
+ * {{/fire-map}}
+ */
+
+/**
+ * @class FireMap
+ * @extends LeafletMap
+ * @property {number|string} lat - Center latitude
+ * @property {number|string} lng - Center longitude
+ * @property {number|string} zoom - Zoom factor
+ * @property {boolean} thumbnailMode - Disables all map interactivity
+ * @property {boolean} hasLoaded - Signifies that the Leaflet map object has finished loading.
+ */
+
 export default LeafletMap.extend({
   classNames: ['fire-map'],
   leafletOptions: [

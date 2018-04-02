@@ -4,6 +4,12 @@ import ENV from '../config/environment';
 import { NotFoundError } from '../lib/fetch-errors';
 import shoebox from '../mixins/shoebox';
 
+/**
+ * The adapter for querying fires.
+ * @module FireAdapter
+ * @extends DS.Adapter
+ */
+
 export default DS.Adapter.extend(shoebox, {
 
   findAll: function(){

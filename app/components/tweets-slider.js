@@ -1,5 +1,25 @@
 import Ember from 'ember';
 
+/**
+ * Displays a list of tweet-cards for a given fire
+ * @class TweetsSlider
+ * @extends Ember.Component
+ * @property {number}  selected     - The index of the selected card.
+ * @property {number}  cardCount    - The total cards in the collection.
+ * @property {boolean} atBeginning  - Returns true if selected card is the first card.
+ * @property {boolean} atEnd        - Returns true if selected card is the last card.
+ * @property {boolean} shouldDisplayDots - Returns true if there is more than one card.
+ * @example
+ * {{tweets-slider tweets=fire.latestTweets fireName=fire.name hashtag=fire.hashtag}}
+ */
+
+ /** 
+  * @function constructor
+  * @param    {array}   tweets       - A list of tweet objects.
+  * @param    {string}  fireName     - The name of the fire referenced by the tweets.
+  * @param    {string}  hashtag      - The hashtag(including the #) associated with the tweets.
+ */
+
 export default Ember.Component.extend({
   classNames: ['tweets-slider', 't-dark'],
   classNameBindings: ['atBeginning:tweets-slider--at-beginning', 'atEnd:tweets-slider--at-end'],
@@ -31,10 +51,14 @@ export default Ember.Component.extend({
     return (this.get('cardCount') || 0) > 1;
   }),
   actions: {
+    /** 
+     * @method selectTweet
+     * (action) - Selects a tweet card.
+     * @param {number} index - The index of the tweet card to be selected.
+    */
     selectTweet(index){
       let i,
         cardCount = this.get('cardCount');
-
       if(index < 0){
         i = 0;
       } else if (index >= cardCount) {
@@ -51,10 +75,18 @@ export default Ember.Component.extend({
       Array.from(cards).forEach(c => c.style.transform = `translateX(${left}px)`);
       this.set('selected', i);
     },
+    /** 
+     * @method slideLeft
+     * (action) - Slides the cards to the left by one card.
+    */
     slideLeft(){
       let selected = this.get('selected');
       this.send('selectTweet', selected - 1);
     },
+    /**
+     * @method slideRight
+     * (action) - Slides the cards to the right by one card.
+    */
     slideRight(){
       let selected = this.get('selected');
       this.send('selectTweet', selected + 1);

@@ -4,7 +4,16 @@ import Ember from 'ember';
 import { NotFoundError } from '../lib/fetch-errors';
 import shoebox from '../mixins/shoebox';
 
+/**
+ * The adapter for querying articles.
+ * @module ArticleAdapter
+ * @extends DS.Adapter
+ */
+
 export default DS.Adapter.extend(shoebox, {
+  /**
+   * @function queryRecord
+   */
   queryRecord: function(store, type, query){
     return this.fetch(`${ENV.couchdb.endpoint}/articles/_find`, {
       method: "POST",

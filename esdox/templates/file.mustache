@@ -1,0 +1,65 @@
+{{! if the file has more than one module we'll show a list of those }}
+{{#hasMultipleModules}}
+# File `{{{basename}}}`
+**Modules**
+{{#modules}}
+{{#name}}
+* [{{name}}](#module-{{name}})
+{{/name}}
+{{/modules}}
+{{/hasMultipleModules}}
+{{! otherwise show a link to the functions and classes sections as applicable }}
+{{^hasMultipleModules}}
+# File `{{{basename}}}`
+{{! only show the main navigation links if there are both functions and classes }}
+{{#functions.length}}
+{{#classes.length}}
+[Functions](#functions)
+[Classes](#classes)
+{{/classes.length}}
+{{/functions.length}}
+{{/hasMultipleModules}}
+
+{{#overview}}
+**Overview:** {{{overview}}}
+{{/overview}}
+{{#description}}
+
+{{description}}
+{{/description}}
+{{#copyright}}
+
+**Copyright** *{{copyright}}*
+{{/copyright}}
+{{^copyright}} {{/copyright}}
+{{#author}}
+
+**Author** {{author}}
+{{/author}}
+{{#license}}
+
+**License:** {{license}}
+{{/license}}
+{{#version}}
+
+**Version:** {{version}}
+{{/version}}
+
+{{! if we have multiple modules display each one as a section (there will at least be a "Global" module) }}
+{{#hasMultipleModules}}
+{{#modules}}
+{{#name}}
+# Module {{name}}
+{{/name}}
+{{> module}}
+{{/modules}}
+{{/hasMultipleModules}}
+{{! end modules loop }}
+{{! otherwise show the single-module template }}
+{{^hasMultipleModules}}
+{{#modules.length}}
+{{#modules}}
+{{> module}}
+{{/modules}}
+{{/modules.length}}
+{{/hasMultipleModules}}

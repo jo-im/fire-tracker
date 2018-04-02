@@ -6,6 +6,15 @@ import SearchIndex from '../lib/search-index';
 import template from '../templates/components/fire-search';
 import ENV from '../config/environment';
 
+/**
+ * Used on the homepage to search for nearby fires.
+ * 
+ * A user can search by address, placename, or zip code, and the nearest fires are returned along with distances.
+ * @module home-search
+ * @example
+ * {{home-search searchData=model heading="Am I near a wildfire?" placeholder="Enter a zipcode, city or fire name"}}
+ */
+
 function getDistance(lat1, lon1, lat2, lon2) {
   // returns distance in miles
   var radlat1 = Math.PI * lat1/180;
@@ -19,6 +28,12 @@ function getDistance(lat1, lon1, lat2, lon2) {
   return dist;
 }
 
+/**
+ * @class HomeSearch
+ * @extends FireSearch
+ * @property {array}  searchData  - A list of fire objects to be searched.
+ * @property {object} searchIndex - A full-text-search index computed off the searchData property.
+ */
 export default FireSearch.extend({
   store: Ember.inject.service(),
   classNames: ['home-search'],
@@ -34,6 +49,10 @@ export default FireSearch.extend({
     this.set('hasNoResults', false);
     Ember.run.debounce(this, this.getResults, 500);
   }),
+  /**
+   * This gets fired whenever the user makes a query.  It will first attempt to match a fire by name.  If that fails, it then tries to geocode the user's query.  The results are then sorted by distance, finally returning the closest 3 fires.
+   * @function getResults
+   */
   getResults(){
     var query = this.get('query');
     if(!query || !query.length){

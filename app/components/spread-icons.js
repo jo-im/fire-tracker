@@ -1,5 +1,19 @@
 import Ember from 'ember';
 
+/**
+ * Displays social icons for a fire or an article.
+ * @class SpreadIcons
+ * @extends Ember.Component
+ * @example
+ * {{spread-icons fire=fire}}
+ */
+
+/**
+ * @function constructor
+ * @param {object} fire    - A fire object to share.
+ * @param {object} article - An article object to share.
+ */
+
 export default Ember.Component.extend({
   tagName: 'nav',
   classNames: ['spread-icons'],

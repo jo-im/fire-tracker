@@ -1,7 +1,3 @@
-// Use this mixin wherever you would normally use ember-fetch
-// so that the response gets serialized in the fastboot shoebox,
-// thus preventing redundant database requests on fastboot page load.
-
 import Ember from 'ember';
 import fetch from 'fetch';
 
@@ -17,6 +13,17 @@ function generateFakeResponse(obj) {
     json: function() { return Promise.resolve(obj.json); }
   });
 }
+
+/**
+ * Use this mixin wherever you would normally use ember-fetch
+ * so that the response gets serialized in the Fastboot shoebox,
+ * thus preventing redundant database requests on Fastboot page load.
+ * @class Shoebox
+ * @extends Ember.Mixin
+ * @example
+ * import Shoebox from '../mixins/shoebox';
+ * DS.Adapter.extend(Shoebox, { ... });
+ */
 
 export default Mixin.create({
   fastboot: service(),
@@ -38,9 +45,7 @@ export default Mixin.create({
         });
     }
     let cachedResponse = this.get('shoebox').popResponse(requestToken);
-    if(cachedResponse) {
-      return generateFakeResponse(cachedResponse);
-    }
+    if(cachedResponse) return generateFakeResponse(cachedResponse);
     return fetch(...arguments);
   }
 });
