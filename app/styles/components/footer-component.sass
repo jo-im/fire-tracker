@@ -39,15 +39,7 @@
 .footer-component__logos__kpcc, .footer-component__logos__kpcc > *
   display: block
   float: left
-  height: 23px
-  width: 155px
-
-.footer-component__logos__kpcc-image
-  display: block
-  float: left
-  height: 23px
-  margin-right: 4px
-  width: 155px
+  width: 230px
 
 .footer-component__logos__pipe
   background: $color-gray
@@ -183,10 +175,6 @@
     height: 27px
     width: 185px
 
-  .footer-component__logos__kpcc, .footer-component__logos__kpcc > *
-    height: 19px
-    width: 130px
-
   .footer-component__foot
     margin-bottom: $row
 
@@ -194,12 +182,19 @@
     margin-bottom: $row / 2
 
 @mixin footer-component--xs
+  .footer-component__head
+    justify-content: center
+
+  .footer-component__logos
+    align-items: center
+    flex-direction: column
+
+  .footer-component__logos__firetracker
+    margin-bottom: 10px
+    margin-top: 18px
+
   .footer-component__logos__kpcc, .footer-component__logos__kpcc > *
     height: 19px
-    width: 110px
 
-
-
-
-
-
+  .footer-component__logos__pipe
+    display: none

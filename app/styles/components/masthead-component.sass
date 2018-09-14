@@ -20,6 +20,12 @@
 .masthead-component--bordered
   border-bottom: 1px solid #898989
 
+.masthead-component__special-project
+  color: white
+  font-size: 13px
+  line-height: 15px
+  margin-bottom: -3px
+
 .masthead-component__logo, .masthead-component__donate
   display: block
   height: $row
@@ -42,6 +48,8 @@
   height: 36px
 
 .masthead-component__parent-logo
+  .masthead-component__parent-logo__built-by
+    display: none
   .masthead-component__parent-logo__img--mobile
     display: none
 
@@ -89,7 +97,7 @@
 @mixin masthead-component--sm
   .masthead-component__parent-logo
     align-self: flex-end
-    transform: translateY(-100%)
+    transform: translateY(-42%)
   .masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
     height: 30px
   .masthead-component__logo
@@ -98,19 +106,24 @@
     display: none
   .masthead-component__parent-logo__img--full
     display: none
+  .masthead-component__parent-logo__built-by
+    color: white
+    display: block
+    font-size: 16px
+    margin-bottom: -6px
   .masthead-component__parent-logo__img--mobile
     display: block
     margin-right: 15px
 
 @mixin masthead-component--xs
-  height: $row
+  .masthead-component__parent-logo
+    transform: translateY(-75%)
   .masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
     height: 18px
   .masthead-component__logo
     margin-left: $gutter / 4
-  .masthead-component__parent-logo
-    display: none
-  .masthead-component__timestamp
-    margin-right: $gutter / 4
-
+  .masthead-component__parent-logo__built-by
+    font-size: 13px
+  .masthead-component__parent-logo__img--mobile
+    width: 150px
 

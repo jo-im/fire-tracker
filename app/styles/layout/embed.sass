@@ -1,5 +1,13 @@
 #l-embed__masthead
-  @include masthead-component--xs
+  height: $row
+  .masthead-component__logo, .masthead-component__logo img, .masthead-component__logo svg
+    height: 18px
+  .masthead-component__logo
+    margin-left: $gutter / 4
+  .masthead-component__parent-logo
+    display: none
+  .masthead-component__timestamp
+    margin-right: $gutter / 4
 
 #l-embed
   @media (max-width: $l-xs-breakpoint)
