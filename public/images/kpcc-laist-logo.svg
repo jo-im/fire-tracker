@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="/assets/fire-tracker.css"?>
 <svg width="194px" height="23px" viewBox="0 0 194 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
     <title>kpccLaist</title>
@@ -175,7 +176,7 @@
                     <use xlink:href="#path-41"></use>
                 </mask>
                 <g id="Clip-62"></g>
-                <polygon id="Fill-61" fill="#FFFFFF" mask="url(#mask-42)" points="-5 18 17.39358 18 17.39358 -5 -5 -5"></polygon>
+                <polygon id="kpcc-laist-logo__circle" fill="#FFFFFF" mask="url(#mask-42)" points="-5 18 17.39358 18 17.39358 -5 -5 -5"></polygon>
             </g>
             <g id="Group-66" transform="translate(14.000000, 10.000000)">
                 <mask id="mask-44" fill="white">
