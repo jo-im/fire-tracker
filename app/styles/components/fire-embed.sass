@@ -45,7 +45,12 @@
   font-weight: 300
 
 .fire-embed__header__foot
-  
+  align-items: flex-start
+  display: flex
+  flex-direction: column
+
+.fire-embed__special-project
+  font-size: 14px
 
 .fire-embed__header__stats__item-icon
   flex-shrink: 0
@@ -82,6 +87,9 @@
   right: 0
   width: 54%
 
+.fire-embed__footer__kpcc-laist-logo
+  display: none
+
 @mixin fire-embed--sm
   .fire-embed
     display: flex
@@ -99,6 +107,19 @@
   .fire-embed__header
     padding-top: $unit-in-pixels
 
+@mixin fire-embed--xs
+  .fire-embed__header__foot
+    display: none
+
+  .fire-embed__footer__kpcc-laist-logo
+    align-items: center
+    display: flex
+    flex-direction: column
+    margin-top: 70px
+    width: 100%
+
+  .fire-embed__footer__special-project
+    font-size: 14px
 
 
 
